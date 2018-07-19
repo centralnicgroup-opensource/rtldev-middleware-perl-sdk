@@ -7,9 +7,8 @@ use HEXONET::apiconnector::Connection;
 
 our $VERSION = '1.10';
 
-
 sub connect {
-	return new HEXONET::apiconnector::Connection(@_);
+    return new HEXONET::apiconnector::Connection(@_);
 }
 
 1;

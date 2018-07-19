@@ -12,7 +12,7 @@ use Test::More tests => 1;
 
 our $VERSION = '1.10';
 
-BEGIN { use_ok('HEXONET::apiconnector') };
+BEGIN { use_ok('HEXONET::apiconnector') }
 
 #########################
 
