@@ -1,22 +1,24 @@
-package HEXONET;
+package HEXONET::apiconnector;
 
+use 5.026000;
 use strict;
 use warnings;
-use HEXONET::Connection;
-use vars qw($VERSION);
+use HEXONET::apiconnector::Connection;
 
-our $VERSION = '1.0';
+our $VERSION = '1.10';
 
 
 sub connect {
-	return new HEXONET::Connection(@_);
+	return new HEXONET::apiconnector::Connection(@_);
 }
 
 1;
 
+__END__
+
 =head1 NAME
 
-HEXONET Library - Perl module for querying the API
+HEXONET::apiconnector Perl Module - Connector library for the insanely fast HEXONET Backend API
 
 =head1 SYNOPSIS
 
@@ -29,12 +31,12 @@ HEXONET Library - Perl module for querying the API
 	use lib "$FindBin::Bin/lib";
 
 	# Import the HEXONET package
-	use HEXONET;
+	use HEXONET::apiconnector;
 
 	# Create a connection with the URL, entity, login and password
 	# Use "1234" as entity for the OT&E, and "54cd" for productive use
 	# Don't have a HEXONET Account yet? Get one here: www.hexonet.net/sign-up
-	my $api = HEXONET::connect(
+	my $api = HEXONET::apiconnector::connect(
 		url => 'https://coreapi.1api.net/api/call.cgi',
 		entity => '1234',
 		login => 'test.user',
@@ -73,7 +75,7 @@ Function connect Returns a Connection object connected to the API Server (URL, E
 
 =back
 
-=head1 METHODS HEXONET::Connection
+=head1 METHODS HEXONET::apiconnector::Connection
 
 =over 4
 
@@ -91,7 +93,7 @@ Make a curl API call over HTTP(S) and returns the response as a string
 
 =back
 
-=head1 METHODS HEXONET::Response
+=head1 METHODS HEXONET::apiconnector::Response
 
 =over 4
 
@@ -197,7 +199,7 @@ Returns the first index for the last page
 
 =back
 
-=head1 METHODS HEXONET::Util
+=head1 METHODS HEXONET::apiconnector::Util
 
 =over 4
 

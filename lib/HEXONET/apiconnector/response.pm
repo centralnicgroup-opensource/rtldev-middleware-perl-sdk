@@ -1,13 +1,14 @@
-package HEXONET::Response;
+package HEXONET::apiconnector::Response;
 
 use strict;
 use warnings;
-use HEXONET::Util;
+use HEXONET::apiconnector::Util;
 use overload
   '%{}' => \&_as_hash_op,
   '@{}' => \&as_list,
   ;
 
+our $VERSION = '1.10';
 
 sub new {
 	my $class = shift;
@@ -41,7 +42,7 @@ sub _as_hash_op {
 
 	# Don't hide the $self hash if called from within class
 	my ($pkg) = caller 0;
-	return $self if $pkg->isa('HEXONET::Response');
+	return $self if $pkg->isa('HEXONET::apiconnector::Response');
 	return $self->as_hash();
 }
 
@@ -50,7 +51,7 @@ sub as_hash {
 	my $self = shift;
 
 	return $self->{_response_hash} if defined $self->{_response_hash};
-	$self->{_response_hash} = HEXONET::Util::response_to_hash($self->{_response_string});
+	$self->{_response_hash} = HEXONET::apiconnector::Util::response_to_hash($self->{_response_string});
 	return $self->{_response_hash};
 }
 
@@ -59,7 +60,7 @@ sub as_list_hash {
 	my $self = shift;
 
 	return $self->{_response_list_hash} if defined $self->{_response_list_hash};
-	$self->{_response_list_hash} = HEXONET::Util::response_to_list_hash($self->as_hash());
+	$self->{_response_list_hash} = HEXONET::apiconnector::Util::response_to_list_hash($self->as_hash());
 	return $self->{_response_list_hash};
 }
 

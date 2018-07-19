@@ -1,0 +1,14 @@
+Changes
+Makefile.PL
+MANIFEST
+README
+t/HEXONET-apiconnector.t
+lib/HEXONET/apiconnector.pm
+lib/HEXONET/apiconnector/connection.pm
+lib/HEXONET/apiconnector/response.pm
+lib/HEXONET/apiconnector/util.pm
+docs/apiconnector.html
+scripts/generatedocs.sh
+.gitignore
+CONTRIBUTING.md
+LICENSE

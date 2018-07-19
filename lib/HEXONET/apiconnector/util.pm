@@ -1,4 +1,4 @@
-package HEXONET::Util;
+package HEXONET::apiconnector::Util;
 
 use strict;
 use warnings;
@@ -6,6 +6,8 @@ use utf8;
 use base 'Exporter';
 use Time::Local;
 use MIME::Base64;
+
+our $VERSION = '1.10';
 
 our @EXPORT    = qw();
 our @EXPORT_OK = qw(sqltime timesql);

@@ -1,29 +1,20 @@
-use strict;
-use warnings;
-use 5.008004;
+use 5.026000;
 use ExtUtils::MakeMaker;
 
+# See lib/ExtUtils/MakeMaker.pm for details of how to influence
+# the contents of the Makefile that is written.
 WriteMakefile(
-  NAME             => 'HEXONET',
-  VERSION_FROM     => 'lib/HEXONET/hexonet.pm',
-  ABSTRACT_FROM    => 'lib/HEXONET/hexonet.pm',
-  AUTHOR           => 'HEXONET GmbH',
-  LICENSE          => 'MIT',
-  MIN_PERL_VERSION => '5.008004',
-  EXE_FILES        => [],
-  PREREQ_PM        => {
-    'strict'   => 1,
-    'warnings' => 1,
-  },
-  (eval { ExtUtils::MakeMaker->VERSION(6.46) } ? (META_MERGE => {
-      'meta-spec' => { version => 2 },
-      resources => {
-          repository => {
-              type => 'git',
-              url  => 'https://github.com/hexonet/perl-sdk',
-              web  => 'https://www.hexonet.net',
-          },
-      }})
-   : ()
-  ),
+	NAME              => 'HEXONET::apiconnector',
+	VERSION_FROM      => 'lib/HEXONET/apiconnector.pm', # finds $VERSION, requires EU::MM from perl >= 5.5
+	PREREQ_PM         => {}, # e.g., Module::Name => 1.1
+	(
+		$] >= 5.005
+		?     ## Add these new keywords supported since 5.005
+		  (
+			ABSTRACT_FROM     => 'lib/HEXONET/apiconnector.pm', # retrieve abstract from module
+			AUTHOR            => 'hexonet <middleware@hexonet.net>'
+		  )
+		: ()
+	),
+	LICENSE           => 'mit'
 );
