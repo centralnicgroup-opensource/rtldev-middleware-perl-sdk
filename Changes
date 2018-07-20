@@ -1,10 +1,14 @@
-Revision history for Perl extension HEXONET::apiconnector.
+Revision history for Perl extension HEXONET::Apiconnector.
 
 1.00  Thu Jul 19 14:37:00 2018
     * reviewed version; based on http://www.perltk.de/tk_widgets/ghowto_create_cpan_module.html
 	* added sdk documentation and generator script
+	* added automated tests and coverage reporting
+	* added code linting
+	* fixed POD documentation: abstract_from works now
+	* switch from MANIFEST to MANIFEST.SKIP
 
 0.01  Wed Jul 18 15:41:52 2018
 	- original version; created by h2xs 1.23 with options
-		-b 5.26.0 -XA -n HEXONET::apiconnector
+		-b 5.26.0 -XA -n HEXONET::Apiconnector
 

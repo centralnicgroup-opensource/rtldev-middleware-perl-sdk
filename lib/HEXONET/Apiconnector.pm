@@ -1,14 +1,14 @@
-package HEXONET::apiconnector;
+package HEXONET::Apiconnector;
 
 use 5.026000;
 use strict;
 use warnings;
-use HEXONET::apiconnector::Connection;
+use HEXONET::Apiconnector::Connection;
 
-our $VERSION = '1.10';
+our $VERSION = '1.00';
 
 sub connect {
-    return new HEXONET::apiconnector::Connection(@_);
+    return new HEXONET::Apiconnector::Connection(@_);
 }
 
 1;
@@ -17,7 +17,7 @@ __END__
 
 =head1 NAME
 
-HEXONET::apiconnector Perl Module - Connector library for the insanely fast HEXONET Backend API
+HEXONET::Apiconnector - Connector library for the insanely fast L<HEXONET Backend API|https://www.hexonet.net/>.
 
 =head1 SYNOPSIS
 
@@ -25,23 +25,25 @@ HEXONET::apiconnector Perl Module - Connector library for the insanely fast HEXO
 	# How to use this Library?
 	###############################
 
-	# Copy the "lib" directory in your project and setup the new "lib" directory
-	use FindBin;
-	use lib "$FindBin::Bin/lib";
+	# Install our module by
+	cpan HEXONET::Apiconnector
+	# or
+	cpanm HEXONET::Apiconnector
+	# NOTE: We suggest to use cpanm (App::cpanminus) for several reasons.
 
 	# Import the HEXONET package
-	use HEXONET::apiconnector;
+	use HEXONET::Apiconnector;
 
 	# Create a connection with the URL, entity, login and password
 	# Use "1234" as entity for the OT&E, and "54cd" for productive use
 	# Don't have a HEXONET Account yet? Get one here: www.hexonet.net/sign-up
-	my $api = HEXONET::apiconnector::connect(
+	my $api = HEXONET::Apiconnector::connect(
 		url => 'https://coreapi.1api.net/api/call.cgi',
 		entity => '1234',
 		login => 'test.user',
 		password => 'test.passw0rd',
 	);
-	
+
 	# Call a command
 	my $response = $api->call({
 		COMMAND => "querydomainlist",
@@ -74,7 +76,7 @@ Function connect Returns a Connection object connected to the API Server (URL, E
 
 =back
 
-=head1 METHODS HEXONET::apiconnector::Connection
+=head1 METHODS HEXONET::Apiconnector::Connection
 
 =over 4
 
@@ -92,7 +94,7 @@ Make a curl API call over HTTP(S) and returns the response as a string
 
 =back
 
-=head1 METHODS HEXONET::apiconnector::Response
+=head1 METHODS HEXONET::Apiconnector::Response
 
 =over 4
 
@@ -198,7 +200,7 @@ Returns the first index for the last page
 
 =back
 
-=head1 METHODS HEXONET::apiconnector::Util
+=head1 METHODS HEXONET::Apiconnector::Util
 
 =over 4
 

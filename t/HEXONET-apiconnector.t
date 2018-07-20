@@ -1,21 +1,35 @@
-# Before 'make install' is performed this script should be runnable with
-# 'make test'. After 'make install' it should work as 'perl HEXONET-apiconnector.t'
-
-#########################
-
-# change 'tests => 1' to 'tests => last_test_to_print';
-
 use strict;
 use warnings;
 
-use Test::More tests => 1;
+use Test::More tests => 5;
 
-our $VERSION = '1.10';
+our $VERSION = '1.00';
 
-BEGIN { use_ok('HEXONET::apiconnector') }
+# T1-3: test import modules
+use_ok( "lib",                   qw(./lib) );
+use_ok( "Scalar::Util",          qw(blessed) );
+use_ok( "HEXONET::Apiconnector", $VERSION );
 
-#########################
+# T4: instantiate API Client
+our $api = HEXONET::Apiconnector::connect(
+    url      => 'https://coreapi.1api.net/api/call.cgi',
+    entity   => '1234',
+    login    => 'test.user',
+    password => 'test.passw0rd'
+);
+our $cl = blessed($api);
+is( $cl, "HEXONET::Apiconnector::Connection",
+    "API Client Instance type check" );
 
-# Insert your test code below, the Test::More module is use()ed here so read
-# its man page ( perldoc Test::More ) for help writing this test script.
+# T5: make API call and test Response instance
+our $r = $api->call(
+    {
+        COMMAND => "QueryDomainList",
+        LIMIT   => 5,
+        FIRST   => 0
+    }
+);
 
+$cl = blessed($r);
+is( $cl, "HEXONET::Apiconnector::Response",
+    "API Response Instance type check" );
