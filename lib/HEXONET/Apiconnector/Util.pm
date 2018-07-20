@@ -14,7 +14,7 @@ our @EXPORT_OK = qw(sqltime timesql);
 
 sub timesql {
     my $sqltime = shift;
-    return ( LIST { undef } SCALAR { undef } )
+    return undef
       if !defined $sqltime || $sqltime !~ /(\d\d+)-(\d+)-(\d+)/;
     my $year = $1;
     my $mon  = $2;
@@ -67,7 +67,7 @@ sub sqltime {
 
 sub url_encode {
     my $s = shift;
-    return ( LIST { undef } SCALAR { undef } )
+    return undef
       unless defined $s;
     utf8::encode($s) if utf8::is_utf8($s);
     $s =~ s/([^A-Za-z0-9\-\._~])/sprintf("%%%02X", ord($1))/seg;

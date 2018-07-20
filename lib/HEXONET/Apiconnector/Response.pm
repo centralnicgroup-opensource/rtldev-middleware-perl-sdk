@@ -104,7 +104,7 @@ sub property {
     my $index    = shift;
     my $p        = $self->as_hash()->{PROPERTY};
     if ( defined $index ) {
-        return ( LIST { undef } SCALAR { undef } )
+        return undef
           unless exists $p->{$property};
         return $p->{$property}[$index];
     }
@@ -112,7 +112,9 @@ sub property {
         return () unless exists $p->{$property};
         return @{ $p->{$property} };
     }
-    return ( LIST { undef } SCALAR { undef } ) unless exists $p->{$property};
+    return undef unless exists $p->{$property};
+
+    #TODO: we mixup here wantarray and LIST/SCALAR which does basically the same
     return $p->{$property};
 }
 

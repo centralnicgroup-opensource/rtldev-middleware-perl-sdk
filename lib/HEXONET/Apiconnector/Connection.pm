@@ -36,6 +36,9 @@ sub call_raw {
     $config = {} if !defined $config;
     $config = { User => $config } if ( defined $config ) && ( !ref $config );
 
+    #TODO check above line if we still need it; $config should always be defined
+    #because of the line before, so that at least the if branch can be reviewed
+
     return $self->call_raw_http( $command, $config );
 }
 
@@ -55,7 +58,7 @@ sub call_raw_http {
     $post->{s_pw}     = $self->{password} if exists $self->{password};
     $post->{s_user}   = $self->{user}     if exists $self->{user};
     $post->{s_login} = $self->{login} . "!" . $self->{role}
-      if exists $self->{role};
+      if ( exists $self->{login} ) && ( exists $self->{role} );
 
     if ( exists $config->{user} ) {
         if ( exists $post->{s_user} ) {
