@@ -6,6 +6,7 @@ Revision history for Perl extension HEXONET::Apiconnector.
 	* added automated tests and coverage reporting
 	* added code linting
 	* fixed POD documentation: abstract_from works now
+	* fixed POD documentation: POD coverage 100%
 	* switch from MANIFEST to MANIFEST.SKIP
 
 0.01  Wed Jul 18 15:41:52 2018
