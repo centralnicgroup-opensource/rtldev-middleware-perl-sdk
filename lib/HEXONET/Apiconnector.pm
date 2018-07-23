@@ -67,6 +67,20 @@ It provides a short hand method (HEXONET::Apiconnector::connect) to instantiate 
 
 A helper utility module is also included for tasks like date handling and string encoding.
 
+=head1 AVAILABLE SUBMODULES
+
+We've split our functionality into submodules to give this module a better structure.
+
+=over 4
+
+=item L<HEXONET::Apiconnector::Connection> - API Client functionality.
+
+=item L<HEXONET::Apiconnector::Response> - API Response functionality.
+
+=item L<HEXONET::Apiconnector::Util> - Bundle of Helper methods.
+
+=back
+
 =head1 METHODS HEXONET::Apiconnector
 
 =over 4

@@ -20,6 +20,16 @@ HEXONET - Namespace package for any module provided by L<HEXONET|https://www.hex
 This module is just used as namespace package for any module provided by L<HEXONET|https://www.hexonet.net/>
 and does not provide any further functionality.
 
+=head1 AVAILABLE MODULES
+
+Up to now we provide the following modules:
+
+=over 4
+
+=item L<HEXONET::Apiconnector> - Connector Library for our Backend API.
+
+=back
+
 =head1 AUTHOR
 
 HEXONET GmbH
