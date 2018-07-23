@@ -1,10 +1,10 @@
-package HEXONET::Apiconnector::Connection;
+package Hexonet::Apiconnector::Connection;
 
 use strict;
 use warnings;
-use HEXONET;
-use HEXONET::Apiconnector::Response;
-use HEXONET::Apiconnector::Util;
+use Hexonet;
+use Hexonet::Apiconnector::Response;
+use Hexonet::Apiconnector::Util;
 use LWP::UserAgent;
 
 our $VERSION = '1.00';
@@ -24,7 +24,7 @@ sub call {
     my $self    = shift;
     my $command = shift;
     my $config  = shift;
-    return HEXONET::Apiconnector::Response->new(
+    return Hexonet::Apiconnector::Response->new(
         $self->call_raw( $command, $config ) );
 }
 
@@ -52,7 +52,7 @@ sub call_raw_http {
     my $url = $self->{url};
     my $post =
       { s_command =>
-          ( scalar HEXONET::Apiconnector::Util::command_encode($command) ) };
+          ( scalar Hexonet::Apiconnector::Util::command_encode($command) ) };
     $post->{s_entity} = $self->{entity}   if exists $self->{entity};
     $post->{s_login}  = $self->{login}    if exists $self->{login};
     $post->{s_pw}     = $self->{password} if exists $self->{password};
@@ -78,7 +78,7 @@ sub _get_useragent {
     my $self = shift;
     return $self->{_useragent} if exists $self->{_useragent};
     $self->{_useragent} = new LWP::UserAgent(
-        agent      => "HEXONET-perl/$HEXONET::Apiconnector::VERSION",
+        agent      => "Hexonet-perl/$Hexonet::Apiconnector::VERSION",
         keep_alive => 4
     );
     return $self->{_useragent};
@@ -90,20 +90,20 @@ __END__
 
 =head1 NAME
 
-HEXONET::Apiconnector::Connection - package to provide API client functionality.
+Hexonet::Apiconnector::Connection - package to provide API client functionality.
 
 =head1 DESCRIPTION
 
 This package provides any API client functionality that you need to communicate with the
-insanely fast L<HEXONET Backend API|https://www.hexonet.net/>. A short hand method to
-instantiate the API client is provided as HEXONET::Apiconnector::connect and its usage is
+insanely fast L<Hexonet Backend API|https://www.hexonet.net/>. A short hand method to
+instantiate the API client is provided as Hexonet::Apiconnector::connect and its usage is
 described in that appropriate file.
 
 The API client library itself cares about requesting provided commands to the Backend API
 by using the given configuration data (credentials, backend system url and entity) and to
 return the Backend API response accordingly.
 
-=head1 METHODS HEXONET::Apiconnector::Connection
+=head1 METHODS Hexonet::Apiconnector::Connection
 
 =over 4
 
@@ -134,7 +134,7 @@ Make a curl API call over HTTP(S) and returns the response as a string
 
 =head1 AUTHOR
 
-HEXONET GmbH
+Hexonet GmbH
 
 L<https://www.hexonet.net>
 

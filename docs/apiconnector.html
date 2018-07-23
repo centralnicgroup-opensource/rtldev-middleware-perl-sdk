@@ -1,4 +1,4 @@
-<html><head><title>HEXONET::Apiconnector</title>
+<html><head><title>Hexonet::Apiconnector</title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" >
 </head>
 <body class='pod'>
@@ -23,8 +23,8 @@
 name="NAME"
 >NAME</a></h1>
 
-<p>HEXONET::Apiconnector - Connector library for the insanely fast <a href="https://www.hexonet.net/" class="podlinkurl"
->HEXONET Backend API</a>.</p>
+<p>Hexonet::Apiconnector - Connector library for the insanely fast <a href="https://www.hexonet.net/" class="podlinkurl"
+>Hexonet Backend API</a>.</p>
 
 <h1><a class='u'
 name="SYNOPSIS"
@@ -35,18 +35,18 @@ name="SYNOPSIS"
         ###############################
 
         # Install our module by
-        cpan HEXONET::Apiconnector
+        cpan Hexonet::Apiconnector
         # or
-        cpanm HEXONET::Apiconnector
+        cpanm Hexonet::Apiconnector
         # NOTE: We suggest to use cpanm (App::cpanminus) for several reasons.
 
-        # Import the HEXONET package
-        use HEXONET::Apiconnector;
+        # Import the Hexonet package
+        use Hexonet::Apiconnector;
 
         # Create a connection with the URL, entity, login and password
         # Use &#34;1234&#34; as entity for the OT&#38;E, and &#34;54cd&#34; for productive use
-        # Don&#39;t have a HEXONET Account yet? Get one here: www.hexonet.net/sign-up
-        my $api = HEXONET::Apiconnector::connect(
+        # Don&#39;t have a Hexonet Account yet? Get one here: www.hexonet.net/sign-up
+        my $api = Hexonet::Apiconnector::connect(
                 url =&#62; &#39;https://coreapi.1api.net/api/call.cgi&#39;,
                 entity =&#62; &#39;1234&#39;,
                 login =&#62; &#39;test.user&#39;,
@@ -72,7 +72,7 @@ name="SYNOPSIS"
 name="DESCRIPTION"
 >DESCRIPTION</a></h1>
 
-<p>This module allows to query the API and to deal with different response formats (list, list_hash, hash). It provides a short hand method (HEXONET::Apiconnector::connect) to instantiate API clients.</p>
+<p>This module allows to query the API and to deal with different response formats (list, list_hash, hash). It provides a short hand method (Hexonet::Apiconnector::connect) to instantiate API clients.</p>
 
 <p>A helper utility module is also included for tasks like date handling and string encoding.</p>
 
@@ -83,24 +83,24 @@ name="AVAILABLE_SUBMODULES"
 <p>We&#39;ve split our functionality into submodules to give this module a better structure.</p>
 
 <dl>
-<dt><a name="HEXONET::Apiconnector::Connection_-_API_Client_functionality."
-><a href="http://search.cpan.org/perldoc?HEXONET%3A%3AApiconnector%3A%3AConnection" class="podlinkpod"
->HEXONET::Apiconnector::Connection</a> - API Client functionality.</a></dt>
+<dt><a name="Hexonet::Apiconnector::Connection_-_API_Client_functionality."
+><a href="http://search.cpan.org/perldoc?Hexonet%3A%3AApiconnector%3A%3AConnection" class="podlinkpod"
+>Hexonet::Apiconnector::Connection</a> - API Client functionality.</a></dt>
 
 <dd>
-<dt><a name="HEXONET::Apiconnector::Response_-_API_Response_functionality."
-><a href="http://search.cpan.org/perldoc?HEXONET%3A%3AApiconnector%3A%3AResponse" class="podlinkpod"
->HEXONET::Apiconnector::Response</a> - API Response functionality.</a></dt>
+<dt><a name="Hexonet::Apiconnector::Response_-_API_Response_functionality."
+><a href="http://search.cpan.org/perldoc?Hexonet%3A%3AApiconnector%3A%3AResponse" class="podlinkpod"
+>Hexonet::Apiconnector::Response</a> - API Response functionality.</a></dt>
 
 <dd>
-<dt><a name="HEXONET::Apiconnector::Util_-_Bundle_of_Helper_methods."
-><a href="http://search.cpan.org/perldoc?HEXONET%3A%3AApiconnector%3A%3AUtil" class="podlinkpod"
->HEXONET::Apiconnector::Util</a> - Bundle of Helper methods.</a></dt>
+<dt><a name="Hexonet::Apiconnector::Util_-_Bundle_of_Helper_methods."
+><a href="http://search.cpan.org/perldoc?Hexonet%3A%3AApiconnector%3A%3AUtil" class="podlinkpod"
+>Hexonet::Apiconnector::Util</a> - Bundle of Helper methods.</a></dt>
 </dl>
 
 <h1><a class='u'
-name="METHODS_HEXONET::Apiconnector"
->METHODS HEXONET::Apiconnector</a></h1>
+name="METHODS_Hexonet::Apiconnector"
+>METHODS Hexonet::Apiconnector</a></h1>
 
 <dl>
 <dt><a name="connect(url,_entity,_login,_password,_user,_role)"
@@ -115,7 +115,7 @@ name="METHODS_HEXONET::Apiconnector"
 name="AUTHOR"
 >AUTHOR</a></h1>
 
-<p>HEXONET GmbH</p>
+<p>Hexonet GmbH</p>
 
 <p><a href="https://www.hexonet.net" class="podlinkurl"
 >https://www.hexonet.net</a></p>

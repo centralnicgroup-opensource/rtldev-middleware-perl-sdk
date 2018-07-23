@@ -1,2 +1,2 @@
 #!/bin/bash
-perltidy -b -bext='/' lib/HEXONET/*.pm lib/HEXONET/Apiconnector/*.pm t/*.t
+perltidy -b -bext='/' lib/Hexonet/*.pm lib/Hexonet/Apiconnector/*.pm t/*.t

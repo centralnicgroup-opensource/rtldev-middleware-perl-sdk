@@ -1,4 +1,4 @@
-package HEXONET::Apiconnector::Util;
+package Hexonet::Apiconnector::Util;
 
 use strict;
 use warnings;
@@ -256,15 +256,15 @@ __END__
 
 =head1 NAME
 
-HEXONET::Apiconnector::Util - utility package providing useful helper methods.
+Hexonet::Apiconnector::Util - utility package providing useful helper methods.
 
 =head1 DESCRIPTION
 
-This package represents a bundle of helper methods to are used by the HEXONET::Apiconnector
+This package represents a bundle of helper methods to are used by the Hexonet::Apiconnector
 module and its submodules. Further more it provides methods that are useful when dealing
 with Backend API responses and showing outputs.
 
-=head1 METHODS HEXONET::Apiconnector::Util
+=head1 METHODS Hexonet::Apiconnector::Util
 
 =over 4
 
@@ -308,7 +308,7 @@ Convert the response string as a list hash
 
 =head1 AUTHOR
 
-HEXONET GmbH
+Hexonet GmbH
 
 L<https://www.hexonet.net>
 
