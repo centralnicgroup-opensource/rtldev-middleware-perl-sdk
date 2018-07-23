@@ -155,3 +155,143 @@ sub lastpagefirst {
 }
 
 1;
+
+__END__
+
+=head1 NAME
+
+HEXONET::Apiconnector::Response - package to provide functionality to deal with Backend
+API reponses.
+
+=head1 DESCRIPTION
+
+This package provides any functionality that you need to deal with Backend API responses.
+
+The Response object itself can be instantiated by bytes array (basically the plaintext
+response from the Backend API), or by a hash format (an already parsed response).
+But the latter case is more for internal use.
+
+=head1 METHODS HEXONET::Apiconnector::Response
+
+=over 4
+
+=item C<new(response)>
+
+Create an new Response object using the given Backend API response data.
+This can be a bytes array (basically the plaintext response from the Backend API),
+or by a hash format (an already parsed response returned by method as_list_hash).
+The latter case is more for internal use.
+
+=item C<as_string()>
+
+Returns the response as a string
+
+=item C<as_hash()>
+
+Returns the response as a hash
+
+=item C<as_list_hash()>
+
+Returns the response as a list hash
+
+=item C<as_list()>
+
+Returns the response as a list
+
+=item C<code()>
+
+Returns the response code
+
+=item C<description()>
+
+Returns the response description
+
+=item C<properties()>
+
+Returns the response properties
+
+=item C<runtime()>
+
+Returns the response runtime
+
+=item C<queuetime()>
+
+Returns the response queutime
+
+=item C<property(index)>
+
+Returns the property for a given index If no index given, the complete property list is returned
+
+=item C<is_success()>
+
+Returns true if the results is a success Success = response code starting with 2
+
+=item C<is_tmp_error()>
+
+Returns true if the results is a tmp error tmp error = response code starting with 4
+
+=item C<columns()>
+
+Returns the columns
+
+=item C<first()>
+
+Returns the index of the first element
+
+=item C<last()>
+
+Returns the index of the last element
+
+=item C<count()>
+
+Returns the number of list elements returned (= last - first + 1)
+
+=item C<limit()>
+
+Returns the limit of the response
+
+=item C<total()>
+
+Returns the total number of elements found (!= count)
+
+=item C<pages()>
+
+Returns the number of pages
+
+=item C<page()>
+
+Returns the number of the current page (starts with 1)
+
+=item C<prevpage()>
+
+Returns the number of the previous page
+
+=item C<prevpagefirst()>
+
+Returns the first index for the previous page
+
+=item C<nextpage()>
+
+Returns the number of the next page
+
+=item C<nextpagefirst()>
+
+Returns the first index for the next page
+
+=item C<lastpagefirst()>
+
+Returns the first index for the last page
+
+=back
+
+=head1 AUTHOR
+
+HEXONET GmbH
+
+L<https://www.hexonet.net>
+
+=head1 LICENSE
+
+MIT
+
+=cut

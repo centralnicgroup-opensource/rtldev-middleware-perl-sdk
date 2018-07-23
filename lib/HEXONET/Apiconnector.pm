@@ -62,183 +62,18 @@ HEXONET::Apiconnector - Connector library for the insanely fast L<HEXONET Backen
 
 =head1 DESCRIPTION
 
-This module allows the customer to query the API and get different type of response back (list, list_hash, hash)
+This module allows to query the API and to deal with different response formats (list, list_hash, hash).
+It provides a short hand method (HEXONET::Apiconnector::connect) to instantiate API clients.
 
-A helper util module is also included for tasks like date handling and string encoding.
+A helper utility module is also included for tasks like date handling and string encoding.
 
-=head1 METHODS HEXONET
+=head1 METHODS HEXONET::Apiconnector
 
 =over 4
 
 =item C<connect(url, entity, login, password, user, role)>
 
 Function connect Returns a Connection object connected to the API Server (URL, ENTITY, LOGIN, PASSWORD are mandatory to connect the server, ROLE ans USER are optional)
-
-=back
-
-=head1 METHODS HEXONET::Apiconnector::Connection
-
-=over 4
-
-=item C<call(command, config)>
-
-Make a curl API call and returns the response as a response object
-
-=item C<call_raw(command,config)>
-
-Make a curl API call and returns the response as a string
-
-=item C<call_raw_http(command, config)>
-
-Make a curl API call over HTTP(S) and returns the response as a string
-
-=back
-
-=head1 METHODS HEXONET::Apiconnector::Response
-
-=over 4
-
-=item C<as_string()>
-
-Returns the response as a string
-
-=item C<as_hash()>
-
-Returns the response as a hash
-
-=item C<as_list_hash()>
-
-Returns the response as a list hash
-
-=item C<as_list()>
-
-Returns the response as a list
-
-=item C<code()>
-
-Returns the response code
-
-=item C<description()>
-
-Returns the response description
-
-=item C<properties()>
-
-Returns the response properties
-
-=item C<runtime()>
-
-Returns the response runtime
-
-=item C<queuetime()>
-
-Returns the response queutime
-
-=item C<property(index)>
-
-Returns the property for a given index If no index given, the complete property list is returned
-
-=item C<is_success()>
-
-Returns true if the results is a success Success = response code starting with 2
-
-=item C<is_tmp_error()>
-
-Returns true if the results is a tmp error tmp error = response code starting with 4
-
-=item C<columns()>
-
-Returns the columns
-
-=item C<first()>
-
-Returns the index of the first element
-
-=item C<last()>
-
-Returns the index of the last element
-
-=item C<count()>
-
-Returns the number of list elements returned (= last - first + 1)
-
-=item C<limit()>
-
-Returns the limit of the response
-
-=item C<total()>
-
-Returns the total number of elements found (!= count)
-
-=item C<pages()>
-
-Returns the number of pages
-
-=item C<page()>
-
-Returns the number of the current page (starts with 1)
-
-=item C<prevpage()>
-
-Returns the number of the previous page
-
-=item C<prevpagefirst()>
-
-Returns the first index for the previous page
-
-=item C<nextpage()>
-
-Returns the number of the next page
-
-=item C<nextpagefirst()>
-
-Returns the first index for the next page
-
-=item C<lastpagefirst()>
-
-Returns the first index for the last page
-
-=back
-
-=head1 METHODS HEXONET::Apiconnector::Util
-
-=over 4
-
-=item C<timesql(sqldatetime)>
-
-Convert the SQL datetime to Unix-Timestamp
-
-=item C<sqltime(timestamp)>
-
-Convert the Unix-Timestamp to a SQL datetime If no timestamp given, returns the current datetime
-
-=item C<url_encode(string)>
-
-URL-encodes string This function is convenient when encoding a string to be used in a query part of a URL
-
-=item C<url_decode(string)>
-
-Decodes URL-encoded string Decodes any %## encoding in the given string.
-
-=item C<base64_encode(string)>
-
-Encodes data with MIME base64 This encoding is designed to make binary data survive transport through transport layers that are not 8-bit clean, such as mail bodies.
-
-=item C<base64_decode(string)>
-
-Decodes data encoded with MIME base64
-
-=item C<command_encode(command)>
-
-Encode the command array in a command-string
-
-=item C<response_to_hash(response)>
-
-Convert the response string as a hash
-
-=item C<response_to_list_hash(response)>
-
-Convert the response string as a list hash
 
 =back
 

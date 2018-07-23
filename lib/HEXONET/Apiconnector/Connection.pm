@@ -85,3 +85,61 @@ sub _get_useragent {
 }
 
 1;
+
+__END__
+
+=head1 NAME
+
+HEXONET::Apiconnector::Connection - package to provide API client functionality.
+
+=head1 DESCRIPTION
+
+This package provides any API client functionality that you need to communicate with the
+insanely fast L<HEXONET Backend API|https://www.hexonet.net/>. A short hand method to
+instantiate the API client is provided as HEXONET::Apiconnector::connect and its usage is
+described in that appropriate file.
+
+The API client library itself cares about requesting provided commands to the Backend API
+by using the given configuration data (credentials, backend system url and entity) and to
+return the Backend API response accordingly.
+
+=head1 METHODS HEXONET::Apiconnector::Connection
+
+=over 4
+
+=item C<new(config)>
+
+Create an new API client instance with the given configuration data.
+Supported configuration data keys are:
+- login - your uid
+- password - your password
+- url - Backend API url to use; in general https://coreapi.1api.de/api/call.cgi
+- entity - Backend system entity; use "54cd" for LIVE system and "1234" for OT&E system
+- user - to have a view into subuser account data
+- role - in case you want to login with a role user account that is directly under the given uid
+
+=item C<call(command, config)>
+
+Make a curl API call and returns the response as a response object
+
+=item C<call_raw(command,config)>
+
+Make a curl API call and returns the response as a string
+
+=item C<call_raw_http(command, config)>
+
+Make a curl API call over HTTP(S) and returns the response as a string
+
+=back
+
+=head1 AUTHOR
+
+HEXONET GmbH
+
+L<https://www.hexonet.net>
+
+=head1 LICENSE
+
+MIT
+
+=cut

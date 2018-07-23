@@ -251,3 +251,69 @@ sub response_to_list_hash {
 }
 
 1;
+
+__END__
+
+=head1 NAME
+
+HEXONET::Apiconnector::Util - utility package providing useful helper methods.
+
+=head1 DESCRIPTION
+
+This package represents a bundle of helper methods to are used by the HEXONET::Apiconnector
+module and its submodules. Further more it provides methods that are useful when dealing
+with Backend API responses and showing outputs.
+
+=head1 METHODS HEXONET::Apiconnector::Util
+
+=over 4
+
+=item C<timesql(sqldatetime)>
+
+Convert the SQL datetime to Unix-Timestamp
+
+=item C<sqltime(timestamp)>
+
+Convert the Unix-Timestamp to a SQL datetime If no timestamp given, returns the current datetime
+
+=item C<url_encode(string)>
+
+URL-encodes string This function is convenient when encoding a string to be used in a query part of a URL
+
+=item C<url_decode(string)>
+
+Decodes URL-encoded string Decodes any %## encoding in the given string.
+
+=item C<base64_encode(string)>
+
+Encodes data with MIME base64 This encoding is designed to make binary data survive transport through transport layers that are not 8-bit clean, such as mail bodies.
+
+=item C<base64_decode(string)>
+
+Decodes data encoded with MIME base64
+
+=item C<command_encode(command)>
+
+Encode the command array in a command-string
+
+=item C<response_to_hash(response)>
+
+Convert the response string as a hash
+
+=item C<response_to_list_hash(response)>
+
+Convert the response string as a list hash
+
+=back
+
+=head1 AUTHOR
+
+HEXONET GmbH
+
+L<https://www.hexonet.net>
+
+=head1 LICENSE
+
+MIT
+
+=cut
