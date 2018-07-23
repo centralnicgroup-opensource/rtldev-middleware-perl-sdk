@@ -164,7 +164,11 @@ C_FILES  =
 O_FILES  = 
 H_FILES  = 
 MAN1PODS = 
-MAN3PODS = lib/HEXONET/Apiconnector.pm
+MAN3PODS = lib/HEXONET.pm \
+	lib/HEXONET/Apiconnector.pm \
+	lib/HEXONET/Apiconnector/Connection.pm \
+	lib/HEXONET/Apiconnector/Response.pm \
+	lib/HEXONET/Apiconnector/Util.pm
 
 # Where is the Config information that we are using/depend on
 CONFIGDEP = $(PERL_ARCHLIBDEP)$(DFSEP)Config.pm $(PERL_INCDEP)$(DFSEP)config.h
@@ -418,9 +422,17 @@ POD2MAN = $(POD2MAN_EXE)
 
 
 manifypods : pure_all config  \
-	lib/HEXONET/Apiconnector.pm
+	lib/HEXONET.pm \
+	lib/HEXONET/Apiconnector.pm \
+	lib/HEXONET/Apiconnector/Connection.pm \
+	lib/HEXONET/Apiconnector/Response.pm \
+	lib/HEXONET/Apiconnector/Util.pm
 	$(NOECHO) $(POD2MAN) --section=$(MAN3EXT) --perm_rw=$(PERM_RW) -u \
-	  lib/HEXONET/Apiconnector.pm $(INST_MAN3DIR)/HEXONET::Apiconnector.$(MAN3EXT) 
+	  lib/HEXONET.pm $(INST_MAN3DIR)/HEXONET.$(MAN3EXT) \
+	  lib/HEXONET/Apiconnector.pm $(INST_MAN3DIR)/HEXONET::Apiconnector.$(MAN3EXT) \
+	  lib/HEXONET/Apiconnector/Connection.pm $(INST_MAN3DIR)/HEXONET::Apiconnector::Connection.$(MAN3EXT) \
+	  lib/HEXONET/Apiconnector/Response.pm $(INST_MAN3DIR)/HEXONET::Apiconnector::Response.$(MAN3EXT) \
+	  lib/HEXONET/Apiconnector/Util.pm $(INST_MAN3DIR)/HEXONET::Apiconnector::Util.$(MAN3EXT) 
 
 
 
