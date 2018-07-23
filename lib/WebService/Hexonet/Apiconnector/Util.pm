@@ -1,4 +1,4 @@
-package Hexonet::Apiconnector::Util;
+package WebService::Hexonet::Apiconnector::Util;
 
 use strict;
 use warnings;
@@ -256,15 +256,15 @@ __END__
 
 =head1 NAME
 
-Hexonet::Apiconnector::Util - utility package providing useful helper methods.
+WebService::Hexonet::Apiconnector::Util - utility package providing useful helper methods.
 
 =head1 DESCRIPTION
 
-This package represents a bundle of helper methods to are used by the Hexonet::Apiconnector
+This package represents a bundle of helper methods to are used by the WebService::Hexonet::Apiconnector
 module and its submodules. Further more it provides methods that are useful when dealing
 with Backend API responses and showing outputs.
 
-=head1 METHODS Hexonet::Apiconnector::Util
+=head1 METHODS WebService::Hexonet::Apiconnector::Util
 
 =over 4
 

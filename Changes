@@ -4,6 +4,7 @@ Revision history for Perl extension Hexonet::Apiconnector.
     * PrePAN review: lower case key names in documentation
 	* PrePAN review: Connection constructor / connect method using hash map
 	* fix compare operator in url_encode / url_decode tests: use eq instead of ==
+	* moved module to namespace WebService
 
 1.00  Thu Jul 19 14:37:00 2018
     * reviewed version; based on http://www.perltk.de/tk_widgets/ghowto_create_cpan_module.html

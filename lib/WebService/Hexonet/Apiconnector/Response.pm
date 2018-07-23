@@ -1,8 +1,8 @@
-package Hexonet::Apiconnector::Response;
+package WebService::Hexonet::Apiconnector::Response;
 
 use strict;
 use warnings;
-use Hexonet::Apiconnector::Util;
+use WebService::Hexonet::Apiconnector::Util;
 use overload
   '%{}' => \&_as_hash_op,
   '@{}' => \&as_list,
@@ -42,7 +42,7 @@ sub _as_hash_op {
 
     # Don't hide the $self hash if called from within class
     my ($pkg) = caller 0;
-    return $self if $pkg->isa('Hexonet::Apiconnector::Response');
+    return $self if $pkg->isa('WebService::Hexonet::Apiconnector::Response');
     return $self->as_hash();
 }
 
@@ -50,7 +50,7 @@ sub as_hash {
     my $self = shift;
 
     return $self->{_response_hash} if defined $self->{_response_hash};
-    $self->{_response_hash} = Hexonet::Apiconnector::Util::response_to_hash(
+    $self->{_response_hash} = WebService::Hexonet::Apiconnector::Util::response_to_hash(
         $self->{_response_string} );
     return $self->{_response_hash};
 }
@@ -60,7 +60,7 @@ sub as_list_hash {
 
     return $self->{_response_list_hash} if defined $self->{_response_list_hash};
     $self->{_response_list_hash} =
-      Hexonet::Apiconnector::Util::response_to_list_hash( $self->as_hash() );
+      WebService::Hexonet::Apiconnector::Util::response_to_list_hash( $self->as_hash() );
     return $self->{_response_list_hash};
 }
 
@@ -160,7 +160,7 @@ __END__
 
 =head1 NAME
 
-Hexonet::Apiconnector::Response - package to provide functionality to deal with Backend
+WebService::Hexonet::Apiconnector::Response - package to provide functionality to deal with Backend
 API reponses.
 
 =head1 DESCRIPTION
@@ -171,7 +171,7 @@ The Response object itself can be instantiated by bytes array (basically the pla
 response from the Backend API), or by a hash format (an already parsed response).
 But the latter case is more for internal use.
 
-=head1 METHODS Hexonet::Apiconnector::Response
+=head1 METHODS WebService::Hexonet::Apiconnector::Response
 
 =over 4
 

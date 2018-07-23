@@ -1,14 +1,14 @@
-package Hexonet::Apiconnector;
+package WebService::Hexonet::Apiconnector;
 
 use 5.026000;
 use strict;
 use warnings;
-use Hexonet::Apiconnector::Connection;
+use WebService::Hexonet::Apiconnector::Connection;
 
 our $VERSION = '1.00';
 
 sub connect {
-    return Hexonet::Apiconnector::Connection->new(@_);
+    return WebService::Hexonet::Apiconnector::Connection->new(@_);
 }
 
 1;
@@ -17,7 +17,7 @@ __END__
 
 =head1 NAME
 
-Hexonet::Apiconnector - Connector library for the insanely fast L<Hexonet Backend API|https://www.hexonet.net/>.
+WebService::Hexonet::Apiconnector - Connector library for the insanely fast L<Hexonet Backend API|https://www.hexonet.net/>.
 
 =head1 SYNOPSIS
 
@@ -26,18 +26,18 @@ Hexonet::Apiconnector - Connector library for the insanely fast L<Hexonet Backen
 	###############################
 
 	# Install our module by
-	cpan Hexonet::Apiconnector
+	cpan WebService::Hexonet::Apiconnector
 	# or
-	cpanm Hexonet::Apiconnector
+	cpanm WebService::Hexonet::Apiconnector
 	# NOTE: We suggest to use cpanm (App::cpanminus) for several reasons.
 
 	# Import the Hexonet package
-	use Hexonet::Apiconnector;
+	use WebService::Hexonet::Apiconnector;
 
 	# Create a connection with the URL, entity, login and password
 	# Use "1234" as entity for the OT&E, and "54cd" for productive use
 	# Don't have a Hexonet Account yet? Get one here: www.hexonet.net/sign-up
-	my $api = Hexonet::Apiconnector::connect({
+	my $api = WebService::Hexonet::Apiconnector::connect({
 		url => 'https://coreapi.1api.net/api/call.cgi',
 		entity => '1234',
 		login => 'test.user',
@@ -63,7 +63,7 @@ Hexonet::Apiconnector - Connector library for the insanely fast L<Hexonet Backen
 =head1 DESCRIPTION
 
 This module allows to query the API and to deal with different response formats (list, list_hash, hash).
-It provides a short hand method (Hexonet::Apiconnector::connect) to instantiate API clients.
+It provides a short hand method (WebService::Hexonet::Apiconnector::connect) to instantiate API clients.
 
 A helper utility module is also included for tasks like date handling and string encoding.
 
@@ -73,15 +73,15 @@ We've split our functionality into submodules to give this module a better struc
 
 =over 4
 
-=item L<Hexonet::Apiconnector::Connection> - API Client functionality.
+=item L<WebService::Hexonet::Apiconnector::Connection> - API Client functionality.
 
-=item L<Hexonet::Apiconnector::Response> - API Response functionality.
+=item L<WebService::Hexonet::Apiconnector::Response> - API Response functionality.
 
-=item L<Hexonet::Apiconnector::Util> - Bundle of Helper methods.
+=item L<WebService::Hexonet::Apiconnector::Util> - Bundle of Helper methods.
 
 =back
 
-=head1 METHODS Hexonet::Apiconnector
+=head1 METHODS WebService::Hexonet::Apiconnector
 
 =over 4
 

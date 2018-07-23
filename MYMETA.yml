@@ -1,5 +1,5 @@
 ---
-abstract: 'Connector library for the insanely fast L<Hexonet Backend API|https://www.hexonet.net/>.'
+abstract: unknown
 author:
   - 'hexonet <middleware@hexonet.net>'
 build_requires:
@@ -12,7 +12,7 @@ license: mit
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: '1.4'
-name: Hexonet-Apiconnector
+name: WebService-Hexonet-Apiconnector
 no_index:
   directory:
     - t
