@@ -11,14 +11,14 @@ our $VERSION = '1.00';
 #######################################
 
 # T1-5: test import modules
-use_ok( "lib",                             qw(./lib) );
-use_ok( "Scalar::Util",                    qw(blessed) );
-use_ok( "WebService::Hexonet::Apiconnector",           $VERSION );
-use_ok( "WebService::Hexonet::Apiconnector::Response", $VERSION );
-use_ok( "WebService::Hexonet::Apiconnector::Util",     $VERSION );
+use_ok( "lib",                                      qw(./lib) );
+use_ok( "Scalar::Util",                             qw(blessed) );
+use_ok( "WebService::Hexonet::Connector",           $VERSION );
+use_ok( "WebService::Hexonet::Connector::Response", $VERSION );
+use_ok( "WebService::Hexonet::Connector::Util",     $VERSION );
 
 # T6: instantiate API Client
-our $api = WebService::Hexonet::Apiconnector::connect(
+our $api = WebService::Hexonet::Connector::connect(
     {
         url      => 'https://coreapi.1api.net/api/call.cgi',
         entity   => '1234',
@@ -27,8 +27,11 @@ our $api = WebService::Hexonet::Apiconnector::connect(
     }
 );
 our $cl = blessed($api);
-is( $cl, "WebService::Hexonet::Apiconnector::Connection",
-    "API Client Instance type check" );
+is(
+    $cl,
+    "WebService::Hexonet::Connector::Connection",
+    "API Client Instance type check"
+);
 
 # T7: make API call and test Response instance
 our $r = $api->call(
@@ -38,11 +41,14 @@ our $r = $api->call(
 );
 
 $cl = blessed($r);
-is( $cl, "WebService::Hexonet::Apiconnector::Response",
-    "API Response Instance type check" );
+is(
+    $cl,
+    "WebService::Hexonet::Connector::Response",
+    "API Response Instance type check"
+);
 
 # T8: add subuser and role - just to increase coverage, no special checks necessary
-$api = WebService::Hexonet::Apiconnector::connect(
+$api = WebService::Hexonet::Connector::connect(
     {
         url      => 'https://coreapi.1api.net/api/call.cgi',
         entity   => '1234',
@@ -53,8 +59,11 @@ $api = WebService::Hexonet::Apiconnector::connect(
     }
 );
 $cl = blessed($api);
-is( $cl, "WebService::Hexonet::Apiconnector::Connection",
-    "API Client Instance type check" );
+is(
+    $cl,
+    "WebService::Hexonet::Connector::Connection",
+    "API Client Instance type check"
+);
 
 # T9: make API call and test Response instance  - just to increase coverage, no special checks necessary
 $r = $api->call(
@@ -63,8 +72,11 @@ $r = $api->call(
     }
 );
 $cl = blessed($r);
-is( $cl, "WebService::Hexonet::Apiconnector::Response",
-    "API Response Instance type check" );
+is(
+    $cl,
+    "WebService::Hexonet::Connector::Response",
+    "API Response Instance type check"
+);
 $r = $api->call_raw(
     {
         COMMAND => "GetUserIndex"
@@ -76,15 +88,18 @@ $r = $api->call_raw(
 );
 
 # T10: add subuser and role - just to increase coverage, no special checks necessary
-$api = WebService::Hexonet::Apiconnector::connect(
+$api = WebService::Hexonet::Connector::connect(
     {
         url  => 'https://coreapi.1api.net/api/call.cgi',
         role => 'testrole'
     }
 );
 $cl = blessed($api);
-is( $cl, "WebService::Hexonet::Apiconnector::Connection",
-    "API Client Instance type check" );
+is(
+    $cl,
+    "WebService::Hexonet::Connector::Connection",
+    "API Client Instance type check"
+);
 $r = $api->call_raw(
     {
         COMMAND => "GetUserIndex"
@@ -98,7 +113,7 @@ $r = $api->call_raw(
 # TESTS for Response.pm
 #######################################
 # T11 - T18: initial response class coverage test
-$api = WebService::Hexonet::Apiconnector::connect(
+$api = WebService::Hexonet::Connector::connect(
     {
         login    => 'test.user',
         password => 'test.password',
@@ -109,8 +124,11 @@ $api = WebService::Hexonet::Apiconnector::connect(
 $cl = blessed($api);
 
 #T11
-is( $cl, "WebService::Hexonet::Apiconnector::Connection",
-    "API Client Instance type check" );
+is(
+    $cl,
+    "WebService::Hexonet::Connector::Connection",
+    "API Client Instance type check"
+);
 
 #T12
 $r = $api->call(
@@ -119,8 +137,11 @@ $r = $api->call(
     }
 );
 $cl = blessed($r);
-is( $cl, "WebService::Hexonet::Apiconnector::Response",
-    "API Response Instance type check" );
+is(
+    $cl,
+    "WebService::Hexonet::Connector::Response",
+    "API Response Instance type check"
+);
 
 #T13
 ok( $r->description() eq "Authentication failed",
@@ -147,18 +168,21 @@ ok( !$r->is_success() );
 # T19 - T20 constructor branch tests
 #T19
 dies_ok {
-    WebService::Hexonet::Apiconnector::Response->new($api);
+    WebService::Hexonet::Connector::Response->new($api);
 }
 'Unsupported Class';
 
 #T20
-$r  = WebService::Hexonet::Apiconnector::Response->new( $r->as_list_hash() );
+$r  = WebService::Hexonet::Connector::Response->new( $r->as_list_hash() );
 $cl = blessed($r);
-is( $cl, "WebService::Hexonet::Apiconnector::Response",
-    "API Response Instance type check" );
+is(
+    $cl,
+    "WebService::Hexonet::Connector::Response",
+    "API Response Instance type check"
+);
 
 #T21 - T43 check list response
-$api = WebService::Hexonet::Apiconnector::connect(
+$api = WebService::Hexonet::Connector::connect(
     {
         login    => "test.user",
         password => "test.passw0rd",
@@ -176,8 +200,11 @@ $r = $api->call(
     }
 );
 $cl = blessed($r);
-is( $cl, "WebService::Hexonet::Apiconnector::Response",
-    "API Response Instance type check" );
+is(
+    $cl,
+    "WebService::Hexonet::Connector::Response",
+    "API Response Instance type check"
+);
 ok( $r->description() eq "Command completed successfully" );
 ok( $r->code() eq 200 );
 ok( ref( $r->properties() ) );
@@ -207,7 +234,7 @@ ok( $tmp || !$tmp );
 # TESTS for Util.pm
 #######################################
 #T44
-$api = WebService::Hexonet::Apiconnector::connect(
+$api = WebService::Hexonet::Connector::connect(
     {
         login    => "test.user",
         password => "test.passw0rd",
@@ -227,26 +254,26 @@ ok( $r->code() eq 200 );
 
 #T45
 our $uxorg = 1531479459;
-our $ts    = WebService::Hexonet::Apiconnector::Util::sqltime($uxorg);
+our $ts    = WebService::Hexonet::Connector::Util::sqltime($uxorg);
 ok( $ts eq "2018-07-13 10:57:39", $ts );    # should be 12:57:39!
 
 #T46
-our $ux = WebService::Hexonet::Apiconnector::Util::timesql($ts);
+our $ux = WebService::Hexonet::Connector::Util::timesql($ts);
 ok( $ux eq $uxorg );
 
 #T47
-our $enc = WebService::Hexonet::Apiconnector::Util::url_encode("+");
+our $enc = WebService::Hexonet::Connector::Util::url_encode("+");
 ok( $enc eq "%2B" );
 
 #T48
-our $dec = WebService::Hexonet::Apiconnector::Util::url_decode($enc);
+our $dec = WebService::Hexonet::Connector::Util::url_decode($enc);
 ok( $dec eq "+" );
 
 #T49
 our $key = "das stinkt zum Himmel";
-$enc = WebService::Hexonet::Apiconnector::Util::base64_encode($key);
+$enc = WebService::Hexonet::Connector::Util::base64_encode($key);
 ok( $enc eq "ZGFzIHN0aW5rdCB6dW0gSGltbWVs" );
 
 #T50
-$dec = WebService::Hexonet::Apiconnector::Util::base64_decode($enc);
+$dec = WebService::Hexonet::Connector::Util::base64_decode($enc);
 ok( $dec eq $key );

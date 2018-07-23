@@ -1,9 +1,9 @@
-package WebService::Hexonet::Apiconnector::Connection;
+package WebService::Hexonet::Connector::Connection;
 
 use strict;
 use warnings;
-use WebService::Hexonet::Apiconnector::Response;
-use WebService::Hexonet::Apiconnector::Util;
+use WebService::Hexonet::Connector::Response;
+use WebService::Hexonet::Connector::Util;
 use LWP::UserAgent;
 
 our $VERSION = '1.00';
@@ -23,7 +23,7 @@ sub call {
     my $self    = shift;
     my $command = shift;
     my $config  = shift;
-    return WebService::Hexonet::Apiconnector::Response->new(
+    return WebService::Hexonet::Connector::Response->new(
         $self->call_raw( $command, $config ) );
 }
 
@@ -48,10 +48,13 @@ sub call_raw_http {
 
     my $ua = $self->_get_useragent();
 
-    my $url = $self->{url};
-    my $post =
-      { s_command =>
-          ( scalar WebService::Hexonet::Apiconnector::Util::command_encode($command) ) };
+    my $url  = $self->{url};
+    my $post = {
+        s_command => (
+            scalar WebService::Hexonet::Connector::Util::command_encode(
+                $command)
+        )
+    };
     $post->{s_entity} = $self->{entity}   if exists $self->{entity};
     $post->{s_login}  = $self->{login}    if exists $self->{login};
     $post->{s_pw}     = $self->{password} if exists $self->{password};
@@ -77,7 +80,7 @@ sub _get_useragent {
     my $self = shift;
     return $self->{_useragent} if exists $self->{_useragent};
     $self->{_useragent} = new LWP::UserAgent(
-        agent      => "Hexonet-perl/$WebService::Hexonet::Apiconnector::VERSION",
+        agent      => "Hexonet-perl/$WebService::Hexonet::Connector::VERSION",
         keep_alive => 4
     );
     return $self->{_useragent};
@@ -89,20 +92,20 @@ __END__
 
 =head1 NAME
 
-WebService::Hexonet::Apiconnector::Connection - package to provide API client functionality.
+WebService::Hexonet::Connector::Connection - package to provide API client functionality.
 
 =head1 DESCRIPTION
 
 This package provides any API client functionality that you need to communicate with the
 insanely fast L<Hexonet Backend API|https://www.hexonet.net/>. A short hand method to
-instantiate the API client is provided as WebService::Hexonet::Apiconnector::connect and its usage is
+instantiate the API client is provided as WebService::Hexonet::Connector::connect and its usage is
 described in that appropriate file.
 
 The API client library itself cares about requesting provided commands to the Backend API
 by using the given configuration data (credentials, backend system url and entity) and to
 return the Backend API response accordingly.
 
-=head1 METHODS WebService::Hexonet::Apiconnector::Connection
+=head1 METHODS WebService::Hexonet::Connector::Connection
 
 =over 4
 

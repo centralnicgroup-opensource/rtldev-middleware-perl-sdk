@@ -1,4 +1,4 @@
-# This Makefile is for the WebService::Hexonet::Apiconnector extension to perl.
+# This Makefile is for the WebService::Hexonet::Connector extension to perl.
 #
 # It was generated automatically by MakeMaker version
 # 7.24 (Revision: 72400) from the contents of
@@ -11,15 +11,15 @@
 
 #   MakeMaker Parameters:
 
-#     ABSTRACT_FROM => q[lib/WebService/Hexonet/Apiconnector.pm]
+#     ABSTRACT_FROM => q[lib/WebService/Hexonet/Connector.pm]
 #     AUTHOR => [q[hexonet <middleware@hexonet.net>]]
 #     BUILD_REQUIRES => {  }
 #     CONFIGURE_REQUIRES => {  }
 #     LICENSE => q[mit]
-#     NAME => q[WebService::Hexonet::Apiconnector]
+#     NAME => q[WebService::Hexonet::Connector]
 #     PREREQ_PM => {  }
 #     TEST_REQUIRES => {  }
-#     VERSION_FROM => q[lib/WebService/Hexonet/Apiconnector.pm]
+#     VERSION_FROM => q[lib/WebService/Hexonet/Connector.pm]
 
 # --- MakeMaker post_initialize section:
 
@@ -56,8 +56,8 @@ VENDORLIBEXP = /usr/share/perl5
 AR_STATIC_ARGS = cr
 DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
-NAME = WebService::Hexonet::Apiconnector
-NAME_SYM = WebService_Hexonet_Apiconnector
+NAME = WebService::Hexonet::Connector
+NAME_SYM = WebService_Hexonet_Connector
 VERSION = 1.00
 VERSION_MACRO = VERSION
 VERSION_SYM = 1_00
@@ -148,11 +148,11 @@ MM_REVISION = 72400
 # PARENT_NAME = NAME without BASEEXT and no trailing :: (eg Foo::Bar)
 # DLBASE  = Basename part of dynamic library. May be just equal BASEEXT.
 MAKE = make
-FULLEXT = WebService/Hexonet/Apiconnector
-BASEEXT = Apiconnector
+FULLEXT = WebService/Hexonet/Connector
+BASEEXT = Connector
 PARENT_NAME = WebService::Hexonet
 DLBASE = $(BASEEXT)
-VERSION_FROM = lib/WebService/Hexonet/Apiconnector.pm
+VERSION_FROM = lib/WebService/Hexonet/Connector.pm
 OBJECT = 
 LDFROM = $(OBJECT)
 LINKTYPE = dynamic
@@ -164,11 +164,14 @@ C_FILES  =
 O_FILES  = 
 H_FILES  = 
 MAN1PODS = 
-MAN3PODS = lib/WebService/Hexonet.pm \
-	lib/WebService/Hexonet/Apiconnector.pm \
-	lib/WebService/Hexonet/Apiconnector/Connection.pm \
-	lib/WebService/Hexonet/Apiconnector/Response.pm \
-	lib/WebService/Hexonet/Apiconnector/Util.pm
+MAN3PODS = lib/HEXONET.pm \
+	lib/HEXONET/Apiconnector/Response.pm \
+	lib/HEXONET/Apiconnector/Util.pm \
+	lib/WebService/Hexonet.pm \
+	lib/WebService/Hexonet/Connector.pm \
+	lib/WebService/Hexonet/Connector/Connection.pm \
+	lib/WebService/Hexonet/Connector/Response.pm \
+	lib/WebService/Hexonet/Connector/Util.pm
 
 # Where is the Config information that we are using/depend on
 CONFIGDEP = $(PERL_ARCHLIBDEP)$(DFSEP)Config.pm $(PERL_INCDEP)$(DFSEP)config.h
@@ -191,11 +194,14 @@ PERL_ARCHIVEDEP    =
 PERL_ARCHIVE_AFTER = 
 
 
-TO_INST_PM = lib/WebService/Hexonet.pm \
-	lib/WebService/Hexonet/Apiconnector.pm \
-	lib/WebService/Hexonet/Apiconnector/Connection.pm \
-	lib/WebService/Hexonet/Apiconnector/Response.pm \
-	lib/WebService/Hexonet/Apiconnector/Util.pm
+TO_INST_PM = lib/HEXONET.pm \
+	lib/HEXONET/Apiconnector/Response.pm \
+	lib/HEXONET/Apiconnector/Util.pm \
+	lib/WebService/Hexonet.pm \
+	lib/WebService/Hexonet/Connector.pm \
+	lib/WebService/Hexonet/Connector/Connection.pm \
+	lib/WebService/Hexonet/Connector/Response.pm \
+	lib/WebService/Hexonet/Connector/Util.pm
 
 
 # --- MakeMaker platform_constants section:
@@ -264,8 +270,8 @@ CI = ci -u
 RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
-DISTNAME = WebService-Hexonet-Apiconnector
-DISTVNAME = WebService-Hexonet-Apiconnector-1.00
+DISTNAME = WebService-Hexonet-Connector
+DISTVNAME = WebService-Hexonet-Connector-1.00
 
 
 # --- MakeMaker macro section:
@@ -422,17 +428,23 @@ POD2MAN = $(POD2MAN_EXE)
 
 
 manifypods : pure_all config  \
+	lib/HEXONET.pm \
+	lib/HEXONET/Apiconnector/Response.pm \
+	lib/HEXONET/Apiconnector/Util.pm \
 	lib/WebService/Hexonet.pm \
-	lib/WebService/Hexonet/Apiconnector.pm \
-	lib/WebService/Hexonet/Apiconnector/Connection.pm \
-	lib/WebService/Hexonet/Apiconnector/Response.pm \
-	lib/WebService/Hexonet/Apiconnector/Util.pm
+	lib/WebService/Hexonet/Connector.pm \
+	lib/WebService/Hexonet/Connector/Connection.pm \
+	lib/WebService/Hexonet/Connector/Response.pm \
+	lib/WebService/Hexonet/Connector/Util.pm
 	$(NOECHO) $(POD2MAN) --section=$(MAN3EXT) --perm_rw=$(PERM_RW) -u \
+	  lib/HEXONET.pm $(INST_MAN3DIR)/HEXONET.$(MAN3EXT) \
+	  lib/HEXONET/Apiconnector/Response.pm $(INST_MAN3DIR)/HEXONET::Apiconnector::Response.$(MAN3EXT) \
+	  lib/HEXONET/Apiconnector/Util.pm $(INST_MAN3DIR)/HEXONET::Apiconnector::Util.$(MAN3EXT) \
 	  lib/WebService/Hexonet.pm $(INST_MAN3DIR)/WebService::Hexonet.$(MAN3EXT) \
-	  lib/WebService/Hexonet/Apiconnector.pm $(INST_MAN3DIR)/WebService::Hexonet::Apiconnector.$(MAN3EXT) \
-	  lib/WebService/Hexonet/Apiconnector/Connection.pm $(INST_MAN3DIR)/WebService::Hexonet::Apiconnector::Connection.$(MAN3EXT) \
-	  lib/WebService/Hexonet/Apiconnector/Response.pm $(INST_MAN3DIR)/WebService::Hexonet::Apiconnector::Response.$(MAN3EXT) \
-	  lib/WebService/Hexonet/Apiconnector/Util.pm $(INST_MAN3DIR)/WebService::Hexonet::Apiconnector::Util.$(MAN3EXT) 
+	  lib/WebService/Hexonet/Connector.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector.$(MAN3EXT) \
+	  lib/WebService/Hexonet/Connector/Connection.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector::Connection.$(MAN3EXT) \
+	  lib/WebService/Hexonet/Connector/Response.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector::Response.$(MAN3EXT) \
+	  lib/WebService/Hexonet/Connector/Util.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector::Util.$(MAN3EXT) 
 
 
 
@@ -500,7 +512,7 @@ realclean purge :: realclean_subdirs
 metafile : create_distdir
 	$(NOECHO) $(ECHO) Generating META.yml
 	$(NOECHO) $(ECHO) '---' > META_new.yml
-	$(NOECHO) $(ECHO) 'abstract: unknown' >> META_new.yml
+	$(NOECHO) $(ECHO) 'abstract: '\''Connector library for the insanely fast L<Hexonet Backend API|https://www.hexonet.net/>.'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'author:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  - '\''hexonet <middleware@hexonet.net>'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'build_requires:' >> META_new.yml
@@ -513,7 +525,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) 'meta-spec:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  url: http://module-build.sourceforge.net/META-spec-v1.4.html' >> META_new.yml
 	$(NOECHO) $(ECHO) '  version: '\''1.4'\''' >> META_new.yml
-	$(NOECHO) $(ECHO) 'name: WebService-Hexonet-Apiconnector' >> META_new.yml
+	$(NOECHO) $(ECHO) 'name: WebService-Hexonet-Connector' >> META_new.yml
 	$(NOECHO) $(ECHO) 'no_index:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  directory:' >> META_new.yml
 	$(NOECHO) $(ECHO) '    - t' >> META_new.yml
@@ -524,7 +536,7 @@ metafile : create_distdir
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 	$(NOECHO) $(ECHO) Generating META.json
 	$(NOECHO) $(ECHO) '{' > META_new.json
-	$(NOECHO) $(ECHO) '   "abstract" : "unknown",' >> META_new.json
+	$(NOECHO) $(ECHO) '   "abstract" : "Connector library for the insanely fast L<Hexonet Backend API|https://www.hexonet.net/>.",' >> META_new.json
 	$(NOECHO) $(ECHO) '   "author" : [' >> META_new.json
 	$(NOECHO) $(ECHO) '      "hexonet <middleware@hexonet.net>"' >> META_new.json
 	$(NOECHO) $(ECHO) '   ],' >> META_new.json
@@ -537,7 +549,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",' >> META_new.json
 	$(NOECHO) $(ECHO) '      "version" : "2"' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
-	$(NOECHO) $(ECHO) '   "name" : "WebService-Hexonet-Apiconnector",' >> META_new.json
+	$(NOECHO) $(ECHO) '   "name" : "WebService-Hexonet-Connector",' >> META_new.json
 	$(NOECHO) $(ECHO) '   "no_index" : {' >> META_new.json
 	$(NOECHO) $(ECHO) '      "directory" : [' >> META_new.json
 	$(NOECHO) $(ECHO) '         "t",' >> META_new.json
@@ -846,25 +858,28 @@ testdb_static :: static pure_all
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd :
-	$(NOECHO) $(ECHO) '<SOFTPKG NAME="WebService-Hexonet-Apiconnector" VERSION="1.00">' > WebService-Hexonet-Apiconnector.ppd
-	$(NOECHO) $(ECHO) '    <ABSTRACT></ABSTRACT>' >> WebService-Hexonet-Apiconnector.ppd
-	$(NOECHO) $(ECHO) '    <AUTHOR>hexonet &lt;middleware@hexonet.net&gt;</AUTHOR>' >> WebService-Hexonet-Apiconnector.ppd
-	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> WebService-Hexonet-Apiconnector.ppd
-	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="x86_64-linux-gnu-thread-multi-5.26" />' >> WebService-Hexonet-Apiconnector.ppd
-	$(NOECHO) $(ECHO) '        <CODEBASE HREF="" />' >> WebService-Hexonet-Apiconnector.ppd
-	$(NOECHO) $(ECHO) '    </IMPLEMENTATION>' >> WebService-Hexonet-Apiconnector.ppd
-	$(NOECHO) $(ECHO) '</SOFTPKG>' >> WebService-Hexonet-Apiconnector.ppd
+	$(NOECHO) $(ECHO) '<SOFTPKG NAME="WebService-Hexonet-Connector" VERSION="1.00">' > WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '    <ABSTRACT>Connector library for the insanely fast L&lt;Hexonet Backend API|https://www.hexonet.net/&gt;.</ABSTRACT>' >> WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '    <AUTHOR>hexonet &lt;middleware@hexonet.net&gt;</AUTHOR>' >> WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="x86_64-linux-gnu-thread-multi-5.26" />' >> WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '        <CODEBASE HREF="" />' >> WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '    </IMPLEMENTATION>' >> WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '</SOFTPKG>' >> WebService-Hexonet-Connector.ppd
 
 
 # --- MakeMaker pm_to_blib section:
 
 pm_to_blib : $(FIRST_MAKEFILE) $(TO_INST_PM)
 	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', q[$(PM_FILTER)], '\''$(PERM_DIR)'\'')' -- \
+	  'lib/HEXONET.pm' 'blib/lib/HEXONET.pm' \
+	  'lib/HEXONET/Apiconnector/Response.pm' 'blib/lib/HEXONET/Apiconnector/Response.pm' \
+	  'lib/HEXONET/Apiconnector/Util.pm' 'blib/lib/HEXONET/Apiconnector/Util.pm' \
 	  'lib/WebService/Hexonet.pm' 'blib/lib/WebService/Hexonet.pm' \
-	  'lib/WebService/Hexonet/Apiconnector.pm' 'blib/lib/WebService/Hexonet/Apiconnector.pm' \
-	  'lib/WebService/Hexonet/Apiconnector/Connection.pm' 'blib/lib/WebService/Hexonet/Apiconnector/Connection.pm' \
-	  'lib/WebService/Hexonet/Apiconnector/Response.pm' 'blib/lib/WebService/Hexonet/Apiconnector/Response.pm' \
-	  'lib/WebService/Hexonet/Apiconnector/Util.pm' 'blib/lib/WebService/Hexonet/Apiconnector/Util.pm' 
+	  'lib/WebService/Hexonet/Connector.pm' 'blib/lib/WebService/Hexonet/Connector.pm' \
+	  'lib/WebService/Hexonet/Connector/Connection.pm' 'blib/lib/WebService/Hexonet/Connector/Connection.pm' \
+	  'lib/WebService/Hexonet/Connector/Response.pm' 'blib/lib/WebService/Hexonet/Connector/Response.pm' \
+	  'lib/WebService/Hexonet/Connector/Util.pm' 'blib/lib/WebService/Hexonet/Connector/Util.pm' 
 	$(NOECHO) $(TOUCH) pm_to_blib
 
 

@@ -3,7 +3,7 @@ package WebService::Hexonet;
 use 5.026000;
 use strict;
 use warnings;
-use WebService::Hexonet::Apiconnector;
+use WebService::Hexonet::Connector;
 
 our $VERSION = '1.00';
 
@@ -26,7 +26,7 @@ Up to now we provide the following modules:
 
 =over 4
 
-=item L<WebService::Hexonet::Apiconnector> - Connector Library for our Backend API.
+=item L<WebService::Hexonet::Connector> - Connector Library for our Backend API.
 
 =back
 

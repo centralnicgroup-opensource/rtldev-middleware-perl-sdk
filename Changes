@@ -1,4 +1,4 @@
-Revision history for Perl extension Hexonet::Apiconnector.
+Revision history for Perl extension Hexonet::Connector.
 
 1.01  Mo Jul 23 16:20:00 2018
     * PrePAN review: lower case key names in documentation
@@ -17,5 +17,5 @@ Revision history for Perl extension Hexonet::Apiconnector.
 
 0.01  Wed Jul 18 15:41:52 2018
 	- original version; created by h2xs 1.23 with options
-		-b 5.26.0 -XA -n Hexonet::Apiconnector
+		-b 5.26.0 -XA -n Hexonet::Connector
 
