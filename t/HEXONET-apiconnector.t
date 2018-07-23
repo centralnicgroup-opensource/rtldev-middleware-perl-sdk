@@ -19,10 +19,12 @@ use_ok( "HEXONET::Apiconnector::Util",     $VERSION );
 
 # T6: instantiate API Client
 our $api = HEXONET::Apiconnector::connect(
-    url      => 'https://coreapi.1api.net/api/call.cgi',
-    entity   => '1234',
-    login    => 'test.user',
-    password => 'test.passw0rd'
+    {
+        url      => 'https://coreapi.1api.net/api/call.cgi',
+        entity   => '1234',
+        login    => 'test.user',
+        password => 'test.passw0rd'
+    }
 );
 our $cl = blessed($api);
 is( $cl, "HEXONET::Apiconnector::Connection",
@@ -41,12 +43,14 @@ is( $cl, "HEXONET::Apiconnector::Response",
 
 # T8: add subuser and role - just to increase coverage, no special checks necessary
 $api = HEXONET::Apiconnector::connect(
-    url      => 'https://coreapi.1api.net/api/call.cgi',
-    entity   => '1234',
-    login    => 'test.user',
-    password => 'test.passw0rd',
-    user     => 'hexotestman.com',
-    role     => 'testrole'
+    {
+        url      => 'https://coreapi.1api.net/api/call.cgi',
+        entity   => '1234',
+        login    => 'test.user',
+        password => 'test.passw0rd',
+        user     => 'hexotestman.com',
+        role     => 'testrole'
+    }
 );
 $cl = blessed($api);
 is( $cl, "HEXONET::Apiconnector::Connection",
@@ -73,8 +77,10 @@ $r = $api->call_raw(
 
 # T10: add subuser and role - just to increase coverage, no special checks necessary
 $api = HEXONET::Apiconnector::connect(
-    url  => 'https://coreapi.1api.net/api/call.cgi',
-    role => 'testrole'
+    {
+        url  => 'https://coreapi.1api.net/api/call.cgi',
+        role => 'testrole'
+    }
 );
 $cl = blessed($api);
 is( $cl, "HEXONET::Apiconnector::Connection",
@@ -93,10 +99,12 @@ $r = $api->call_raw(
 #######################################
 # T11 - T18: initial response class coverage test
 $api = HEXONET::Apiconnector::connect(
-    login    => 'test.user',
-    password => 'test.password',
-    entity   => '1234',
-    url      => 'https://coreapi.1api.net/api/call.cgi'
+    {
+        login    => 'test.user',
+        password => 'test.password',
+        entity   => '1234',
+        url      => 'https://coreapi.1api.net/api/call.cgi'
+    }
 );
 $cl = blessed($api);
 
@@ -151,10 +159,12 @@ is( $cl, "HEXONET::Apiconnector::Response",
 
 #T21 - T43 check list response
 $api = HEXONET::Apiconnector::connect(
-    login    => "test.user",
-    password => "test.passw0rd",
-    url      => "https://coreapi.1api.net/api/call.cgi",
-    entity   => "1234"
+    {
+        login    => "test.user",
+        password => "test.passw0rd",
+        url      => "https://coreapi.1api.net/api/call.cgi",
+        entity   => "1234"
+    }
 );
 $r = $api->call(
     {
@@ -198,10 +208,12 @@ ok( $tmp || !$tmp );
 #######################################
 #T44
 $api = HEXONET::Apiconnector::connect(
-    login    => "test.user",
-    password => "test.passw0rd",
-    url      => "https://coreapi.1api.net/api/call.cgi",
-    entity   => "1234"
+    {
+        login    => "test.user",
+        password => "test.passw0rd",
+        url      => "https://coreapi.1api.net/api/call.cgi",
+        entity   => "1234"
+    }
 );
 $r = $api->call(
     {

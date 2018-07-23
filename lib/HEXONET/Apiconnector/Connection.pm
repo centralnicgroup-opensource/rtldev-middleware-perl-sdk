@@ -11,7 +11,7 @@ our $VERSION = '1.00';
 
 sub new {
     my $class = shift;
-    my $self  = {@_};
+    my $self  = shift;
     foreach my $key (%$self) {
         my $value = $self->{$key};
         delete $self->{$key};

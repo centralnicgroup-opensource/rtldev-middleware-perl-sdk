@@ -8,7 +8,7 @@ use HEXONET::Apiconnector::Connection;
 our $VERSION = '1.00';
 
 sub connect {
-    return new HEXONET::Apiconnector::Connection(@_);
+    return HEXONET::Apiconnector::Connection->new(@_);
 }
 
 1;
@@ -37,17 +37,17 @@ HEXONET::Apiconnector - Connector library for the insanely fast L<HEXONET Backen
 	# Create a connection with the URL, entity, login and password
 	# Use "1234" as entity for the OT&E, and "54cd" for productive use
 	# Don't have a HEXONET Account yet? Get one here: www.hexonet.net/sign-up
-	my $api = HEXONET::Apiconnector::connect(
+	my $api = HEXONET::Apiconnector::connect({
 		url => 'https://coreapi.1api.net/api/call.cgi',
 		entity => '1234',
 		login => 'test.user',
 		password => 'test.passw0rd',
-	);
+	});
 
 	# Call a command
 	my $response = $api->call({
-		COMMAND => "querydomainlist",
-		LIMIT => 5
+		command => "querydomainlist",
+		limit => 5
 	});
 
 	# Display the result in the format you want
