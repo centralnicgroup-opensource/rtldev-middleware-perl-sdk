@@ -6,7 +6,7 @@ use WebService::Hexonet::Connector::Response;
 use WebService::Hexonet::Connector::Util;
 use LWP::UserAgent;
 
-our $VERSION = '1.03';
+our $VERSION = '1.04';
 
 sub new {
     my $class = shift;

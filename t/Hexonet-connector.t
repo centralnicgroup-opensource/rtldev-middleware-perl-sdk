@@ -4,7 +4,7 @@ use warnings;
 use Test::More tests => 50;
 use Test::Exception;
 
-our $VERSION = '1.03';
+our $VERSION = '1.04';
 
 #######################################
 # TESTS for Connection.pm
