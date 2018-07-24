@@ -1,6 +1,9 @@
 Revision history for Perl extension Hexonet::Connector.
 
-1.01  Mo Jul 23 16:20:00 2018
+1.02  Thu Jul 24 11:00:00 2018
+    * reviewed documentation
+	 
+1.01  Mon Jul 23 16:20:00 2018
     * PrePAN review: lower case key names in documentation
 	* PrePAN review: Connection constructor / connect method using hash map
 	* fix compare operator in url_encode / url_decode tests: use eq instead of ==
