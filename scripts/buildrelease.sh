@@ -1,2 +1,2 @@
 #!/bin/bash
-make && cover -test && make tardist
+perl Makefile.PL && make && cover -test && make tardist

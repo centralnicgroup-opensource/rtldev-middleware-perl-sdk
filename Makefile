@@ -58,11 +58,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = WebService::Hexonet::Connector
 NAME_SYM = WebService_Hexonet_Connector
-VERSION = 1.00
+VERSION = 1.01
 VERSION_MACRO = VERSION
-VERSION_SYM = 1_00
+VERSION_SYM = 1_01
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = 1.00
+XS_VERSION = 1.01
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -164,9 +164,9 @@ C_FILES  =
 O_FILES  = 
 H_FILES  = 
 MAN1PODS = 
-MAN3PODS = lib/HEXONET.pm \
-	lib/HEXONET/Apiconnector/Response.pm \
-	lib/HEXONET/Apiconnector/Util.pm \
+MAN3PODS = lib/Hexonet.pm \
+	lib/Hexonet/Apiconnector/Response.pm \
+	lib/Hexonet/Apiconnector/Util.pm \
 	lib/WebService/Hexonet.pm \
 	lib/WebService/Hexonet/Connector.pm \
 	lib/WebService/Hexonet/Connector/Connection.pm \
@@ -194,9 +194,9 @@ PERL_ARCHIVEDEP    =
 PERL_ARCHIVE_AFTER = 
 
 
-TO_INST_PM = lib/HEXONET.pm \
-	lib/HEXONET/Apiconnector/Response.pm \
-	lib/HEXONET/Apiconnector/Util.pm \
+TO_INST_PM = lib/Hexonet.pm \
+	lib/Hexonet/Apiconnector/Response.pm \
+	lib/Hexonet/Apiconnector/Util.pm \
 	lib/WebService/Hexonet.pm \
 	lib/WebService/Hexonet/Connector.pm \
 	lib/WebService/Hexonet/Connector/Connection.pm \
@@ -271,7 +271,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = WebService-Hexonet-Connector
-DISTVNAME = WebService-Hexonet-Connector-1.00
+DISTVNAME = WebService-Hexonet-Connector-1.01
 
 
 # --- MakeMaker macro section:
@@ -428,18 +428,18 @@ POD2MAN = $(POD2MAN_EXE)
 
 
 manifypods : pure_all config  \
-	lib/HEXONET.pm \
-	lib/HEXONET/Apiconnector/Response.pm \
-	lib/HEXONET/Apiconnector/Util.pm \
+	lib/Hexonet.pm \
+	lib/Hexonet/Apiconnector/Response.pm \
+	lib/Hexonet/Apiconnector/Util.pm \
 	lib/WebService/Hexonet.pm \
 	lib/WebService/Hexonet/Connector.pm \
 	lib/WebService/Hexonet/Connector/Connection.pm \
 	lib/WebService/Hexonet/Connector/Response.pm \
 	lib/WebService/Hexonet/Connector/Util.pm
 	$(NOECHO) $(POD2MAN) --section=$(MAN3EXT) --perm_rw=$(PERM_RW) -u \
-	  lib/HEXONET.pm $(INST_MAN3DIR)/HEXONET.$(MAN3EXT) \
-	  lib/HEXONET/Apiconnector/Response.pm $(INST_MAN3DIR)/HEXONET::Apiconnector::Response.$(MAN3EXT) \
-	  lib/HEXONET/Apiconnector/Util.pm $(INST_MAN3DIR)/HEXONET::Apiconnector::Util.$(MAN3EXT) \
+	  lib/Hexonet.pm $(INST_MAN3DIR)/Hexonet.$(MAN3EXT) \
+	  lib/Hexonet/Apiconnector/Response.pm $(INST_MAN3DIR)/Hexonet::Apiconnector::Response.$(MAN3EXT) \
+	  lib/Hexonet/Apiconnector/Util.pm $(INST_MAN3DIR)/Hexonet::Apiconnector::Util.$(MAN3EXT) \
 	  lib/WebService/Hexonet.pm $(INST_MAN3DIR)/WebService::Hexonet.$(MAN3EXT) \
 	  lib/WebService/Hexonet/Connector.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector.$(MAN3EXT) \
 	  lib/WebService/Hexonet/Connector/Connection.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector::Connection.$(MAN3EXT) \
@@ -531,7 +531,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '    - t' >> META_new.yml
 	$(NOECHO) $(ECHO) '    - inc' >> META_new.yml
 	$(NOECHO) $(ECHO) 'requires: {}' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version: '\''1.00'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) 'version: '\''1.01'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'x_serialization_backend: '\''CPAN::Meta::YAML version 0.018'\''' >> META_new.yml
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 	$(NOECHO) $(ECHO) Generating META.json
@@ -572,7 +572,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '      }' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
 	$(NOECHO) $(ECHO) '   "release_status" : "stable",' >> META_new.json
-	$(NOECHO) $(ECHO) '   "version" : "1.00",' >> META_new.json
+	$(NOECHO) $(ECHO) '   "version" : "1.01",' >> META_new.json
 	$(NOECHO) $(ECHO) '   "x_serialization_backend" : "JSON::PP version 2.27400_02"' >> META_new.json
 	$(NOECHO) $(ECHO) '}' >> META_new.json
 	-$(NOECHO) $(MV) META_new.json $(DISTVNAME)/META.json
@@ -858,7 +858,7 @@ testdb_static :: static pure_all
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd :
-	$(NOECHO) $(ECHO) '<SOFTPKG NAME="WebService-Hexonet-Connector" VERSION="1.00">' > WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '<SOFTPKG NAME="WebService-Hexonet-Connector" VERSION="1.01">' > WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <ABSTRACT>Connector library for the insanely fast L&lt;Hexonet Backend API|https://www.hexonet.net/&gt;.</ABSTRACT>' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>hexonet &lt;middleware@hexonet.net&gt;</AUTHOR>' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> WebService-Hexonet-Connector.ppd
@@ -872,9 +872,9 @@ ppd :
 
 pm_to_blib : $(FIRST_MAKEFILE) $(TO_INST_PM)
 	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', q[$(PM_FILTER)], '\''$(PERM_DIR)'\'')' -- \
-	  'lib/HEXONET.pm' 'blib/lib/HEXONET.pm' \
-	  'lib/HEXONET/Apiconnector/Response.pm' 'blib/lib/HEXONET/Apiconnector/Response.pm' \
-	  'lib/HEXONET/Apiconnector/Util.pm' 'blib/lib/HEXONET/Apiconnector/Util.pm' \
+	  'lib/Hexonet.pm' 'blib/lib/Hexonet.pm' \
+	  'lib/Hexonet/Apiconnector/Response.pm' 'blib/lib/Hexonet/Apiconnector/Response.pm' \
+	  'lib/Hexonet/Apiconnector/Util.pm' 'blib/lib/Hexonet/Apiconnector/Util.pm' \
 	  'lib/WebService/Hexonet.pm' 'blib/lib/WebService/Hexonet.pm' \
 	  'lib/WebService/Hexonet/Connector.pm' 'blib/lib/WebService/Hexonet/Connector.pm' \
 	  'lib/WebService/Hexonet/Connector/Connection.pm' 'blib/lib/WebService/Hexonet/Connector/Connection.pm' \
