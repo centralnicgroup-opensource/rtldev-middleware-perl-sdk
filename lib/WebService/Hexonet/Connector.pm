@@ -17,7 +17,7 @@ __END__
 
 =head1 NAME
 
-WebService::Hexonet::Connector - Connector library for the insanely fast L<Hexonet Backend API|https://www.hexonet.net/>.
+WebService::Hexonet::Connector - Connector library for the insanely fast L<HEXONET Backend API|https://www.hexonet.net/>.
 
 =head1 SYNOPSIS
 

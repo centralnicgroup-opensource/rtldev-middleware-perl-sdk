@@ -97,7 +97,7 @@ WebService::Hexonet::Connector::Connection - package to provide API client funct
 =head1 DESCRIPTION
 
 This package provides any API client functionality that you need to communicate with the
-insanely fast L<Hexonet Backend API|https://www.hexonet.net/>. A short hand method to
+insanely fast L<HEXONET Backend API|https://www.hexonet.net/>. A short hand method to
 instantiate the API client is provided as WebService::Hexonet::Connector::connect and its usage is
 described in that appropriate file.
 

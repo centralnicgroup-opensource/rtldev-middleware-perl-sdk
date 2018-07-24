@@ -512,7 +512,7 @@ realclean purge :: realclean_subdirs
 metafile : create_distdir
 	$(NOECHO) $(ECHO) Generating META.yml
 	$(NOECHO) $(ECHO) '---' > META_new.yml
-	$(NOECHO) $(ECHO) 'abstract: '\''Connector library for the insanely fast L<Hexonet Backend API|https://www.hexonet.net/>.'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) 'abstract: '\''Connector library for the insanely fast L<HEXONET Backend API|https://www.hexonet.net/>.'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'author:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  - '\''hexonet <middleware@hexonet.net>'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'build_requires:' >> META_new.yml
@@ -536,7 +536,7 @@ metafile : create_distdir
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 	$(NOECHO) $(ECHO) Generating META.json
 	$(NOECHO) $(ECHO) '{' > META_new.json
-	$(NOECHO) $(ECHO) '   "abstract" : "Connector library for the insanely fast L<Hexonet Backend API|https://www.hexonet.net/>.",' >> META_new.json
+	$(NOECHO) $(ECHO) '   "abstract" : "Connector library for the insanely fast L<HEXONET Backend API|https://www.hexonet.net/>.",' >> META_new.json
 	$(NOECHO) $(ECHO) '   "author" : [' >> META_new.json
 	$(NOECHO) $(ECHO) '      "hexonet <middleware@hexonet.net>"' >> META_new.json
 	$(NOECHO) $(ECHO) '   ],' >> META_new.json
@@ -859,7 +859,7 @@ testdb_static :: static pure_all
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd :
 	$(NOECHO) $(ECHO) '<SOFTPKG NAME="WebService-Hexonet-Connector" VERSION="1.01">' > WebService-Hexonet-Connector.ppd
-	$(NOECHO) $(ECHO) '    <ABSTRACT>Connector library for the insanely fast L&lt;Hexonet Backend API|https://www.hexonet.net/&gt;.</ABSTRACT>' >> WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '    <ABSTRACT>Connector library for the insanely fast L&lt;HEXONET Backend API|https://www.hexonet.net/&gt;.</ABSTRACT>' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>hexonet &lt;middleware@hexonet.net&gt;</AUTHOR>' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="x86_64-linux-gnu-thread-multi-5.26" />' >> WebService-Hexonet-Connector.ppd

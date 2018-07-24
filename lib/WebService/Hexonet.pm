@@ -13,11 +13,11 @@ __END__
 
 =head1 NAME
 
-WebService::Hexonet - Namespace package for modules provided by L<Hexonet|https://www.hexonet.net/>.
+WebService::Hexonet - Namespace package for modules provided by L<HEXONET|https://www.hexonet.net/>.
 
 =head1 DESCRIPTION
 
-This module is just used as namespace package for module provided by L<Hexonet|https://www.hexonet.net/>
+This module is just used as namespace package for module provided by L<HEXONET|https://www.hexonet.net/>
 and does not provide any further functionality.
 
 =head1 AVAILABLE MODULES

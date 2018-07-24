@@ -13,11 +13,11 @@ __END__
 
 =head1 NAME
 
-Hexonet - Namespace package for any module provided by L<Hexonet|https://www.hexonet.net/>.
+Hexonet - Namespace package for any module provided by L<HEXONET|https://www.hexonet.net/>.
 
 =head1 DESCRIPTION
 
-This module is just used as namespace package for any module provided by L<Hexonet|https://www.hexonet.net/>
+This module is just used as namespace package for any module provided by L<HEXONET|https://www.hexonet.net/>
 and does not provide any further functionality.
 
 =head1 AVAILABLE MODULES
@@ -26,7 +26,7 @@ Up to now we provide the following modules:
 
 =over 4
 
-=item L<Hexonet::Connector> - Connector Library for our Backend API.
+=item L<HEXONET::Connector> - Connector Library for our Backend API.
 
 =back
 
