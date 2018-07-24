@@ -164,9 +164,9 @@ C_FILES  =
 O_FILES  = 
 H_FILES  = 
 MAN1PODS = 
-MAN3PODS = lib/Hexonet.pm \
-	lib/Hexonet/Apiconnector/Response.pm \
-	lib/Hexonet/Apiconnector/Util.pm \
+MAN3PODS = lib/HEXONET.pm \
+	lib/HEXONET/Apiconnector/Response.pm \
+	lib/HEXONET/Apiconnector/Util.pm \
 	lib/WebService/Hexonet.pm \
 	lib/WebService/Hexonet/Connector.pm \
 	lib/WebService/Hexonet/Connector/Connection.pm \
@@ -194,9 +194,9 @@ PERL_ARCHIVEDEP    =
 PERL_ARCHIVE_AFTER = 
 
 
-TO_INST_PM = lib/Hexonet.pm \
-	lib/Hexonet/Apiconnector/Response.pm \
-	lib/Hexonet/Apiconnector/Util.pm \
+TO_INST_PM = lib/HEXONET.pm \
+	lib/HEXONET/Apiconnector/Response.pm \
+	lib/HEXONET/Apiconnector/Util.pm \
 	lib/WebService/Hexonet.pm \
 	lib/WebService/Hexonet/Connector.pm \
 	lib/WebService/Hexonet/Connector/Connection.pm \
@@ -428,18 +428,18 @@ POD2MAN = $(POD2MAN_EXE)
 
 
 manifypods : pure_all config  \
-	lib/Hexonet.pm \
-	lib/Hexonet/Apiconnector/Response.pm \
-	lib/Hexonet/Apiconnector/Util.pm \
+	lib/HEXONET.pm \
+	lib/HEXONET/Apiconnector/Response.pm \
+	lib/HEXONET/Apiconnector/Util.pm \
 	lib/WebService/Hexonet.pm \
 	lib/WebService/Hexonet/Connector.pm \
 	lib/WebService/Hexonet/Connector/Connection.pm \
 	lib/WebService/Hexonet/Connector/Response.pm \
 	lib/WebService/Hexonet/Connector/Util.pm
 	$(NOECHO) $(POD2MAN) --section=$(MAN3EXT) --perm_rw=$(PERM_RW) -u \
-	  lib/Hexonet.pm $(INST_MAN3DIR)/Hexonet.$(MAN3EXT) \
-	  lib/Hexonet/Apiconnector/Response.pm $(INST_MAN3DIR)/Hexonet::Apiconnector::Response.$(MAN3EXT) \
-	  lib/Hexonet/Apiconnector/Util.pm $(INST_MAN3DIR)/Hexonet::Apiconnector::Util.$(MAN3EXT) \
+	  lib/HEXONET.pm $(INST_MAN3DIR)/HEXONET.$(MAN3EXT) \
+	  lib/HEXONET/Apiconnector/Response.pm $(INST_MAN3DIR)/HEXONET::Apiconnector::Response.$(MAN3EXT) \
+	  lib/HEXONET/Apiconnector/Util.pm $(INST_MAN3DIR)/HEXONET::Apiconnector::Util.$(MAN3EXT) \
 	  lib/WebService/Hexonet.pm $(INST_MAN3DIR)/WebService::Hexonet.$(MAN3EXT) \
 	  lib/WebService/Hexonet/Connector.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector.$(MAN3EXT) \
 	  lib/WebService/Hexonet/Connector/Connection.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector::Connection.$(MAN3EXT) \
@@ -872,9 +872,9 @@ ppd :
 
 pm_to_blib : $(FIRST_MAKEFILE) $(TO_INST_PM)
 	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', q[$(PM_FILTER)], '\''$(PERM_DIR)'\'')' -- \
-	  'lib/Hexonet.pm' 'blib/lib/Hexonet.pm' \
-	  'lib/Hexonet/Apiconnector/Response.pm' 'blib/lib/Hexonet/Apiconnector/Response.pm' \
-	  'lib/Hexonet/Apiconnector/Util.pm' 'blib/lib/Hexonet/Apiconnector/Util.pm' \
+	  'lib/HEXONET.pm' 'blib/lib/HEXONET.pm' \
+	  'lib/HEXONET/Apiconnector/Response.pm' 'blib/lib/HEXONET/Apiconnector/Response.pm' \
+	  'lib/HEXONET/Apiconnector/Util.pm' 'blib/lib/HEXONET/Apiconnector/Util.pm' \
 	  'lib/WebService/Hexonet.pm' 'blib/lib/WebService/Hexonet.pm' \
 	  'lib/WebService/Hexonet/Connector.pm' 'blib/lib/WebService/Hexonet/Connector.pm' \
 	  'lib/WebService/Hexonet/Connector/Connection.pm' 'blib/lib/WebService/Hexonet/Connector/Connection.pm' \
