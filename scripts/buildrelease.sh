@@ -1,2 +1,6 @@
 #!/bin/bash
-perl Makefile.PL && make && cover -test && make tardist
+rm MANIFEST
+perl Makefile.PL &&
+    make && cover -test &&
+    make manifest &&
+    make tardist

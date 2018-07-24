@@ -1,8 +1,12 @@
 Revision history for Perl extension Hexonet::Connector.
 
+1.03  Thu Jul 24 12:00:00 2018
+    * fixed SDK docs
+	* fixed build release script
+
 1.02  Thu Jul 24 11:00:00 2018
     * reviewed documentation
-	 
+
 1.01  Mon Jul 23 16:20:00 2018
     * PrePAN review: lower case key names in documentation
 	* PrePAN review: Connection constructor / connect method using hash map
