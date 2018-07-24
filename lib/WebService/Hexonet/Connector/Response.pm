@@ -8,7 +8,7 @@ use overload
   '@{}' => \&as_list,
   ;
 
-our $VERSION = '1.00';
+our $VERSION = '1.01';
 
 sub new {
     my $class    = shift;
