@@ -1,5 +1,8 @@
 Revision history for Perl extension WebService::Hexonet::Connector.
 
+1.04  Thu Jul 24 15:00:00 2018
+    * reviewed project documentation
+	
 1.03  Thu Jul 24 12:00:00 2018
     * fixed SDK docs
 	* fixed build release script
