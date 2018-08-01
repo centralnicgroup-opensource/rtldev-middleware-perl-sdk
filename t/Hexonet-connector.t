@@ -1,14 +1,15 @@
 use strict;
 use warnings;
 
-use Test::More tests => 50;
+use Test::More;
 use Test::Exception;
+use Test::RequiresInternet ( 'coreapi.1api.net' => 80 );
 
-our $VERSION = '1.05';
+our $VERSION = '1.06';
 
-#######################################
+##########################
 # TESTS for Connection.pm
-#######################################
+##########################
 
 # T1-5: test import modules
 use_ok( "lib",                                      qw(./lib) );
@@ -277,3 +278,5 @@ ok( $enc eq "ZGFzIHN0aW5rdCB6dW0gSGltbWVs" );
 #T50
 $dec = WebService::Hexonet::Connector::Util::base64_decode($enc);
 ok( $dec eq $key );
+
+done_testing();

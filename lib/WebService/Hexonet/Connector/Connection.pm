@@ -6,7 +6,7 @@ use WebService::Hexonet::Connector::Response;
 use WebService::Hexonet::Connector::Util;
 use LWP::UserAgent;
 
-our $VERSION = '1.05';
+our $VERSION = '1.06';
 
 sub new {
     my $class = shift;
@@ -71,18 +71,25 @@ sub call_raw_http {
         }
     }
 
-    my $response = $self->{_useragent}->post( $url, $post );
-    return $response->content();
-
+    my $r = $self->{_useragent}->post( $url, $post );
+    if ( $r->is_success ) {
+        return $r->decoded_content;
+    }
+    my $err = $r->status_line;
+    return ("[RESPONSE]\r\n"
+          . "CODE=421\r\n"
+          . "DESCRIPTION=HTTP communication failed;$err\r\n"
+          . "EOF\r\n" );
 }
 
 sub _get_useragent {
     my $self = shift;
     return $self->{_useragent} if exists $self->{_useragent};
-    $self->{_useragent} = new LWP::UserAgent(
+    $self->{_useragent} = LWP::UserAgent->new(
         agent      => "Hexonet-perl/$WebService::Hexonet::Connector::VERSION",
-        keep_alive => 4
+        keep_alive => 4,
     );
+    $self->{_useragent}->default_header( 'Expect', '' );
     return $self->{_useragent};
 }
 
