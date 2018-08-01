@@ -39,14 +39,14 @@ FULL_AR = /usr/bin/ar
 LD = x86_64-linux-gnu-gcc
 LDDLFLAGS = -shared -L/usr/local/lib -fstack-protector-strong
 LDFLAGS =  -fstack-protector-strong -L/usr/local/lib
-LIBC = libc-2.26.so
+LIBC = libc-2.27.so
 LIB_EXT = .a
 OBJ_EXT = .o
 OSNAME = linux
 OSVERS = 4.9.0
 RANLIB = :
-SITELIBEXP = /usr/local/share/perl/5.26.0
-SITEARCHEXP = /usr/local/lib/x86_64-linux-gnu/perl/5.26.0
+SITELIBEXP = /usr/local/share/perl/5.26.1
+SITEARCHEXP = /usr/local/lib/x86_64-linux-gnu/perl/5.26.1
 SO = so
 VENDORARCHEXP = /usr/lib/x86_64-linux-gnu/perl5/5.26
 VENDORLIBEXP = /usr/share/perl5
@@ -58,11 +58,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = WebService::Hexonet::Connector
 NAME_SYM = WebService_Hexonet_Connector
-VERSION = 1.05
+VERSION = 1.06
 VERSION_MACRO = VERSION
-VERSION_SYM = 1_05
+VERSION_SYM = 1_06
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = 1.05
+XS_VERSION = 1.06
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -81,13 +81,13 @@ SITEPREFIX = /usr/local
 VENDORPREFIX = /usr
 INSTALLPRIVLIB = /usr/share/perl/5.26
 DESTINSTALLPRIVLIB = $(DESTDIR)$(INSTALLPRIVLIB)
-INSTALLSITELIB = /usr/local/share/perl/5.26.0
+INSTALLSITELIB = /usr/local/share/perl/5.26.1
 DESTINSTALLSITELIB = $(DESTDIR)$(INSTALLSITELIB)
 INSTALLVENDORLIB = /usr/share/perl5
 DESTINSTALLVENDORLIB = $(DESTDIR)$(INSTALLVENDORLIB)
 INSTALLARCHLIB = /usr/lib/x86_64-linux-gnu/perl/5.26
 DESTINSTALLARCHLIB = $(DESTDIR)$(INSTALLARCHLIB)
-INSTALLSITEARCH = /usr/local/lib/x86_64-linux-gnu/perl/5.26.0
+INSTALLSITEARCH = /usr/local/lib/x86_64-linux-gnu/perl/5.26.1
 DESTINSTALLSITEARCH = $(DESTDIR)$(INSTALLSITEARCH)
 INSTALLVENDORARCH = /usr/lib/x86_64-linux-gnu/perl5/5.26
 DESTINSTALLVENDORARCH = $(DESTDIR)$(INSTALLVENDORARCH)
@@ -265,7 +265,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = WebService-Hexonet-Connector
-DISTVNAME = WebService-Hexonet-Connector-1.05
+DISTVNAME = WebService-Hexonet-Connector-1.06
 
 
 # --- MakeMaker macro section:
@@ -519,7 +519,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '    - t' >> META_new.yml
 	$(NOECHO) $(ECHO) '    - inc' >> META_new.yml
 	$(NOECHO) $(ECHO) 'requires: {}' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version: '\''1.05'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) 'version: '\''1.06'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'x_serialization_backend: '\''CPAN::Meta::YAML version 0.018'\''' >> META_new.yml
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 	$(NOECHO) $(ECHO) Generating META.json
@@ -560,7 +560,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '      }' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
 	$(NOECHO) $(ECHO) '   "release_status" : "stable",' >> META_new.json
-	$(NOECHO) $(ECHO) '   "version" : "1.05",' >> META_new.json
+	$(NOECHO) $(ECHO) '   "version" : "1.06",' >> META_new.json
 	$(NOECHO) $(ECHO) '   "x_serialization_backend" : "JSON::PP version 2.27400_02"' >> META_new.json
 	$(NOECHO) $(ECHO) '}' >> META_new.json
 	-$(NOECHO) $(MV) META_new.json $(DISTVNAME)/META.json
@@ -846,7 +846,7 @@ testdb_static :: static pure_all
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd :
-	$(NOECHO) $(ECHO) '<SOFTPKG NAME="WebService-Hexonet-Connector" VERSION="1.05">' > WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '<SOFTPKG NAME="WebService-Hexonet-Connector" VERSION="1.06">' > WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <ABSTRACT>Connector library for the insanely fast L&lt;HEXONET Backend API|https://www.hexonet.net/&gt;.</ABSTRACT>' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>hexonet &lt;middleware@hexonet.net&gt;</AUTHOR>' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> WebService-Hexonet-Connector.ppd
