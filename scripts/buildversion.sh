@@ -10,6 +10,6 @@ git add lib
 git add t
 git commit -m "prepare new release"
 git push
-git tag -a $2
+git tag -a "$2"
 git push origin --tags
 make
