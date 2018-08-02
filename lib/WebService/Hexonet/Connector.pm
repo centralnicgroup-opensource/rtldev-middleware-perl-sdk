@@ -5,7 +5,7 @@ use strict;
 use warnings;
 use WebService::Hexonet::Connector::Connection;
 
-our $VERSION = '1.06';
+our $VERSION = '1.07';
 
 sub connect {
     return WebService::Hexonet::Connector::Connection->new(@_);
