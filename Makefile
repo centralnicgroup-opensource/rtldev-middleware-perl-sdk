@@ -17,7 +17,7 @@
 #     CONFIGURE_REQUIRES => {  }
 #     LICENSE => q[mit]
 #     NAME => q[WebService::Hexonet::Connector]
-#     PREREQ_PM => {  }
+#     PREREQ_PM => { LWP::UserAgent=>q[6.35] }
 #     TEST_REQUIRES => {  }
 #     VERSION_FROM => q[lib/WebService/Hexonet/Connector.pm]
 
@@ -518,7 +518,8 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '  directory:' >> META_new.yml
 	$(NOECHO) $(ECHO) '    - t' >> META_new.yml
 	$(NOECHO) $(ECHO) '    - inc' >> META_new.yml
-	$(NOECHO) $(ECHO) 'requires: {}' >> META_new.yml
+	$(NOECHO) $(ECHO) 'requires:' >> META_new.yml
+	$(NOECHO) $(ECHO) '  LWP::UserAgent: '\''6.35'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'version: '\''1.06'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'x_serialization_backend: '\''CPAN::Meta::YAML version 0.018'\''' >> META_new.yml
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
@@ -556,7 +557,9 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '         }' >> META_new.json
 	$(NOECHO) $(ECHO) '      },' >> META_new.json
 	$(NOECHO) $(ECHO) '      "runtime" : {' >> META_new.json
-	$(NOECHO) $(ECHO) '         "requires" : {}' >> META_new.json
+	$(NOECHO) $(ECHO) '         "requires" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '            "LWP::UserAgent" : "6.35"' >> META_new.json
+	$(NOECHO) $(ECHO) '         }' >> META_new.json
 	$(NOECHO) $(ECHO) '      }' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
 	$(NOECHO) $(ECHO) '   "release_status" : "stable",' >> META_new.json
@@ -850,6 +853,7 @@ ppd :
 	$(NOECHO) $(ECHO) '    <ABSTRACT>Connector library for the insanely fast L&lt;HEXONET Backend API|https://www.hexonet.net/&gt;.</ABSTRACT>' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>hexonet &lt;middleware@hexonet.net&gt;</AUTHOR>' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="LWP::UserAgent" VERSION="6.35" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="x86_64-linux-gnu-thread-multi-5.26" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <CODEBASE HREF="" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    </IMPLEMENTATION>' >> WebService-Hexonet-Connector.ppd

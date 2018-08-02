@@ -31,7 +31,9 @@
          }
       },
       "runtime" : {
-         "requires" : {}
+         "requires" : {
+            "LWP::UserAgent" : "6.35"
+         }
       }
    },
    "release_status" : "stable",
