@@ -19,5 +19,5 @@ no_index:
     - inc
 requires:
   LWP::UserAgent: '6.35'
-version: '1.07'
+version: '1.08'
 x_serialization_backend: 'CPAN::Meta::YAML version 0.018'
