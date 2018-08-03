@@ -5,7 +5,7 @@ use Test::More;
 use Test::Exception;
 use Test::RequiresInternet ( 'coreapi.1api.net' => 80 );
 
-our $VERSION = '1.08';
+our $VERSION = '1.09';
 
 ##########################
 # TESTS for Connection.pm
