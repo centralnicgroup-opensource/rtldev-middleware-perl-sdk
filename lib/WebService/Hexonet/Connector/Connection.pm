@@ -148,6 +148,14 @@ Supported configuration data keys are:
 - user - to have a view into subuser account data
 - role - in case you want to login with a role user account that is directly under the given uid
 
+=item C<enableDebugMode()>
+
+Activate debug output
+
+=item C<disableDebugMode()>
+
+Disable debug output (default)
+
 =item C<call(command, config)>
 
 Make a curl API call and returns the response as a response object
