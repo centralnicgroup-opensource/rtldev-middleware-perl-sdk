@@ -5,7 +5,7 @@ use strict;
 use warnings;
 use WebService::Hexonet::Connector;
 
-our $VERSION = '1.10';
+our $VERSION = '1.11';
 
 1;
 

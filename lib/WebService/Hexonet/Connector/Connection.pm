@@ -7,7 +7,7 @@ use WebService::Hexonet::Connector::Util;
 use LWP::UserAgent;
 use Data::Dumper;
 
-our $VERSION = '1.10';
+our $VERSION = '1.11';
 
 sub new {
     my $class = shift;

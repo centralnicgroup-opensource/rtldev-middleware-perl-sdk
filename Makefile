@@ -58,11 +58,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = WebService::Hexonet::Connector
 NAME_SYM = WebService_Hexonet_Connector
-VERSION = 1.10
+VERSION = 1.11
 VERSION_MACRO = VERSION
-VERSION_SYM = 1_10
+VERSION_SYM = 1_11
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = 1.10
+XS_VERSION = 1.11
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -265,7 +265,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = WebService-Hexonet-Connector
-DISTVNAME = WebService-Hexonet-Connector-1.10
+DISTVNAME = WebService-Hexonet-Connector-1.11
 
 
 # --- MakeMaker macro section:
@@ -527,7 +527,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '  LWP::UserAgent: '\''6.35'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  MIME::Base64: '\''0'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  Time::Local: '\''0'\''' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version: '\''1.10'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) 'version: '\''1.11'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'x_serialization_backend: '\''CPAN::Meta::YAML version 0.018'\''' >> META_new.yml
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 	$(NOECHO) $(ECHO) Generating META.json
@@ -581,7 +581,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '      }' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
 	$(NOECHO) $(ECHO) '   "release_status" : "stable",' >> META_new.json
-	$(NOECHO) $(ECHO) '   "version" : "1.10",' >> META_new.json
+	$(NOECHO) $(ECHO) '   "version" : "1.11",' >> META_new.json
 	$(NOECHO) $(ECHO) '   "x_serialization_backend" : "JSON::PP version 2.27400_02"' >> META_new.json
 	$(NOECHO) $(ECHO) '}' >> META_new.json
 	-$(NOECHO) $(MV) META_new.json $(DISTVNAME)/META.json
@@ -867,7 +867,7 @@ testdb_static :: static pure_all
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd :
-	$(NOECHO) $(ECHO) '<SOFTPKG NAME="WebService-Hexonet-Connector" VERSION="1.10">' > WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '<SOFTPKG NAME="WebService-Hexonet-Connector" VERSION="1.11">' > WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <ABSTRACT>Connector library for the insanely fast L&lt;HEXONET Backend API|https://www.hexonet.net/&gt;.</ABSTRACT>' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>hexonet &lt;middleware@hexonet.net&gt;</AUTHOR>' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> WebService-Hexonet-Connector.ppd
