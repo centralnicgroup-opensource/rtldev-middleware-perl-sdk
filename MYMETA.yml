@@ -22,6 +22,7 @@ no_index:
     - t
     - inc
 requires:
+  Data::Dumper: '2.161'
   LWP::UserAgent: '6.35'
   MIME::Base64: '0'
   Time::Local: '0'

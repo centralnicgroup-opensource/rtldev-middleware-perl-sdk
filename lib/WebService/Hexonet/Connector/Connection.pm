@@ -5,6 +5,7 @@ use warnings;
 use WebService::Hexonet::Connector::Response;
 use WebService::Hexonet::Connector::Util;
 use LWP::UserAgent;
+use Data::Dumper;
 
 our $VERSION = '1.09';
 
@@ -16,7 +17,18 @@ sub new {
         delete $self->{$key};
         $self->{ lc $key } = $value;
     }
+    $self->{"debugMode"} = 0;
     return bless $self, $class;
+}
+
+sub enableDebugMode {
+    my $self = shift;
+    $self->{"debugMode"} = 1;
+}
+
+sub disableDebugMode {
+    my $self = shift;
+    $self->{"debugMode"} = 0;
 }
 
 sub call {
@@ -70,16 +82,25 @@ sub call_raw_http {
             $post->{s_user} = $config->{user};
         }
     }
-
     my $r = $self->{_useragent}->post( $url, $post );
     if ( $r->is_success ) {
-        return $r->decoded_content;
+        $r = $r->decoded_content;
     }
-    my $err = $r->status_line;
-    return ("[RESPONSE]\r\n"
+    else {
+        my $err = $r->status_line;
+        $r =
+            "[RESPONSE]\r\n"
           . "CODE=421\r\n"
           . "DESCRIPTION=HTTP communication failed;$err\r\n"
-          . "EOF\r\n" );
+          . "EOF\r\n";
+
+    }
+    if ( $self->{"debugMode"} ) {
+        print STDERR Dumper($command);
+        print STDERR Dumper($post);
+        print STDERR Dumper($r);
+    }
+    return $r;
 }
 
 sub _get_useragent {

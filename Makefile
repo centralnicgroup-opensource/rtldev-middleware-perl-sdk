@@ -17,7 +17,7 @@
 #     CONFIGURE_REQUIRES => {  }
 #     LICENSE => q[mit]
 #     NAME => q[WebService::Hexonet::Connector]
-#     PREREQ_PM => { LWP::UserAgent=>q[6.35], MIME::Base64=>q[0], Scalar::Util=>q[0], Test::Exception=>q[0.43], Test::More=>q[0], Test::RequiresInternet=>q[0.05], Time::Local=>q[0] }
+#     PREREQ_PM => { Data::Dumper=>q[2.161], LWP::UserAgent=>q[6.35], MIME::Base64=>q[0], Scalar::Util=>q[0], Test::Exception=>q[0.43], Test::More=>q[0], Test::RequiresInternet=>q[0.05], Time::Local=>q[0] }
 #     TEST_REQUIRES => { Scalar::Util=>q[0], Test::Exception=>q[0.43], Test::More=>q[0], Test::RequiresInternet=>q[0.05] }
 #     VERSION_FROM => q[lib/WebService/Hexonet/Connector.pm]
 
@@ -523,6 +523,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '    - t' >> META_new.yml
 	$(NOECHO) $(ECHO) '    - inc' >> META_new.yml
 	$(NOECHO) $(ECHO) 'requires:' >> META_new.yml
+	$(NOECHO) $(ECHO) '  Data::Dumper: '\''2.161'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  LWP::UserAgent: '\''6.35'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  MIME::Base64: '\''0'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  Time::Local: '\''0'\''' >> META_new.yml
@@ -564,6 +565,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '      },' >> META_new.json
 	$(NOECHO) $(ECHO) '      "runtime" : {' >> META_new.json
 	$(NOECHO) $(ECHO) '         "requires" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '            "Data::Dumper" : "2.161",' >> META_new.json
 	$(NOECHO) $(ECHO) '            "LWP::UserAgent" : "6.35",' >> META_new.json
 	$(NOECHO) $(ECHO) '            "MIME::Base64" : "0",' >> META_new.json
 	$(NOECHO) $(ECHO) '            "Time::Local" : "0"' >> META_new.json
@@ -869,6 +871,7 @@ ppd :
 	$(NOECHO) $(ECHO) '    <ABSTRACT>Connector library for the insanely fast L&lt;HEXONET Backend API|https://www.hexonet.net/&gt;.</ABSTRACT>' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>hexonet &lt;middleware@hexonet.net&gt;</AUTHOR>' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Data::Dumper" VERSION="2.161" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="LWP::UserAgent" VERSION="6.35" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="MIME::Base64" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Time::Local" />' >> WebService-Hexonet-Connector.ppd

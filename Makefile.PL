@@ -7,7 +7,8 @@ WriteMakefile(
     PREREQ_PM    => {
         'LWP::UserAgent' => 6.35,
         'Time::Local'    => 0,
-        'MIME::Base64'   => 0
+        'MIME::Base64'   => 0,
+        'Data::Dumper'   => 2.161
     },
     TEST_REQUIRES => {
         'Test::More'             => 0,

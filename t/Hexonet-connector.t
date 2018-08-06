@@ -12,7 +12,6 @@ our $VERSION = '1.09';
 ##########################
 
 # T1-5: test import modules
-use_ok( "lib",                                      qw(./lib) );
 use_ok( "Scalar::Util",                             qw(blessed) );
 use_ok( "WebService::Hexonet::Connector",           $VERSION );
 use_ok( "WebService::Hexonet::Connector::Response", $VERSION );
@@ -27,6 +26,7 @@ our $api = WebService::Hexonet::Connector::connect(
         password => 'test.passw0rd'
     }
 );
+$api->enableDebugMode();
 our $cl = blessed($api);
 is(
     $cl,
@@ -59,6 +59,7 @@ $api = WebService::Hexonet::Connector::connect(
         role     => 'testrole'
     }
 );
+$api->enableDebugMode();
 $cl = blessed($api);
 is(
     $cl,
@@ -95,6 +96,7 @@ $api = WebService::Hexonet::Connector::connect(
         role => 'testrole'
     }
 );
+$api->enableDebugMode();
 $cl = blessed($api);
 is(
     $cl,
@@ -123,6 +125,7 @@ $api = WebService::Hexonet::Connector::connect(
     }
 );
 $cl = blessed($api);
+$api->enableDebugMode();
 
 #T11
 is(
@@ -191,6 +194,7 @@ $api = WebService::Hexonet::Connector::connect(
         entity   => "1234"
     }
 );
+$api->enableDebugMode();
 $r = $api->call(
     {
         COMMAND => "QueryDomainList",
@@ -243,6 +247,7 @@ $api = WebService::Hexonet::Connector::connect(
         entity   => "1234"
     }
 );
+$api->enableDebugMode();
 $r = $api->call(
     {
         COMMAND => "QueryDomainPendingDeleteList",
