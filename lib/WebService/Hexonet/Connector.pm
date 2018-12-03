@@ -5,10 +5,11 @@ use strict;
 use warnings;
 use WebService::Hexonet::Connector::Connection;
 
-our $VERSION = '1.12';
+our $VERSION = 'v1.12.1';
+
 
 sub connect {
-    return WebService::Hexonet::Connector::Connection->new(@_);
+	return WebService::Hexonet::Connector::Connection->new(@_);
 }
 
 1;

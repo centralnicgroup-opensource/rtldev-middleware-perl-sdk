@@ -7,111 +7,106 @@ use WebService::Hexonet::Connector::Util;
 use LWP::UserAgent;
 use Data::Dumper;
 
-our $VERSION = '1.12';
+our $VERSION = 'v1.12.1';
+
 
 sub new {
-    my $class = shift;
-    my $self  = shift;
-    foreach my $key (%$self) {
-        my $value = $self->{$key};
-        delete $self->{$key};
-        $self->{ lc $key } = $value;
-    }
-    $self->{"debugMode"} = 0;
-    return bless $self, $class;
+	my $class = shift;
+	my $self  = shift;
+	foreach my $key (%$self) {
+		my $value = $self->{$key};
+		delete $self->{$key};
+		$self->{ lc $key } = $value;
+	}
+	$self->{"debugMode"} = 0;
+	return bless $self, $class;
 }
+
 
 sub enableDebugMode {
-    my $self = shift;
-    $self->{"debugMode"} = 1;
+	my $self = shift;
+	$self->{"debugMode"} = 1;
 }
+
 
 sub disableDebugMode {
-    my $self = shift;
-    $self->{"debugMode"} = 0;
+	my $self = shift;
+	$self->{"debugMode"} = 0;
 }
+
 
 sub call {
-    my $self    = shift;
-    my $command = shift;
-    my $config  = shift;
-    return WebService::Hexonet::Connector::Response->new(
-        $self->call_raw( $command, $config ) );
+	my $self    = shift;
+	my $command = shift;
+	my $config  = shift;
+	return WebService::Hexonet::Connector::Response->new($self->call_raw( $command, $config ) );
 }
+
 
 sub call_raw {
-    my $self    = shift;
-    my $command = shift;
-    my $config  = shift;
+	my $self    = shift;
+	my $command = shift;
+	my $config  = shift;
 
-    $config = {} if !defined $config;
-    $config = { User => $config } if ( defined $config ) && ( !ref $config );
+	$config = {} if !defined $config;
+	$config = { User => $config } if ( defined $config ) && ( !ref $config );
 
-    #TODO check above line if we still need it; $config should always be defined
-    #because of the line before, so that at least the if branch can be reviewed
+	#TODO check above line if we still need it; $config should always be defined
+	#because of the line before, so that at least the if branch can be reviewed
 
-    return $self->call_raw_http( $command, $config );
+	return $self->call_raw_http( $command, $config );
 }
+
 
 sub call_raw_http {
-    my $self    = shift;
-    my $command = shift;
-    my $config  = shift;
+	my $self    = shift;
+	my $command = shift;
+	my $config  = shift;
 
-    my $ua = $self->_get_useragent();
+	my $ua = $self->_get_useragent();
 
-    my $url  = $self->{url};
-    my $post = {
-        s_command => (
-            scalar WebService::Hexonet::Connector::Util::command_encode(
-                $command)
-        )
-    };
-    $post->{s_entity} = $self->{entity}   if exists $self->{entity};
-    $post->{s_login}  = $self->{login}    if exists $self->{login};
-    $post->{s_pw}     = $self->{password} if exists $self->{password};
-    $post->{s_user}   = $self->{user}     if exists $self->{user};
-    $post->{s_login} = $self->{login} . "!" . $self->{role}
-      if ( exists $self->{login} ) && ( exists $self->{role} );
+	my $url  = $self->{url};
+	my $post = {s_command => (scalar WebService::Hexonet::Connector::Util::command_encode($command))};
+	$post->{s_entity} = $self->{entity}   if exists $self->{entity};
+	$post->{s_login}  = $self->{login}    if exists $self->{login};
+	$post->{s_pw}     = $self->{password} if exists $self->{password};
+	$post->{s_user}   = $self->{user}     if exists $self->{user};
+	$post->{s_login} = $self->{login} . "!" . $self->{role}
+	  if ( exists $self->{login} ) && ( exists $self->{role} );
 
-    if ( exists $config->{user} ) {
-        if ( exists $post->{s_user} ) {
-            $post->{s_user} .= " " . $config->{user};
-        }
-        else {
-            $post->{s_user} = $config->{user};
-        }
-    }
-    my $r = $self->{_useragent}->post( $url, $post );
-    if ( $r->is_success ) {
-        $r = $r->decoded_content;
-    }
-    else {
-        my $err = $r->status_line;
-        $r =
-            "[RESPONSE]\r\n"
-          . "CODE=421\r\n"
-          . "DESCRIPTION=HTTP communication failed;$err\r\n"
-          . "EOF\r\n";
+	if ( exists $config->{user} ) {
+		if ( exists $post->{s_user} ) {
+			$post->{s_user} .= " " . $config->{user};
+		}else {
+			$post->{s_user} = $config->{user};
+		}
+	}
+	my $r = $self->{_useragent}->post( $url, $post );
+	if ( $r->is_success ) {
+		$r = $r->decoded_content;
+	}else {
+		my $err = $r->status_line;
+		$r ="[RESPONSE]\r\n". "CODE=421\r\n". "DESCRIPTION=HTTP communication failed;$err\r\n". "EOF\r\n";
 
-    }
-    if ( $self->{"debugMode"} ) {
-        print STDERR Dumper($command);
-        print STDERR Dumper($post);
-        print STDERR Dumper($r);
-    }
-    return $r;
+	}
+	if ( $self->{"debugMode"} ) {
+		print STDERR Dumper($command);
+		print STDERR Dumper($post);
+		print STDERR Dumper($r);
+	}
+	return $r;
 }
 
+
 sub _get_useragent {
-    my $self = shift;
-    return $self->{_useragent} if exists $self->{_useragent};
-    $self->{_useragent} = LWP::UserAgent->new(
-        agent      => "Hexonet-perl/$WebService::Hexonet::Connector::VERSION",
-        keep_alive => 4,
-    );
-    $self->{_useragent}->default_header( 'Expect', '' );
-    return $self->{_useragent};
+	my $self = shift;
+	return $self->{_useragent} if exists $self->{_useragent};
+	$self->{_useragent} = LWP::UserAgent->new(
+		agent      => "Hexonet-perl/$WebService::Hexonet::Connector::VERSION",
+		keep_alive => 4,
+	);
+	$self->{_useragent}->default_header( 'Expect', '' );
+	return $self->{_useragent};
 }
 
 1;

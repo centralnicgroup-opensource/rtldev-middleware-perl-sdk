@@ -5,7 +5,7 @@ use Test::More;
 use Test::Exception;
 use Test::RequiresInternet ( 'coreapi.1api.net' => 80 );
 
-our $VERSION = '1.12';
+our $VERSION = 'v1.12.1';
 
 ##########################
 # TESTS for Connection.pm
@@ -19,97 +19,77 @@ use_ok( "WebService::Hexonet::Connector::Util",     $VERSION );
 
 # T6: instantiate API Client
 our $api = WebService::Hexonet::Connector::connect(
-    {
-        url      => 'https://coreapi.1api.net/api/call.cgi',
-        entity   => '1234',
-        login    => 'test.user',
-        password => 'test.passw0rd'
-    }
+	{
+		url      => 'https://coreapi.1api.net/api/call.cgi',
+		entity   => '1234',
+		login    => 'test.user',
+		password => 'test.passw0rd'
+	}
 );
 $api->enableDebugMode();
 our $cl = blessed($api);
-is(
-    $cl,
-    "WebService::Hexonet::Connector::Connection",
-    "API Client Instance type check"
-);
+is($cl,"WebService::Hexonet::Connector::Connection","API Client Instance type check");
 
 # T7: make API call and test Response instance
 our $r = $api->call(
-    {
-        COMMAND => "GetUserIndex"
-    }
+	{
+		COMMAND => "GetUserIndex"
+	}
 );
 
 $cl = blessed($r);
-is(
-    $cl,
-    "WebService::Hexonet::Connector::Response",
-    "API Response Instance type check"
-);
+is($cl,"WebService::Hexonet::Connector::Response","API Response Instance type check");
 
 # T8: add subuser and role - just to increase coverage, no special checks necessary
 $api = WebService::Hexonet::Connector::connect(
-    {
-        url      => 'https://coreapi.1api.net/api/call.cgi',
-        entity   => '1234',
-        login    => 'test.user',
-        password => 'test.passw0rd',
-        user     => 'hexotestman.com',
-        role     => 'testrole'
-    }
+	{
+		url      => 'https://coreapi.1api.net/api/call.cgi',
+		entity   => '1234',
+		login    => 'test.user',
+		password => 'test.passw0rd',
+		user     => 'hexotestman.com',
+		role     => 'testrole'
+	}
 );
 $api->enableDebugMode();
 $cl = blessed($api);
-is(
-    $cl,
-    "WebService::Hexonet::Connector::Connection",
-    "API Client Instance type check"
-);
+is($cl,"WebService::Hexonet::Connector::Connection","API Client Instance type check");
 
 # T9: make API call and test Response instance  - just to increase coverage, no special checks necessary
 $r = $api->call(
-    {
-        COMMAND => "GetUserIndex"
-    }
+	{
+		COMMAND => "GetUserIndex"
+	}
 );
 $cl = blessed($r);
-is(
-    $cl,
-    "WebService::Hexonet::Connector::Response",
-    "API Response Instance type check"
-);
+is($cl,"WebService::Hexonet::Connector::Response","API Response Instance type check");
 $r = $api->call_raw(
-    {
-        COMMAND => "GetUserIndex"
-    },
-    {
-        user => "accesscontroltest",
-        role => ""
-    }
+	{
+		COMMAND => "GetUserIndex"
+	},
+	{
+		user => "accesscontroltest",
+		role => ""
+	}
 );
 
 # T10: add subuser and role - just to increase coverage, no special checks necessary
 $api = WebService::Hexonet::Connector::connect(
-    {
-        url  => 'https://coreapi.1api.net/api/call.cgi',
-        role => 'testrole'
-    }
+	{
+		url  => 'https://coreapi.1api.net/api/call.cgi',
+		role => 'testrole'
+	}
 );
 $api->enableDebugMode();
 $cl = blessed($api);
-is(
-    $cl,
-    "WebService::Hexonet::Connector::Connection",
-    "API Client Instance type check"
-);
+is($cl,"WebService::Hexonet::Connector::Connection","API Client Instance type check");
 $r = $api->call_raw(
-    {
-        COMMAND => "GetUserIndex"
-    },
-    {
-        user => 'somesubsubuser'
-    }
+	{
+		COMMAND => "GetUserIndex"
+	},
+	{
+		user => 'somesubsubuser'
+	}
 );
 
 #######################################
@@ -117,39 +97,30 @@ $r = $api->call_raw(
 #######################################
 # T11 - T18: initial response class coverage test
 $api = WebService::Hexonet::Connector::connect(
-    {
-        login    => 'test.user',
-        password => 'test.password',
-        entity   => '1234',
-        url      => 'https://coreapi.1api.net/api/call.cgi'
-    }
+	{
+		login    => 'test.user',
+		password => 'test.password',
+		entity   => '1234',
+		url      => 'https://coreapi.1api.net/api/call.cgi'
+	}
 );
 $cl = blessed($api);
 $api->enableDebugMode();
 
 #T11
-is(
-    $cl,
-    "WebService::Hexonet::Connector::Connection",
-    "API Client Instance type check"
-);
+is($cl,"WebService::Hexonet::Connector::Connection","API Client Instance type check");
 
 #T12
 $r = $api->call(
-    {
-        COMMAND => "GetUserIndex"
-    }
+	{
+		COMMAND => "GetUserIndex"
+	}
 );
 $cl = blessed($r);
-is(
-    $cl,
-    "WebService::Hexonet::Connector::Response",
-    "API Response Instance type check"
-);
+is($cl,"WebService::Hexonet::Connector::Response","API Response Instance type check");
 
 #T13
-ok( $r->description() eq "Authentication failed",
-    "Check response description" );
+ok( $r->description() eq "Authentication failed","Check response description" );
 
 #T14
 ok( $r->code() eq 530, "Check response code" );
@@ -172,44 +143,36 @@ ok( !$r->is_success() );
 # T19 - T20 constructor branch tests
 #T19
 dies_ok {
-    WebService::Hexonet::Connector::Response->new($api);
+	WebService::Hexonet::Connector::Response->new($api);
 }
 'Unsupported Class';
 
 #T20
 $r  = WebService::Hexonet::Connector::Response->new( $r->as_list_hash() );
 $cl = blessed($r);
-is(
-    $cl,
-    "WebService::Hexonet::Connector::Response",
-    "API Response Instance type check"
-);
+is($cl,"WebService::Hexonet::Connector::Response","API Response Instance type check");
 
 #T21 - T43 check list response
 $api = WebService::Hexonet::Connector::connect(
-    {
-        login    => "test.user",
-        password => "test.passw0rd",
-        url      => "https://coreapi.1api.net/api/call.cgi",
-        entity   => "1234"
-    }
+	{
+		login    => "test.user",
+		password => "test.passw0rd",
+		url      => "https://coreapi.1api.net/api/call.cgi",
+		entity   => "1234"
+	}
 );
 $api->enableDebugMode();
 $r = $api->call(
-    {
-        COMMAND => "QueryDomainList",
-        VERSION => 2,
-        NOTOTAL => 1,    # TOTAL to have value from total to equal to count
-        LIMIT   => 10,
-        FIRST   => 0
-    }
+	{
+		COMMAND => "QueryDomainList",
+		VERSION => 2,
+		NOTOTAL => 1,    # TOTAL to have value from total to equal to count
+		LIMIT   => 10,
+		FIRST   => 0
+	}
 );
 $cl = blessed($r);
-is(
-    $cl,
-    "WebService::Hexonet::Connector::Response",
-    "API Response Instance type check"
-);
+is($cl,"WebService::Hexonet::Connector::Response","API Response Instance type check");
 ok( $r->description() eq "Command completed successfully" );
 ok( $r->code() eq 200 );
 ok( ref( $r->properties() ) );
@@ -240,21 +203,21 @@ ok( $tmp || !$tmp );
 #######################################
 #T44
 $api = WebService::Hexonet::Connector::connect(
-    {
-        login    => "test.user",
-        password => "test.passw0rd",
-        url      => "https://coreapi.1api.net/api/call.cgi",
-        entity   => "1234"
-    }
+	{
+		login    => "test.user",
+		password => "test.passw0rd",
+		url      => "https://coreapi.1api.net/api/call.cgi",
+		entity   => "1234"
+	}
 );
 $api->enableDebugMode();
 $r = $api->call(
-    {
-        COMMAND => "QueryDomainPendingDeleteList",
-        ZONE    => [ "COM", "NET" ],
-        LIMIT   => 10,
-        FIRST   => 20
-    }
+	{
+		COMMAND => "QueryDomainPendingDeleteList",
+		ZONE    => [ "COM", "NET" ],
+		LIMIT   => 10,
+		FIRST   => 20
+	}
 );
 ok( $r->code() eq 200 );
 
