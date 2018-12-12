@@ -6,10 +6,10 @@ WriteMakefile(
     VERSION_FROM => 'lib/WebService/Hexonet/Connector.pm',
     PREREQ_PM    => {
         'LWP::Protocol::https' => 6.07,
-        'LWP::UserAgent' => 6.35,
-        'Time::Local'    => 0,
-        'MIME::Base64'   => 0,
-        'Data::Dumper'   => 2.161
+        'LWP::UserAgent'       => 6.35,
+        'Time::Local'          => 0,
+        'MIME::Base64'         => 0,
+        'Data::Dumper'         => 2.161
     },
     TEST_REQUIRES => {
         'Test::More'             => 0,

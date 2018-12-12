@@ -1,16 +1,18 @@
 package WebService::Hexonet::Connector;
 
-use 5.026000;
+use 5.014_004;
 use strict;
 use warnings;
-use WebService::Hexonet::Connector::Connection;
+use WebService::Hexonet::Connector::APIClient;
+use WebService::Hexonet::Connector::Column;
+use WebService::Hexonet::Connector::Record;
+use WebService::Hexonet::Connector::Response;
+use WebService::Hexonet::Connector::ResponseParser;
+use WebService::Hexonet::Connector::ResponseTemplate;
+use WebService::Hexonet::Connector::ResponseTemplateManager;
+use WebService::Hexonet::Connector::SocketConfig;
 
 our $VERSION = 'v1.12.1';
-
-
-sub connect {
-	return WebService::Hexonet::Connector::Connection->new(@_);
-}
 
 1;
 
@@ -32,35 +34,33 @@ WebService::Hexonet::Connector - Connector library for the insanely fast L<HEXON
 	cpanm WebService::Hexonet::Connector
 	# NOTE: We suggest to use cpanm (App::cpanminus) for several reasons.
 
-
+	use 5.014_004;
 	use strict;
 	use warnings;
-	use WebService::Hexonet::Connector;
+	use WebService::Hexonet::Connector::APIClient;
 
 	# Create a connection with the URL, entity, login and password
 	# Use "1234" as entity for the OT&E, and "54cd" for productive use
 	# Don't have a Hexonet Account yet? Get one here: www.hexonet.net/sign-up
-	my $api = WebService::Hexonet::Connector::connect({
-		url => 'https://coreapi.1api.net/api/call.cgi',
-		entity => '1234',
-		login => 'test.user',
-		password => 'test.passw0rd',
-	});
+	my $cl = APIClient->new();
+	$cl->useOTESystem();
+	$cl->setCredentials("test.user", "test.passw0rd");
+	$cl->setRemoteIPAddress("1.2.3.4");
 
 	# Call a command
-	my $response = $api->call({
+	my $response = $cl->request({
 		command => "querydomainlist",
 		limit => 5
 	});
 
 	# Display the result in the format you want
-	my $res = $response->as_list();
-	$res = $response->as_list_hash();
-	$res = $response->as_hash();
+	my $res = $response->getListHash());
+	$res = $response->getHash();
+	$res = $response->getPlain();
 
 	# Get the response code and the response description
-	my $code = $response->code();
-	my $description = $response->description();
+	my $code = $response->getCode();
+	my $description = $response->getDescription();
 
 	print "$code $description";
 
@@ -77,32 +77,30 @@ We've split our functionality into submodules to give this module a better struc
 
 =over 4
 
-=item L<WebService::Hexonet::Connector::Connection> - API Client functionality.
+=item L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> - API Client functionality.
 
-=item L<WebService::Hexonet::Connector::Response> - API Response functionality.
+=item L<WebService::Hexonet::Connector::Column|WebService::Hexonet::Connector::Column> - API Response Data handling as "Column".
 
-=item L<WebService::Hexonet::Connector::Util> - Bundle of Helper methods.
+=item L<WebService::Hexonet::Connector::Record|WebService::Hexonet::Connector::Record> - API Response Data handling as "Record".
+
+=item L<WebService::Hexonet::Connector::Response|WebService::Hexonet::Connector::Response> - API Response functionality.
+
+=item L<WebService::Hexonet::Connector::ResponseParser|WebService::Hexonet::Connector::ResponseParser> - API Response Parser functionality.
+
+=item L<WebService::Hexonet::Connector::ResponseTemplate|WebService::Hexonet::Connector::ResponseTemplate> - API Response Template functionality.
+
+=item L<WebService::Hexonet::Connector::ResponseTemplateManager|WebService::Hexonet::Connector::ResponseTemplateManager> - API Response Template Manager functionality.
+
+=item L<WebService::Hexonet::Connector::SocketConfig|WebService::Hexonet::Connector::SocketConfig> - API Communication Configuration functionality.
 
 =back
 
-=head1 METHODS WebService::Hexonet::Connector
+=head1 LICENSE AND COPYRIGHT
 
-=over 4
-
-=item C<connect(url, entity, login, password, user, role)>
-
-Function connect Returns a Connection object connected to the API Server (URL, ENTITY, LOGIN, PASSWORD are mandatory to connect the server, ROLE ans USER are optional)
-
-=back
+This program is licensed under the L<MIT License|https://raw.githubusercontent.com/hexonet/perl-sdk/master/LICENSE>.
 
 =head1 AUTHOR
 
-Hexonet GmbH
-
-L<https://www.hexonet.net>
-
-=head1 LICENSE
-
-MIT
+L<HEXONET GmbH|https://www.hexonet.net>
 
 =cut

@@ -165,10 +165,7 @@ O_FILES  =
 H_FILES  = 
 MAN1PODS = 
 MAN3PODS = lib/WebService/Hexonet.pm \
-	lib/WebService/Hexonet/Connector.pm \
-	lib/WebService/Hexonet/Connector/Connection.pm \
-	lib/WebService/Hexonet/Connector/Response.pm \
-	lib/WebService/Hexonet/Connector/Util.pm
+	lib/WebService/Hexonet/Connector.pm
 
 # Where is the Config information that we are using/depend on
 CONFIGDEP = $(PERL_ARCHLIBDEP)$(DFSEP)Config.pm $(PERL_INCDEP)$(DFSEP)config.h
@@ -193,9 +190,14 @@ PERL_ARCHIVE_AFTER =
 
 TO_INST_PM = lib/WebService/Hexonet.pm \
 	lib/WebService/Hexonet/Connector.pm \
-	lib/WebService/Hexonet/Connector/Connection.pm \
+	lib/WebService/Hexonet/Connector/APIClient.pm \
+	lib/WebService/Hexonet/Connector/Column.pm \
+	lib/WebService/Hexonet/Connector/Record.pm \
 	lib/WebService/Hexonet/Connector/Response.pm \
-	lib/WebService/Hexonet/Connector/Util.pm
+	lib/WebService/Hexonet/Connector/ResponseParser.pm \
+	lib/WebService/Hexonet/Connector/ResponseTemplate.pm \
+	lib/WebService/Hexonet/Connector/ResponseTemplateManager.pm \
+	lib/WebService/Hexonet/Connector/SocketConfig.pm
 
 
 # --- MakeMaker platform_constants section:
@@ -423,16 +425,10 @@ POD2MAN = $(POD2MAN_EXE)
 
 manifypods : pure_all config  \
 	lib/WebService/Hexonet.pm \
-	lib/WebService/Hexonet/Connector.pm \
-	lib/WebService/Hexonet/Connector/Connection.pm \
-	lib/WebService/Hexonet/Connector/Response.pm \
-	lib/WebService/Hexonet/Connector/Util.pm
+	lib/WebService/Hexonet/Connector.pm
 	$(NOECHO) $(POD2MAN) --section=$(MAN3EXT) --perm_rw=$(PERM_RW) -u \
 	  lib/WebService/Hexonet.pm $(INST_MAN3DIR)/WebService::Hexonet.$(MAN3EXT) \
-	  lib/WebService/Hexonet/Connector.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector.$(MAN3EXT) \
-	  lib/WebService/Hexonet/Connector/Connection.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector::Connection.$(MAN3EXT) \
-	  lib/WebService/Hexonet/Connector/Response.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector::Response.$(MAN3EXT) \
-	  lib/WebService/Hexonet/Connector/Util.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector::Util.$(MAN3EXT) 
+	  lib/WebService/Hexonet/Connector.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector.$(MAN3EXT) 
 
 
 
@@ -890,9 +886,14 @@ pm_to_blib : $(FIRST_MAKEFILE) $(TO_INST_PM)
 	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', q[$(PM_FILTER)], '\''$(PERM_DIR)'\'')' -- \
 	  'lib/WebService/Hexonet.pm' 'blib/lib/WebService/Hexonet.pm' \
 	  'lib/WebService/Hexonet/Connector.pm' 'blib/lib/WebService/Hexonet/Connector.pm' \
-	  'lib/WebService/Hexonet/Connector/Connection.pm' 'blib/lib/WebService/Hexonet/Connector/Connection.pm' \
+	  'lib/WebService/Hexonet/Connector/APIClient.pm' 'blib/lib/WebService/Hexonet/Connector/APIClient.pm' \
+	  'lib/WebService/Hexonet/Connector/Column.pm' 'blib/lib/WebService/Hexonet/Connector/Column.pm' \
+	  'lib/WebService/Hexonet/Connector/Record.pm' 'blib/lib/WebService/Hexonet/Connector/Record.pm' \
 	  'lib/WebService/Hexonet/Connector/Response.pm' 'blib/lib/WebService/Hexonet/Connector/Response.pm' \
-	  'lib/WebService/Hexonet/Connector/Util.pm' 'blib/lib/WebService/Hexonet/Connector/Util.pm' 
+	  'lib/WebService/Hexonet/Connector/ResponseParser.pm' 'blib/lib/WebService/Hexonet/Connector/ResponseParser.pm' \
+	  'lib/WebService/Hexonet/Connector/ResponseTemplate.pm' 'blib/lib/WebService/Hexonet/Connector/ResponseTemplate.pm' \
+	  'lib/WebService/Hexonet/Connector/ResponseTemplateManager.pm' 'blib/lib/WebService/Hexonet/Connector/ResponseTemplateManager.pm' \
+	  'lib/WebService/Hexonet/Connector/SocketConfig.pm' 'blib/lib/WebService/Hexonet/Connector/SocketConfig.pm' 
 	$(NOECHO) $(TOUCH) pm_to_blib
 
 

@@ -1,6 +1,6 @@
 package WebService::Hexonet;
 
-use 5.026000;
+use 5.014_004;
 use strict;
 use warnings;
 use WebService::Hexonet::Connector;
@@ -15,6 +15,11 @@ __END__
 
 WebService::Hexonet - Namespace package for modules provided by L<HEXONET|https://www.hexonet.net/>.
 
+
+=head1 VERSION
+
+This documentation refers to WebService::Hexonet version v1.12.1.
+
 =head1 DESCRIPTION
 
 This module is just used as namespace package for module provided by L<HEXONET|https://www.hexonet.net/>
@@ -26,18 +31,16 @@ Up to now we provide the following modules:
 
 =over 4
 
-=item L<WebService::Hexonet::Connector> - Connector Library for our Backend API.
+=item L<WebService::Hexonet::Connector|WebService::Hexonet::Connector> - Connector Library for our Backend API.
 
 =back
 
+=head1 LICENSE AND COPYRIGHT
+
+This program is licensed under the L<MIT License|https://raw.githubusercontent.com/hexonet/perl-sdk/master/LICENSE>.
+
 =head1 AUTHOR
 
-Hexonet GmbH
-
-L<https://www.hexonet.net>
-
-=head1 LICENSE
-
-MIT
+L<HEXONET GmbH|https://www.hexonet.net>
 
 =cut
