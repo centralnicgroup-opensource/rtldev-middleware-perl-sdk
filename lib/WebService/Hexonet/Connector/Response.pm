@@ -354,3 +354,188 @@ sub _hasPreviousRecord {
 }
 
 1;
+
+__END__
+
+=head1 NAME
+
+WebService::Hexonet::Connector::Response - Library to provide accessibility to API response data.
+
+=head1 SYNOPSIS
+
+This module is internally used by the WebService::Hexonet::Connector::APIClient module.
+To be used in the way:
+
+    # specify the used API command (used for the request that responsed with $plain)
+    $command = {
+	    COMMAND => 'StatusAccount'
+    };
+  
+    # specify the API plain-text response (this is just an example that won't fit to the command above)
+    $plain = "[RESPONSE]\r\nCODE=200\r\nDESCRIPTION=Command completed successfully\r\nEOF\r\n";
+  
+    # create a new instance by
+    $r = WebService::Hexonet::Connector::Response->new($plain, $command);
+
+=head1 DESCRIPTION
+
+HEXONET Backend API always responds in plain-text format that needs to get parsed into a useful
+data structure. This module manages all this: parsing data into hash format, into columns and records.
+It provides different methods to access the data to fit your needs.
+
+=head2 Methods
+
+=over
+
+=item C<new( $plain, $command )>
+
+Returns a new WebService::Hexonet::Connector::Response object.
+Specify the plain-text API response by $plain.
+Specify the used command by $command.
+
+=item C<addColumn( $key, @data )>
+
+Add a new column.
+Specify the column name by $key.
+Specify the column data by @data.
+
+=item C<addRecord( $hash )>
+
+Add a new record.
+Specify the row data in hash notation by $hash.
+Where the hash key represents the column name.
+Where the hash value represents the row value for that column.
+
+=item C<getColumn( $key )>
+
+Get a column (instance of WebService::Hexonet::Connector::Column) for
+the specified column name $key.
+
+=item C<getColumnIndex( $key, $index )> {
+
+Get Data of the specified column $key for the given column index $index.
+
+=item C<getColumnKeys>
+
+Get a list of available column names. NOTE: columns may differ in their data size.
+
+=item C<getCommand>
+
+Get the command used within the request that resulted in this api response.
+This is in general the command you provided in the constructor.
+
+=item C<getCurrentPageNumber>
+
+Returns the current page number we are in with this API response.
+
+=item C<getCurrentRecord>
+
+Returns the current record of the iteration. It internally uses recordIndex as iterator index.
+
+=item C<getFirstRecordIndex>
+
+Returns the first record index of this api response.
+
+=item C<getLastRecordIndex>
+
+Returns the last record index of this api response.
+
+=item C<getListHash>
+
+Returns this api response in a List-Hash format.
+You will find the row data under hash key "LIST".
+You will find meta data under hash key "meta".
+Under "meta" data you will again find a hash, where
+hash key "columns" provides you a list of available
+column names and "pg" provides you useful paginator
+data.
+This method is thought to be used if you need
+something that helps you realizing tables with or 
+without a pager.
+
+=item C<getNextRecord>
+
+Returns the next record of the current iteration.
+
+=item C<getNextPageNumber>
+
+Returns the number of the next api response page for the current request.
+
+=item C<getNumberOfPages>
+
+Returns the total number of response pages in our API for the current request.
+
+=item C<getPagination>
+
+Returns paginator data of the current response / request.
+
+=item C<getPreviousPageNumber>
+
+Returns the number of the previous api response page for the current request.
+
+=item C<getPreviousRecord>
+
+Returns the previous record of the current iteration.
+
+=item C<getRecord( $index )>
+
+Returns the record of the specified record index $index.
+
+=item C<getRecords>
+
+Returns a list of available records (instances of WebService::Hexonet::Connector::Record).
+
+=item C<getRecordsCount>
+
+Returns the amount of returned records for the current request.
+
+=item C<getRecordsTotalCount>
+
+Returns the total amount of available records for the current request.
+
+=item C<getRecordsLimitation>
+
+Returns the limitation of the current request. LIMIT = ...
+NOTE: Our system comes with a default limitation if you do not specify
+a limitation in list commands to avoid data load in our systems.
+This limitation is then returned in column "LIMIT" at index 0.
+
+=item C<hasNextPage>
+
+Checks if a next response page exists for the current query.
+
+=item C<hasPreviousPage>
+
+Checks if a previous response page exists for the current query.
+
+=item C<rewindRecordList>
+
+Resets the current iteration to index 0.
+
+=item C<_hasColumn( $key )>
+
+Private method. Checks if a column specified by $key exists.
+	
+=item C<_hasCurrentRecord>
+
+Private method. Checks if the current record exists in the iteration.
+
+=item C<_hasNextRecord>
+
+Private method. Checks if the next record exists in the iteration.
+
+=item C<_hasPreviousRecord>
+
+Private method. Checks if the previous record exists in the iteration.
+
+=back
+
+=head1 LICENSE AND COPYRIGHT
+
+This program is licensed under the L<MIT License|https://raw.githubusercontent.com/hexonet/perl-sdk/master/LICENSE>.
+
+=head1 AUTHOR
+
+L<HEXONET GmbH|https://www.hexonet.net>
+
+=cut

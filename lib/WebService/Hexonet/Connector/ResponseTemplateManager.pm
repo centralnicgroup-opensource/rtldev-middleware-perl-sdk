@@ -84,3 +84,93 @@ sub isTemplateMatchPlain {
 }
 
 1;
+
+__END__
+
+=head1 NAME
+
+WebService::Hexonet::Connector::ResponseTemplateManager - Library to manage response templates.
+
+=head1 SYNOPSIS
+
+This module is internally used by the WebService::Hexonet::Connector::APIClient module as described below.
+To be used in the way:
+
+    # get (singleton) instance of this class
+    $rtm = WebService::Hexonet::Connector::ResponseTemplateManager->getIstance();
+  
+    # add a template
+    $rtm->addTemplate('mytemplate ID', "[RESPONSE]\r\nCODE=200\r\nDESCRIPTION=Command completed successfully\r\nEOF\r\n");
+
+	# get a template (instance of ResponseTemplate)
+	$rtm->getTemplate('mytemplate ID');
+
+etc. See the documented methods for deeper information.
+
+=head1 DESCRIPTION
+
+This library can be used to manage hardcoded API responses (for any reason).
+In general useful for automated tests where you need to work with hardcoded API responses.
+Also used by WebService::Hexonet::Connector::APIClient module for standard error cases.
+
+
+=head2 Methods
+
+=over
+
+=item C<getInstance>
+
+Returns the singleton instance of WebService::Hexonet::Connector::ResponseTemplateManager.
+
+=item C<generateTemplate( $code, $description )>
+
+Returns a plain-text API response for the specified response Code $code
+and the specified response description $description.
+To be used in case you need custom API responses to cover specific cases
+in your implementation e.g. error cases of the HTTP communication.
+
+=item C<addTemplate( $id, $plain)>
+
+Add a response to the template container.
+Specify the template id by $id and the plain-text response by $plain.
+
+=item C<getTemplate( $id )>
+
+Get a response template (instance of WebService::Hexonet::Connector::ResponseTemplate)
+from template container.
+
+=item C<getTemplates>
+
+Get all available response templates in hash notation.
+Where the hash key represents the template id and where the hash value is an
+instance of WebService::Hexonet::Connector::ResponseTemplate.
+
+=item C<hasTemplate( $id )>
+
+Checks if the template container contains a template with the specified template id $id.
+
+=item C<isTemplateMatchHash( $hash, $id )>
+
+Checks if the given API response in hash format specified by $hash matches the specified
+response template $id in response code and response description.
+It doesn't compare PROPERTY data!
+
+=item C<isTemplateMatchPlain( $plain, $id )>
+
+Checks if the given API response in plain-text format specified by $plain matches the specified
+response template $id in response code and response description.
+It doesn't compare PROPERTY data!
+Internally this method parses that plain-text response into hash format and uses method
+isTemplateMatchHash to perform the check.
+
+=back
+
+=head1 LICENSE AND COPYRIGHT
+
+This program is licensed under the L<MIT License|https://raw.githubusercontent.com/hexonet/perl-sdk/master/LICENSE>.
+
+=head1 AUTHOR
+
+L<HEXONET GmbH|https://www.hexonet.net>
+
+=cut

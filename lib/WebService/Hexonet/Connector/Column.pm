@@ -45,3 +45,67 @@ sub hasDataIndex {
 }
 
 1;
+
+__END__
+
+=head1 NAME
+
+WebService::Hexonet::Connector::Column - Library to cover API response data in column-based way.
+
+=head1 SYNOPSIS
+
+This module is internally used by the WebService::Hexonet::Connector::Response module.
+To be used in the way:
+
+    # specify the column name
+    $key = "DOMAIN";
+
+    # specify the column data as array
+    @data = ('mydomain.com', 'mydomain.net');
+
+    # create a new instance by
+    $col = WebService::Hexonet::Connector::Column->new($key, @data);
+
+=head1 DESCRIPTION
+
+HEXONET Backend API always responds in plain-text format that needs to get parsed into a useful
+data structure. For simplifying data access we created this library and also the Record library
+to provide an additional and more customerfriendly way to access data. Previously getHash and
+getListHash were the only possibilities to access data in Response library.
+
+=head2 Methods
+
+=over
+
+=item C<new( $key, @data )>
+
+Returns a new WebService::Hexonet::Connector::Column object.
+Specify the column name in $key and the column data in @data.
+
+=item C<getKey>
+
+Returns the column name.
+
+=item C<getData>
+
+Returns the full column data.
+
+=item C<getDataByIndex( $index )>
+
+Returns the column data of the specified index.
+
+=item C<hasDataIndex( $index )>
+
+Checks if the given index exists in the column data.
+
+=back
+
+=head1 LICENSE AND COPYRIGHT
+
+This program is licensed under the L<MIT License|https://raw.githubusercontent.com/hexonet/perl-sdk/master/LICENSE>.
+
+=head1 AUTHOR
+
+L<HEXONET GmbH|https://www.hexonet.net>
+
+=cut

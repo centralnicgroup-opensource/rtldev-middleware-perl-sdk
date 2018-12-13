@@ -35,3 +35,61 @@ sub hasData {
 }
 
 1;
+
+__END__
+
+=head1 NAME
+
+WebService::Hexonet::Connector::Record - Library to cover API response data in row-based way.
+
+=head1 SYNOPSIS
+
+This module is internally used by the WebService::Hexonet::Connector::Response module.
+To be used in the way:
+
+    # specify the row data in hash notation
+    $data = { DOMAIN => 'mydomain.com',  NAMESERVER0 => 'ns1.mydomain.com' };
+
+    # create a new instance by
+    $rec = WebService::Hexonet::Connector::Record->new($data);
+
+=head1 DESCRIPTION
+
+HEXONET Backend API always responds in plain-text format that needs to get parsed into a useful
+data structure. For simplifying data access we created this library and also the Column library
+to provide an additional and more customerfriendly way to access data. Previously getHash and
+getListHash were the only possibilities to access data in Response library.
+
+
+=head2 Methods
+
+=over
+
+=item C<new( $data )>
+
+Returns a new WebService::Hexonet::Connector::Record object.
+Specifiy the row data in hash notation as $data.
+
+=item C<getData>
+
+Returns the whole row data.
+
+=item C<getDataByKey( $key )>
+
+Returns the row data for the specified column name as $key.
+
+=item C<hasData( $key )>
+
+Checks if the column specified by $key exists in the row data.
+
+=back
+
+=head1 LICENSE AND COPYRIGHT
+
+This program is licensed under the L<MIT License|https://raw.githubusercontent.com/hexonet/perl-sdk/master/LICENSE>.
+
+=head1 AUTHOR
+
+L<HEXONET GmbH|https://www.hexonet.net>
+
+=cut
