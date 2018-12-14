@@ -1,6 +1,6 @@
 package WebService::Hexonet;
 
-use 5.014_004;
+use 5.026_000;
 use strict;
 use warnings;
 use WebService::Hexonet::Connector;

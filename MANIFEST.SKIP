@@ -107,3 +107,8 @@ CODE_OF_CONDUCT\.md
 
 # visual studio code
 \.vstags
+
+# nodejs
+\bnode_modules$
+package\.json
+package-lock\.json

@@ -1,0 +1,27 @@
+language: perl
+dist: trusty
+notifications:
+  email:
+    recipients:
+    - kschwarz@hexonet.net
+    on_success: never
+    on_failure: always
+perl:
+  - "5.28"
+  - "5.26"
+cache:
+  directories:
+  - "~/.npm"
+  - "node_modules"
+script:
+- ./scripts/coverage.sh
+after_success:
+- if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]]; then
+    ./scripts/generatedocs.sh &&
+    git config --replace-all remote.origin.fetch +refs/heads/*:refs/remotes/origin/* &&
+    git fetch --tags &&
+    nvm install lts/* &&
+    nvm use lts/* &&
+    npm prune &&
+    npm i &&
+    npx travis-deploy-once "npx semantic-release" ; fi

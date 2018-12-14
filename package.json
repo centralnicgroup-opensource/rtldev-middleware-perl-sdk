@@ -1,0 +1,93 @@
+{
+    "name": "perl-sdk",
+    "description": "Perl SDK for the insanely fast HEXONET API",
+    "version": "0.0.0-development",
+    "private": true,
+    "author": {
+        "name": "Kai Schwarz",
+        "email": "kschwarz@hexonet.net"
+    },
+    "license": "MIT",
+    "engines": {
+        "node": ">=8.3.0"
+    },
+    "homepage": "https://github.com/hexonet/perl-sdk",
+    "repository": "github:hexonet/perl-sdk",
+    "bugs": "https://github.com/hexonet/perl-sdk/issues",
+    "maintainers": [
+        {
+            "name": "Kai Schwarz",
+            "email": "kschwarz@hexonet.net"
+        }
+    ],
+    "keywords": [
+        "hexonet",
+        "domain",
+        "api",
+        "connector",
+        "isp",
+        "ispapi",
+        "ssl",
+        "cert",
+        "dns",
+        "backorder",
+        "premium",
+        "preregistration",
+        "registration",
+        "application"
+    ],
+    "devDependencies": {
+        "@semantic-release/changelog": "3.0.1",
+        "@semantic-release/commit-analyzer": "6.1.0",
+        "@semantic-release/exec": "3.3.0",
+        "@semantic-release/git": "7.0.5",
+        "@semantic-release/github": "5.2.6",
+        "conventional-changelog": "3.0.5",
+        "semantic-release": "15.12.5",
+        "travis-deploy-once": "5.0.10"
+    },
+    "release": {
+        "debug": false,
+        "analyzeCommits": {
+            "preset": "angular"
+        },
+        "generateNotes": {
+            "preset": "angular"
+        },
+        "verifyConditions": [
+            "@semantic-release/changelog",
+            "@semantic-release/git",
+            "@semantic-release/github"
+        ],
+        "prepare": [
+            {
+                "path": "@semantic-release/changelog",
+                "changelogFile": "HISTORY.md"
+            },
+            {
+                "path": "@semantic-release/exec",
+                "cmd": "./scripts/buildversion.sh ${lastRelease.version} ${nextRelease.version}"
+            },
+            {
+                "path": "@semantic-release/git",
+                "assets": [
+                    "HISTORY.md",
+                    "package.json",
+                    "package-lock.json",
+                    "lib",
+                    "docs",
+                    "cover_db"
+                ],
+                "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+            }
+        ],
+        "publish": [
+            "@semantic-release/github"
+        ]
+    },
+    "scripts": {
+        "semantic-release": "semantic-release",
+        "travis-deploy-once": "travis-deploy-once"
+    },
+    "dependencies": {}
+}

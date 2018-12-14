@@ -7,3 +7,4 @@ blib
 cover_db
 pm_to_blib
 *.tar.gz
+node_modules
