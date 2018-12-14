@@ -87,6 +87,8 @@ sub isTemplateMatchPlain {
 
 __END__
 
+=pod
+
 =head1 NAME
 
 WebService::Hexonet::Connector::ResponseTemplateManager - Library to manage response templates.
@@ -111,7 +113,7 @@ etc. See the documented methods for deeper information.
 
 This library can be used to manage hardcoded API responses (for any reason).
 In general useful for automated tests where you need to work with hardcoded API responses.
-Also used by WebService::Hexonet::Connector::APIClient module for standard error cases.
+Also used by L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> module for standard error cases.
 
 
 =head2 Methods
@@ -120,40 +122,46 @@ Also used by WebService::Hexonet::Connector::APIClient module for standard error
 
 =item C<getInstance>
 
-Returns the singleton instance of WebService::Hexonet::Connector::ResponseTemplateManager.
+Returns the singleton instance of L<WebService::Hexonet::Connector::ResponseTemplateManager|WebService::Hexonet::Connector::ResponseTemplateManager>.
 
 =item C<generateTemplate( $code, $description )>
 
 Returns a plain-text API response for the specified response Code $code
-and the specified response description $description.
+and the specified response description $description as string.
 To be used in case you need custom API responses to cover specific cases
 in your implementation e.g. error cases of the HTTP communication.
+Returns the current L<WebService::Hexonet::Connector::ResponseTemplateManager|WebService::Hexonet::Connector::ResponseTemplateManager> instance in use for method chaining.
 
 =item C<addTemplate( $id, $plain)>
 
 Add a response to the template container.
 Specify the template id by $id and the plain-text response by $plain.
+Returns the current L<WebService::Hexonet::Connector::ResponseTemplateManager|WebService::Hexonet::Connector::ResponseTemplateManager> instance in use for method chaining.
 
 =item C<getTemplate( $id )>
 
-Get a response template (instance of WebService::Hexonet::Connector::ResponseTemplate)
-from template container.
+Get a response template from template container.
+Returns an instance of L<WebService::Hexonet::Connector::ResponseTemplate|WebService::Hexonet::Connector::ResponseTemplate>.
+If not found, an error will be returned also as such an instance.
 
 =item C<getTemplates>
 
 Get all available response templates in hash notation.
 Where the hash key represents the template id and where the hash value is an
-instance of WebService::Hexonet::Connector::ResponseTemplate.
+instance of L<WebService::Hexonet::Connector::ResponseTemplate|WebService::Hexonet::Connector::ResponseTemplate>.
+Returns a hash.
 
 =item C<hasTemplate( $id )>
 
 Checks if the template container contains a template with the specified template id $id.
+Returns boolean 0 or 1.
 
 =item C<isTemplateMatchHash( $hash, $id )>
 
 Checks if the given API response in hash format specified by $hash matches the specified
 response template $id in response code and response description.
 It doesn't compare PROPERTY data!
+Returns boolean 0 or 1.
 
 =item C<isTemplateMatchPlain( $plain, $id )>
 
@@ -162,6 +170,7 @@ response template $id in response code and response description.
 It doesn't compare PROPERTY data!
 Internally this method parses that plain-text response into hash format and uses method
 isTemplateMatchHash to perform the check.
+Returns boolean 0 or 1.
 
 =back
 

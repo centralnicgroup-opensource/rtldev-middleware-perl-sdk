@@ -113,7 +113,7 @@ sub getCurrentPageNumber {
 	if ( defined $first && $limit > 0 ) {
 		return floor( $first / $limit ) + 1;
 	}
-	return;
+	return $INDEX_NOT_FOUND;
 }
 
 
@@ -185,8 +185,8 @@ sub getNextRecord {
 sub getNextPageNumber {
 	my $self = shift;
 	my $cp   = $self->getCurrentPageNumber();
-	if ( !defined $cp ) {
-		return;
+	if ( $cp < 0 ) {
+		return $INDEX_NOT_FOUND;
 	}
 	my $page  = $cp + 1;
 	my $pages = $self->getNumberOfPages();
@@ -226,8 +226,8 @@ sub getPagination {
 sub getPreviousPageNumber {
 	my $self = shift;
 	my $cp   = $self->getCurrentPageNumber();
-	if ( !defined $cp ) {
-		return;
+	if ( $cp < 0 ) {
+		return $INDEX_NOT_FOUND;
 	}
 	my $np = $cp - 1;
 	return $np if ( $np > 0 );
@@ -294,7 +294,7 @@ sub getRecordsLimitation {
 sub hasNextPage {
 	my $self = shift;
 	my $cp   = $self->getCurrentPageNumber();
-	if ( !defined $cp ) {
+	if ( $cp < 0 ) {
 		return 0;
 	}
 	my $np = $cp + 1;
@@ -308,7 +308,7 @@ sub hasNextPage {
 sub hasPreviousPage {
 	my $self = shift;
 	my $cp   = $self->getCurrentPageNumber();
-	if ( !defined $cp ) {
+	if ( $cp < 0 ) {
 		return 0;
 	}
 	my $pp = $cp - 1;
@@ -357,13 +357,15 @@ sub _hasPreviousRecord {
 
 __END__
 
+=pod
+
 =head1 NAME
 
 WebService::Hexonet::Connector::Response - Library to provide accessibility to API response data.
 
 =head1 SYNOPSIS
 
-This module is internally used by the WebService::Hexonet::Connector::APIClient module.
+This module is internally used by the L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> module.
 To be used in the way:
 
     # specify the used API command (used for the request that responsed with $plain)
@@ -389,7 +391,7 @@ It provides different methods to access the data to fit your needs.
 
 =item C<new( $plain, $command )>
 
-Returns a new WebService::Hexonet::Connector::Response object.
+Returns a new L<WebService::Hexonet::Connector::Response|WebService::Hexonet::Connector::Response> object.
 Specify the plain-text API response by $plain.
 Specify the used command by $command.
 
@@ -398,6 +400,7 @@ Specify the used command by $command.
 Add a new column.
 Specify the column name by $key.
 Specify the column data by @data.
+Returns the current L<WebService::Hexonet::Connector::Response|WebService::Hexonet::Connector::Response> instance in use for method chaining.
 
 =item C<addRecord( $hash )>
 
@@ -405,40 +408,49 @@ Add a new record.
 Specify the row data in hash notation by $hash.
 Where the hash key represents the column name.
 Where the hash value represents the row value for that column.
+Returns the current L<WebService::Hexonet::Connector::Response|WebService::Hexonet::Connector::Response> instance in use for method chaining.
 
 =item C<getColumn( $key )>
 
-Get a column (instance of WebService::Hexonet::Connector::Column) for
-the specified column name $key.
+Get a column for the specified column name $key.
+Returns an instance of L<WebService::Hexonet::Connector::Column|WebService::Hexonet::Connector::Column>.
 
 =item C<getColumnIndex( $key, $index )> {
 
 Get Data of the specified column $key for the given column index $index.
+Returns a scalar.
 
 =item C<getColumnKeys>
 
 Get a list of available column names. NOTE: columns may differ in their data size.
+Returns an array.
 
 =item C<getCommand>
 
 Get the command used within the request that resulted in this api response.
 This is in general the command you provided in the constructor.
+Returns a hash.
 
 =item C<getCurrentPageNumber>
 
-Returns the current page number we are in with this API response.
+Returns the current page number we are in with this API response as int.
+Returns -1 if not found.
 
 =item C<getCurrentRecord>
 
 Returns the current record of the iteration. It internally uses recordIndex as iterator index.
+Returns an instance of L<WebService::Hexonet::Connector::Record|WebService::Hexonet::Connector::Record>.
+Returns undef if not found.
 
 =item C<getFirstRecordIndex>
 
-Returns the first record index of this api response.
+Returns the first record index of this api response as int.
+Returns undef if not found.
 
 =item C<getLastRecordIndex>
 
-Returns the last record index of this api response.
+Returns the last record index of this api response as int.
+Returns undef if not found.
 
 =item C<getListHash>
 
@@ -452,50 +464,59 @@ data.
 This method is thought to be used if you need
 something that helps you realizing tables with or 
 without a pager.
+Returns a Hash.
 
 =item C<getNextRecord>
 
 Returns the next record of the current iteration.
+Returns an instance of L<WebService::Hexonet::Connector::Record|WebService::Hexonet::Connector::Record>.
+Returns undef if not found.
 
 =item C<getNextPageNumber>
 
-Returns the number of the next api response page for the current request.
+Returns the number of the next api response page for the current request as int.
+Returns -1 if not found.
 
 =item C<getNumberOfPages>
 
-Returns the total number of response pages in our API for the current request.
+Returns the total number of response pages in our API for the current request as int.
 
 =item C<getPagination>
 
 Returns paginator data of the current response / request.
+Returns a hash.
 
 =item C<getPreviousPageNumber>
 
-Returns the number of the previous api response page for the current request.
+Returns the number of the previous api response page for the current request as int.
+Returns -1 if not found.
 
 =item C<getPreviousRecord>
 
 Returns the previous record of the current iteration.
+Returns undef if not found otherwise an instance of L<WebService::Hexonet::Connector::Record|WebService::Hexonet::Connector::Record>.
 
 =item C<getRecord( $index )>
 
 Returns the record of the specified record index $index.
+Returns undef if not found otherwise an instance of L<WebService::Hexonet::Connector::Record|WebService::Hexonet::Connector::Record>.
 
 =item C<getRecords>
 
-Returns a list of available records (instances of WebService::Hexonet::Connector::Record).
+Returns a list of available records.
+Returns an array of instances of L<WebService::Hexonet::Connector::Record|WebService::Hexonet::Connector::Record>.
 
 =item C<getRecordsCount>
 
-Returns the amount of returned records for the current request.
+Returns the amount of returned records for the current request as int.
 
 =item C<getRecordsTotalCount>
 
-Returns the total amount of available records for the current request.
+Returns the total amount of available records for the current request as int.
 
 =item C<getRecordsLimitation>
 
-Returns the limitation of the current request. LIMIT = ...
+Returns the limitation of the current request as int. LIMIT = ...
 NOTE: Our system comes with a default limitation if you do not specify
 a limitation in list commands to avoid data load in our systems.
 This limitation is then returned in column "LIMIT" at index 0.
@@ -503,10 +524,12 @@ This limitation is then returned in column "LIMIT" at index 0.
 =item C<hasNextPage>
 
 Checks if a next response page exists for the current query.
+Returns boolean 0 or 1.
 
 =item C<hasPreviousPage>
 
 Checks if a previous response page exists for the current query.
+Returns boolean 0 or 1.
 
 =item C<rewindRecordList>
 
@@ -515,18 +538,22 @@ Resets the current iteration to index 0.
 =item C<_hasColumn( $key )>
 
 Private method. Checks if a column specified by $key exists.
+Returns boolean 0 or 1.
 	
 =item C<_hasCurrentRecord>
 
 Private method. Checks if the current record exists in the iteration.
+Returns boolean 0 or 1.
 
 =item C<_hasNextRecord>
 
 Private method. Checks if the next record exists in the iteration.
+Returns boolean 0 or 1.
 
 =item C<_hasPreviousRecord>
 
 Private method. Checks if the previous record exists in the iteration.
+Returns boolean 0 or 1.
 
 =back
 

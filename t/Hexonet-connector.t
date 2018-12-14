@@ -157,7 +157,7 @@ $r = WebService::Hexonet::Connector::Response->new($tpl->getPlain());
 is($r->getCurrentPageNumber(), 1, 'R: Check current page number. #1');
 $tpl = $rtm->getTemplate('OK');
 $r = WebService::Hexonet::Connector::Response->new($tpl->getPlain());
-is($r->getCurrentPageNumber(), undef, 'R: Check current page number #2.');
+is($r->getCurrentPageNumber(), $INDEX_NOT_FOUND, 'R: Check current page number #2.');
 
 # - T38 ~> getFirstRecordIndex method test
 $tpl = $rtm->getTemplate('OK');
@@ -287,7 +287,7 @@ is($r->getLastRecordIndex(), 1, 'R: Check result for last record index. #2');
 # - T56 ~> getNextPageNumber method test
 $tpl = $rtm->getTemplate('OK');
 $r = WebService::Hexonet::Connector::Response->new($tpl->getPlain());
-is($r->getNextPageNumber(), undef, 'R: Check next page number. #1');
+is($r->getNextPageNumber(), $INDEX_NOT_FOUND, 'R: Check next page number. #1');
 $tpl = $rtm->getTemplate('listP0');
 $r = WebService::Hexonet::Connector::Response->new($tpl->getPlain());
 is($r->getNextPageNumber(), 2, 'R: Check next page number. #2');
@@ -300,7 +300,7 @@ is($r->getNumberOfPages(), 0, 'R: Check number of pages.');
 # - T59 ~> getPreviousPageNumber method test
 $tpl = $rtm->getTemplate('OK');
 $r = WebService::Hexonet::Connector::Response->new($tpl->getPlain());
-is($r->getPreviousPageNumber(), undef, 'R: Check returned previous page number. #1');
+is($r->getPreviousPageNumber(), $INDEX_NOT_FOUND, 'R: Check returned previous page number. #1');
 $tpl = $rtm->getTemplate('listP0');
 $r = WebService::Hexonet::Connector::Response->new($tpl->getPlain());
 is($r->getPreviousPageNumber(), $INDEX_NOT_FOUND, 'R: Check returned previous page number. #2');

@@ -320,6 +320,8 @@ sub _toUpperCaseKeys {
 
 __END__
 
+=pod
+
 =head1 NAME
 
 WebService::Hexonet::Connector::APIClient - Library to communicate with the insanely fast HEXONET Backend System.
@@ -329,47 +331,79 @@ WebService::Hexonet::Connector::APIClient - Library to communicate with the insa
 This module helps to integrate the communication with the HEXONET Backend System.
 To be used in the way:
 
+    use 5.014_004;
+    use strict;
+    use warnings;
+    use WebService::Hexonet::Connector;
+
+    # Create a connection with the URL, entity, login and password
+    # Use "1234" as entity for the OT&E, and "54cd" for productive use
+    # Don't have a Hexonet Account yet? Get one here: www.hexonet.net/sign-up
+
     # create a new instance
-    $cl = WebService::Hexonet::Connector::APIClient->new();
+    my $cl = WebService::Hexonet::Connector::APIClient->new();
 
-	# set credentials
-	$cl->setCredentials('test.user', 'test.passw0rd');
+    # set credentials
+    $cl->setCredentials('test.user', 'test.passw0rd');
 
-	# or instead set role credentials
+    # or instead set role credentials
     # $cl->setRoleCredentials('test.user', 'testrole', 'test.passw0rd');
 
-	# set your outgoing ip address (to be used in case ip filter settings is active)
-	$cl->setRemoteIPAdress('1.2.3.4');
+    # set your outgoing ip address (to be used in case ip filter settings is active)
+    $cl->setRemoteIPAdress('1.2.3.4');
 
-	# specify the HEXONET Backend System to use
-	# LIVE System
-	$cl->useLIVESystem();
-	# or OT&E System
-	$cl->useOTESystem();
+    # specify the HEXONET Backend System to use
+    # LIVE System
+    $cl->useLIVESystem();
+    # or OT&E System
+    $cl->useOTESystem();
 
     # ---------------------------
-	# SESSION-based communication
-	# ---------------------------
-	$r = $cl->login();
-	# or if 2FA is active, provide your otp code by
-	# $cl->login("12345678");
-	if ($r->isSuccess()) {
-		# use saveSession/reuseSession for your needs
-		# to apply the API session to your frontend session
-		# for later reuse (no need to specify credentials and otp code)
-		# within every request.
+    # SESSION-based communication
+    # ---------------------------
+    $r = $cl->login();
+    # or if 2FA is active, provide your otp code by
+    # $cl->login("12345678");
+    if ($r->isSuccess()) {
+        # use saveSession for your needs
+        # to apply the API session to your frontend session.
+        # For later reuse (no need to specify credentials and otp code)
+        # within every request to your frontend server,
+        # rebuild the session by using reuseSession method accordingly.
+        # No need to provide credentials, no need to select a system,
+        # nor to provide a otp code further on.
 
-		$r = $cl->request({ COMMAND: 'StatusAccount' });
-		# further logic, further commands
+        $r = $cl->request({ COMMAND: 'StatusAccount' });
+        # further logic, further commands
 
-		# perform logout, you may check the result as shown with the login method
-		$cl->logout();
-	}
+        # perform logout, you may check the result as shown with the login method
+        $cl->logout();
+    }
 
-	# -------------------------
-	# SESSIONless communication
-	# -------------------------
-	$r = $cl->request({ COMMAND: 'StatusAccount' });
+    # -------------------------
+    # SESSIONless communication
+    # -------------------------
+    $r = $cl->request({ COMMAND: 'StatusAccount' });
+
+
+	# -------------------------------------
+	# Working with returned Response object
+	# -------------------------------------
+	# Display the result in the format you want
+	my $res;
+	$res = $r->getListHash());
+	$res = $r->getHash();
+	$res = $r->getPlain();
+
+	# Get the response code and the response description
+	my $code = $r->getCode();
+	my $description = $r->getDescription();
+
+	print "$code $description";
+
+	# There are further useful methods that help to access data
+	# like getColumnIndex, getColumn, getRecord, etc.
+	# Check the method documentation below.
 
 See the documented methods for deeper information.
 
@@ -377,75 +411,84 @@ See the documented methods for deeper information.
 
 This library is used to provide all functionality to be able to communicate with the HEXONET Backend System.
 
-
 =head2 Methods
 
 =over
 
 =item C<new>
 
-Returns a new WebService::Hexonet::Connector::APIClient object.
+Returns a new L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance.
 
 =item C<enableDebugMode>
 
 Activates the debug mode. Details of the API communication are put to STDOUT.
 Like API command, POST data, API plain-text response.
 Debug mode is inactive by default.
+Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
 
 =item C<disableDebugMode>
 
 Deactivates the debug mode. Debug mode is inactive by default.
+Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
 
 =item C<getPOSTData( $command )>
 
 Get POST data fields ready to use for HTTP communication based on LWP::UserAgent.
 Specify the API command for the request by $command.
 This method is internally used by the request method.
+Returns a hash.
 
 =item C<getSession>
 
-Returns the API session in use.
+Returns the API session in use as string.
 
 =item C<getURL>
 
-Returns the url in use pointing to the Backend System to communicate with.
+Returns the url in use pointing to the Backend System to communicate with, as string.
 
 =item C<getVersion>
 
-Returns the SDK version currently in use.
+Returns the SDK version currently in use as string.
 
 =item C<saveSession( $sessionhash )>
 
 Save the current API session data into a given session hash object.
 This might help you to add the backend system session into your frontend session.
 Use reuseSession method to set a new instance of this module to that session.
+Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
 
 =item C<reuseSession( $sessionhash )>
 
 Reuse API session data that got previously saved into the given session hash object
 by method saveSession.
+Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
 
 =item C<setURL( $url )>
 
 Set a different backend system url to be used for communication.
+Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
 
 =item C<setOTP( $otpcode )>
 
 Set your otp code. To be used in case of active 2FA.
+Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
 
 =item C<setSession( $sessionid )>
 
 Set the API session id to use. Automatically handled after successful session login
 based on method login or loginExtended.
+Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
 
 =item C<setRemoteIPAddress( $ip )>
 
 Set the outgoing ip address to be used in API communication.
 Use this in case of an active IP filter setting for your account.
+Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
 
 =item C<setCredentials( $user, $pw )>
 
 Set the credentials to use in API communication.
+Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
 
 =item C<setRoleCredentials( $user, $role, $pw)>
 
@@ -453,11 +496,13 @@ Set the role user credentials to use in API communication.
 NOTE: the role user specified by $role has to be directly assigned to the
 specified account specified by $user.
 The specified password $pw belongs to the role user, not to the account.
+Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
 
 =item C<login( $otpcode )>
 
 Perform a session login. Entry point for the session-based communication.
 You may specify your OTP code by $otpcode.
+Returns an instance of L<WebService::Hexonet::Connector::Response|WebService::Hexonet::Connector::Response>.
 
 =item C<loginExtended( $params, $otpcode )>
 
@@ -466,37 +511,45 @@ You may specify your OTP code by $otpcode.
 Specify additional command parameter for API command "StartSession" in
 Hash $params.
 Possible parameters can be found in the L<API Documentation for StartSession|https://github.com/hexonet/hexonet-api-documentation/blob/master/API/USER/SESSION/STARTSESSION.md>.
+Returns an instance of L<WebService::Hexonet::Connector::Response|WebService::Hexonet::Connector::Response>.
 
 =item C<logout>
 
 Perfom a session logout. This destroys the API session.
+Returns an instance of L<WebService::Hexonet::Connector::Response|WebService::Hexonet::Connector::Response>.
 
 =item C<request( $command )>
 
 Requests the given API Command $command to the Backend System.
+Returns an instance of L<WebService::Hexonet::Connector::Response|WebService::Hexonet::Connector::Response>.
 
 =item C<requestNextResponsePage( $lastresponse )>
 
 Requests the next response page for the provided api response $lastresponse.
+Returns an instance of L<WebService::Hexonet::Connector::Response|WebService::Hexonet::Connector::Response>.
 
 =item C<requestAllResponsePages( $command )>
 
 Requests all response pages for the specified command.
 NOTE: this might take some time. Requests are not made in parallel!
+Returns an array of instances of L<WebService::Hexonet::Connector::Response|WebService::Hexonet::Connector::Response>.
 
 =item C<setUserView( $subuser )>
 
 Activate read/write Data View on the specified subuser account.
+Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
 
 =item C<resetUserView>
 
 Reset the data view activated by setUserView.
+Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
 
 =item C<useOTESystem>
 
 Use the OT&E Backend System as communication endpoint.
 No costs - free of charge. To get in touch with our systems.
 This is NOT the default!
+Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
 
 =item C<useLIVESystem>
 
@@ -504,10 +557,12 @@ Use the LIVE Backend System as communication endpoint.
 Usage may lead to costs. BUT - are system is a prepaid system.
 As long as you don't have charged your account, you cannot order.
 This is the default!
+Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
  
 =item C<_toUpperCaseKeys( $hash )>
 
 Private method. Converts all keys of the given hash into upper case letters.
+Returns a hash.
 
 =head1 LICENSE AND COPYRIGHT
 

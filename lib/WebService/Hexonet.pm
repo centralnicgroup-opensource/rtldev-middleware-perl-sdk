@@ -11,14 +11,11 @@ our $VERSION = 'v1.12.1';
 
 __END__
 
+=pod
+
 =head1 NAME
 
 WebService::Hexonet - Namespace package for modules provided by L<HEXONET|https://www.hexonet.net/>.
-
-
-=head1 VERSION
-
-This documentation refers to WebService::Hexonet version v1.12.1.
 
 =head1 DESCRIPTION
 

@@ -86,6 +86,8 @@ sub isTmpError {
 
 __END__
 
+=pod
+
 =head1 NAME
 
 WebService::Hexonet::Connector::ResponseTemplate - Library that provides basic functionality
@@ -116,7 +118,7 @@ does not require an API command to be specified in constructor
 HEXONET Backend API always responds in plain-text format that needs to get parsed into a useful
 data structure. This module manages all this: parsing data into hash format.
 It provides different methods to access the data to fit your needs.
-It is used as base class for WebService::Hexonet::Connector::Response.
+It is used as base class for L<WebService::Hexonet::Connector::Response|WebService::Hexonet::Connector::Response>.
 We internally use this module also in our automated tests to play with hardcoded API responses.
 
 =head2 Methods
@@ -125,7 +127,7 @@ We internally use this module also in our automated tests to play with hardcoded
 
 =item C<new( $plain )>
 
-Returns a new WebService::Hexonet::Connector::ResponseTemplate object.
+Returns a new L<WebService::Hexonet::Connector::ResponseTemplate|WebService::Hexonet::Connector::ResponseTemplate> instance.
 Specify the plain-text API response as $plain.
 
 =item C<getCode>
@@ -134,15 +136,15 @@ Returns the API response code as int.
 
 =item C<getDescription>
 
-Returns the API response description. 
+Returns the API response description as string. 
 
 =item C<getPlain>
 
-Returns the plain-text API response.
+Returns the plain-text API response as string.
 
 =item C<getQueuetime>
 
-Returns the Queuetime of the API response decimal. 
+Returns the Queuetime of the API response as decimal. 
 
 =item C<getHash>
 
@@ -156,16 +158,19 @@ Returns the Runtime of the API response code as decimal.
 
 Checks if the API response code represents an error case.
 500 <= Code <= 599
+Returns boolean 0 or 1.
 
 =item C<isSuccess>
 
 Checks if the API response code represents a success case.
 200 <= Code <= 299
+Returns boolean 0 or 1.
 
 =item C<isTmpError>
 
 Checks if the API response code represents a temporary error case.
 400 <= Code <= 499
+Returns boolean 0 or 1.
 
 =back
 

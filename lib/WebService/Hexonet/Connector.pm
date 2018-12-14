@@ -18,6 +18,8 @@ our $VERSION = 'v1.12.1';
 
 __END__
 
+=pod
+
 =head1 NAME
 
 WebService::Hexonet::Connector - Connector library for the insanely fast L<HEXONET Backend API|https://www.hexonet.net/>.
@@ -34,42 +36,11 @@ WebService::Hexonet::Connector - Connector library for the insanely fast L<HEXON
 	cpanm WebService::Hexonet::Connector
 	# NOTE: We suggest to use cpanm (App::cpanminus) for several reasons.
 
-	use 5.014_004;
-	use strict;
-	use warnings;
-	use WebService::Hexonet::Connector::APIClient;
-
-	# Create a connection with the URL, entity, login and password
-	# Use "1234" as entity for the OT&E, and "54cd" for productive use
-	# Don't have a Hexonet Account yet? Get one here: www.hexonet.net/sign-up
-	my $cl = APIClient->new();
-	$cl->useOTESystem();
-	$cl->setCredentials("test.user", "test.passw0rd");
-	$cl->setRemoteIPAddress("1.2.3.4");
-
-	# Call a command
-	my $response = $cl->request({
-		command => "querydomainlist",
-		limit => 5
-	});
-
-	# Display the result in the format you want
-	my $res = $response->getListHash());
-	$res = $response->getHash();
-	$res = $response->getPlain();
-
-	# Get the response code and the response description
-	my $code = $response->getCode();
-	my $description = $response->getDescription();
-
-	print "$code $description";
-
+Check the Example provided at L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient>.
+	
 =head1 DESCRIPTION
 
-This module allows to query the API and to deal with different response formats (list, list_hash, hash).
-It provides a short hand method (WebService::Hexonet::Connector::connect) to instantiate API clients.
-
-A helper utility module is also included for tasks like date handling and string encoding.
+This module is used as namespace.
 
 =head1 AVAILABLE SUBMODULES
 

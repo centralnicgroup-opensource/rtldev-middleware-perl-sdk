@@ -38,13 +38,15 @@ sub hasData {
 
 __END__
 
+=pod
+
 =head1 NAME
 
 WebService::Hexonet::Connector::Record - Library to cover API response data in row-based way.
 
 =head1 SYNOPSIS
 
-This module is internally used by the WebService::Hexonet::Connector::Response module.
+This module is internally used by the L<WebService::Hexonet::Connector::Response|WebService::Hexonet::Connector::Response> module.
 To be used in the way:
 
     # specify the row data in hash notation
@@ -67,20 +69,22 @@ getListHash were the only possibilities to access data in Response library.
 
 =item C<new( $data )>
 
-Returns a new WebService::Hexonet::Connector::Record object.
+Returns a new L<WebService::Hexonet::Connector::Record|WebService::Hexonet::Connector::Record> object.
 Specifiy the row data in hash notation as $data.
 
 =item C<getData>
 
-Returns the whole row data.
+Returns the whole row data as hash.
 
 =item C<getDataByKey( $key )>
 
-Returns the row data for the specified column name as $key.
+Returns the row data for the specified column name as $key as scalar.
+Returns undef if not found.
 
 =item C<hasData( $key )>
 
 Checks if the column specified by $key exists in the row data.
+Returns boolean 0 or 1.
 
 =back
 

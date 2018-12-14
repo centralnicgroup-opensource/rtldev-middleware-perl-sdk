@@ -48,13 +48,15 @@ sub hasDataIndex {
 
 __END__
 
+=pod
+
 =head1 NAME
 
 WebService::Hexonet::Connector::Column - Library to cover API response data in column-based way.
 
 =head1 SYNOPSIS
 
-This module is internally used by the WebService::Hexonet::Connector::Response module.
+This module is internally used by the L<WebService::Hexonet::Connector::Response|WebService::Hexonet::Connector::Response> module.
 To be used in the way:
 
     # specify the column name
@@ -79,24 +81,26 @@ getListHash were the only possibilities to access data in Response library.
 
 =item C<new( $key, @data )>
 
-Returns a new WebService::Hexonet::Connector::Column object.
+Returns a new L<WebService::Hexonet::Connector::Column|WebService::Hexonet::Connector::Column> object.
 Specify the column name in $key and the column data in @data.
 
 =item C<getKey>
 
-Returns the column name.
+Returns the column name as string.
 
 =item C<getData>
 
-Returns the full column data.
+Returns the full column data as array.
 
 =item C<getDataByIndex( $index )>
 
-Returns the column data of the specified index.
+Returns the column data of the specified index as scalar.
+Returns undef if not found.
 
 =item C<hasDataIndex( $index )>
 
 Checks if the given index exists in the column data.
+Returns boolean 0 or 1.
 
 =back
 

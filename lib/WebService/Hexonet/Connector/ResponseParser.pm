@@ -72,6 +72,8 @@ sub serialize {
 
 __END__
 
+=pod
+
 =head1 NAME
 
 WebService::Hexonet::Connector::ResponseParser - Library that provides functionality to parse
@@ -110,7 +112,7 @@ Specifiy the plain-text API response as $plain.
 
 =item C<serialize( $hash )>
 
-Returns the serialized API response. 
+Returns the serialized API response as string. 
 Specifiy the hash notation of the API response as $hash.
 
 =back

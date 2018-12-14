@@ -165,7 +165,15 @@ O_FILES  =
 H_FILES  = 
 MAN1PODS = 
 MAN3PODS = lib/WebService/Hexonet.pm \
-	lib/WebService/Hexonet/Connector.pm
+	lib/WebService/Hexonet/Connector.pm \
+	lib/WebService/Hexonet/Connector/APIClient.pm \
+	lib/WebService/Hexonet/Connector/Column.pm \
+	lib/WebService/Hexonet/Connector/Record.pm \
+	lib/WebService/Hexonet/Connector/Response.pm \
+	lib/WebService/Hexonet/Connector/ResponseParser.pm \
+	lib/WebService/Hexonet/Connector/ResponseTemplate.pm \
+	lib/WebService/Hexonet/Connector/ResponseTemplateManager.pm \
+	lib/WebService/Hexonet/Connector/SocketConfig.pm
 
 # Where is the Config information that we are using/depend on
 CONFIGDEP = $(PERL_ARCHLIBDEP)$(DFSEP)Config.pm $(PERL_INCDEP)$(DFSEP)config.h
@@ -425,10 +433,26 @@ POD2MAN = $(POD2MAN_EXE)
 
 manifypods : pure_all config  \
 	lib/WebService/Hexonet.pm \
-	lib/WebService/Hexonet/Connector.pm
+	lib/WebService/Hexonet/Connector.pm \
+	lib/WebService/Hexonet/Connector/APIClient.pm \
+	lib/WebService/Hexonet/Connector/Column.pm \
+	lib/WebService/Hexonet/Connector/Record.pm \
+	lib/WebService/Hexonet/Connector/Response.pm \
+	lib/WebService/Hexonet/Connector/ResponseParser.pm \
+	lib/WebService/Hexonet/Connector/ResponseTemplate.pm \
+	lib/WebService/Hexonet/Connector/ResponseTemplateManager.pm \
+	lib/WebService/Hexonet/Connector/SocketConfig.pm
 	$(NOECHO) $(POD2MAN) --section=$(MAN3EXT) --perm_rw=$(PERM_RW) -u \
 	  lib/WebService/Hexonet.pm $(INST_MAN3DIR)/WebService::Hexonet.$(MAN3EXT) \
-	  lib/WebService/Hexonet/Connector.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector.$(MAN3EXT) 
+	  lib/WebService/Hexonet/Connector.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector.$(MAN3EXT) \
+	  lib/WebService/Hexonet/Connector/APIClient.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector::APIClient.$(MAN3EXT) \
+	  lib/WebService/Hexonet/Connector/Column.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector::Column.$(MAN3EXT) \
+	  lib/WebService/Hexonet/Connector/Record.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector::Record.$(MAN3EXT) \
+	  lib/WebService/Hexonet/Connector/Response.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector::Response.$(MAN3EXT) \
+	  lib/WebService/Hexonet/Connector/ResponseParser.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector::ResponseParser.$(MAN3EXT) \
+	  lib/WebService/Hexonet/Connector/ResponseTemplate.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector::ResponseTemplate.$(MAN3EXT) \
+	  lib/WebService/Hexonet/Connector/ResponseTemplateManager.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector::ResponseTemplateManager.$(MAN3EXT) \
+	  lib/WebService/Hexonet/Connector/SocketConfig.pm $(INST_MAN3DIR)/WebService::Hexonet::Connector::SocketConfig.$(MAN3EXT) 
 
 
 
