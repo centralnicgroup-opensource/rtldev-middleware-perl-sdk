@@ -23,10 +23,10 @@ We have also a demo app available showing how to integrate and use our SDK. See 
 
 ```bash
 # by Module ID (suggested!)
-cpanm WebService::Hexonet::Connector
+cpanm WebService::Hexonet::Connector~2.0000
 
 # or by filename
-cpanm HEXONET/WebSservice-Hexonet-Connector-v1.12.1.tar.gz
+cpanm HEXONET/WebSservice-Hexonet-Connector-v2.0.0.tar.gz
 ```
 
 NOTE: I got this only working by sudo'ing these commands.
