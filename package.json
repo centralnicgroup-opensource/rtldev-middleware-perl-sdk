@@ -69,10 +69,6 @@
                 "cmd": "./scripts/buildversion.sh ${lastRelease.version} ${nextRelease.version}"
             },
             {
-                "path": "@semantic-release/exec",
-                "cmd": "./scripts/buildrelease.sh ${nextRelease.version}"
-            },
-            {
                 "path": "@semantic-release/git",
                 "assets": [
                     "HISTORY.md",
@@ -95,6 +91,10 @@
                         "path": "WebService-Hexonet-Connector.tar.gz"
                     }
                 ]
+            },
+            {
+                "path": "@semantic-release/exec",
+                "cmd": "./scripts/upload.sh ${nextRelease.version}"
             }
         ]
     },

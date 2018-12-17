@@ -25,9 +25,10 @@ WriteMakefile(
         'Scalar::Util'           => 0,
         'Readonly'               => 2.05
     },
-    ABSTRACT_FROM => 'lib/WebService/Hexonet/Connector/APIClient.pm',
-    AUTHOR        => 'hexonet <middleware@hexonet.net>',
-    LICENSE       => 'mit'
+    ABSTRACT_FROM    => 'lib/WebService/Hexonet/Connector/APIClient.pm',
+    AUTHOR           => 'hexonet <middleware@hexonet.net>',
+    LICENSE          => 'mit',
+    MIN_PERL_VERSION => '5.026000'
 );
 
 1;
