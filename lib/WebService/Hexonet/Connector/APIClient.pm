@@ -14,7 +14,7 @@ use Data::Dumper;
 
 Readonly my $SOCKETTIMEOUT => 300;    # 300s or 5 min
 
-use version 0.9917; our $VERSION = version->declare('v1.12.0');
+use version 0.9917; our $VERSION = version->declare('v2.0.0');
 
 my $rtm = WebService::Hexonet::Connector::ResponseTemplateManager->getInstance();
 
