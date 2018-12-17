@@ -112,3 +112,6 @@ CODE_OF_CONDUCT\.md
 ^node_modules/
 package\.json
 package-lock\.json
+
+# own scripts
+updateVersion\.sh
