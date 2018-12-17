@@ -20,6 +20,8 @@ WriteMakefile(
         'version'              => 0.9917
     },
     TEST_REQUIRES => {
+        'Perl::Critic'           => 1.132,
+        'CPAN::Uploader'         => 0.103013,
         'Devel::Cover'           => 1.30,
         'Test::More'             => 0,
         'Test::Exception'        => 0.43,
