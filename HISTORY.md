@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/hexonet/perl-sdk/compare/v2.0.0...v2.0.1) (2018-12-17)
+
+
+### Bug Fixes
+
+* **readme:** installation steps and examples ([407f86b](https://github.com/hexonet/perl-sdk/commit/407f86b))
+
 # [2.0.0](https://github.com/hexonet/perl-sdk/compare/v1.12.0...v2.0.0) (2018-12-17)
 
 
