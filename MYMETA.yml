@@ -1,9 +1,10 @@
 ---
-abstract: 'Connector library for the insanely fast L<HEXONET Backend API|https://www.hexonet.net/>.'
+abstract: unknown
 author:
   - 'hexonet <middleware@hexonet.net>'
 build_requires:
   ExtUtils::MakeMaker: '0'
+  Readonly: '2.05'
   Scalar::Util: '0'
   Test::Exception: '0.43'
   Test::More: '0'
@@ -22,10 +23,15 @@ no_index:
     - t
     - inc
 requires:
+  Carp: '0'
   Data::Dumper: '2.161'
   LWP::Protocol::https: '6.07'
   LWP::UserAgent: '6.35'
+  List::MoreUtils: '0.428'
   MIME::Base64: '0'
+  POSIX: '0'
+  Readonly: '2.05'
   Time::Local: '0'
+  utf8: '0'
 version: v1.12.1
 x_serialization_backend: 'CPAN::Meta::YAML version 0.018'

@@ -109,6 +109,6 @@ CODE_OF_CONDUCT\.md
 \.vstags
 
 # nodejs
-\bnode_modules$
+^node_modules/
 package\.json
 package-lock\.json

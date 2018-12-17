@@ -7,4 +7,5 @@ blib
 cover_db
 pm_to_blib
 *.tar.gz
+!WebService-Hexonet-Connector-latest.tar.gz
 node_modules

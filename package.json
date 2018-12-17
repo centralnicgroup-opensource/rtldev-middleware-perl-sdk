@@ -69,6 +69,10 @@
                 "cmd": "./scripts/buildversion.sh ${lastRelease.version} ${nextRelease.version}"
             },
             {
+                "path": "@semantic-release/exec",
+                "cmd": "./scripts/buildrelease.sh ${nextRelease.version}"
+            },
+            {
                 "path": "@semantic-release/git",
                 "assets": [
                     "HISTORY.md",
@@ -76,13 +80,22 @@
                     "package-lock.json",
                     "lib",
                     "docs",
-                    "cover_db"
+                    "cover_db",
+                    "WebService-Hexonet-Connector-latest.tar.gz"
                 ],
                 "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
             }
         ],
         "publish": [
-            "@semantic-release/github"
+            {
+                "path": "@semantic-release/github",
+                "assets": [
+                    {
+                        "label": "WebService::Hexonet::Connector (tar.gz)",
+                        "path": "WebService-Hexonet-Connector.tar.gz"
+                    }
+                ]
+            }
         ]
     },
     "scripts": {
