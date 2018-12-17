@@ -11,14 +11,15 @@
 
 #   MakeMaker Parameters:
 
-#     ABSTRACT_FROM => q[lib/WebService/Hexonet/Connector/APIClient.pm]
+#     ABSTRACT_FROM => q[lib/WebService/Hexonet/Connector.pm]
 #     AUTHOR => [q[hexonet <middleware@hexonet.net>]]
 #     BUILD_REQUIRES => {  }
 #     CONFIGURE_REQUIRES => {  }
 #     LICENSE => q[mit]
+#     MIN_PERL_VERSION => q[5.026000]
 #     NAME => q[WebService::Hexonet::Connector]
-#     PREREQ_PM => { Carp=>q[0], Data::Dumper=>q[2.161], LWP::Protocol::https=>q[6.07], LWP::UserAgent=>q[6.35], List::MoreUtils=>q[0.428], MIME::Base64=>q[0], POSIX=>q[0], Readonly=>q[2.05], Scalar::Util=>q[0], Test::Exception=>q[0.43], Test::More=>q[0], Test::RequiresInternet=>q[0.05], Time::Local=>q[0], utf8=>q[0] }
-#     TEST_REQUIRES => { Readonly=>q[2.05], Scalar::Util=>q[0], Test::Exception=>q[0.43], Test::More=>q[0], Test::RequiresInternet=>q[0.05] }
+#     PREREQ_PM => { Carp=>q[0], Data::Dumper=>q[2.161], LWP::Protocol::https=>q[6.07], LWP::UserAgent=>q[6.35], List::MoreUtils=>q[0.416], MIME::Base64=>q[0], POSIX=>q[0], Readonly=>q[2.05], Scalar::Util=>q[0], Test::Exception=>q[0.43], Test::More=>q[0], Test::RequiresInternet=>q[0.05], Time::Local=>q[0], utf8=>q[0], version=>q[0.9917] }
+#     TEST_REQUIRES => { Readonly=>q[2.05], Scalar::Util=>q[0], Test::Exception=>q[0.43], Test::More=>q[0], Test::RequiresInternet=>q[0.05], version=>q[0.9917] }
 #     VERSION_FROM => q[lib/WebService/Hexonet/Connector.pm]
 
 # --- MakeMaker post_initialize section:
@@ -58,11 +59,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = WebService::Hexonet::Connector
 NAME_SYM = WebService_Hexonet_Connector
-VERSION = v1.12.1
+VERSION = v1.12.0
 VERSION_MACRO = VERSION
-VERSION_SYM = v1_12_1
+VERSION_SYM = v1_12_0
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = v1.12.1
+XS_VERSION = v1.12.0
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -275,7 +276,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = WebService-Hexonet-Connector
-DISTVNAME = WebService-Hexonet-Connector-v1.12.1
+DISTVNAME = WebService-Hexonet-Connector-v1.12.0
 
 
 # --- MakeMaker macro section:
@@ -520,7 +521,7 @@ realclean purge :: realclean_subdirs
 metafile : create_distdir
 	$(NOECHO) $(ECHO) Generating META.yml
 	$(NOECHO) $(ECHO) '---' > META_new.yml
-	$(NOECHO) $(ECHO) 'abstract: unknown' >> META_new.yml
+	$(NOECHO) $(ECHO) 'abstract: '\''Connector library for the insanely fast L<HEXONET Backend API|https://www.hexonet.net/>.'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'author:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  - '\''hexonet <middleware@hexonet.net>'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'build_requires:' >> META_new.yml
@@ -530,6 +531,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '  Test::Exception: '\''0.43'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  Test::More: '\''0'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  Test::RequiresInternet: '\''0.05'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) '  version: '\''0.9917'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'configure_requires:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  ExtUtils::MakeMaker: '\''0'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'dynamic_config: 1' >> META_new.yml
@@ -548,18 +550,20 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '  Data::Dumper: '\''2.161'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  LWP::Protocol::https: '\''6.07'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  LWP::UserAgent: '\''6.35'\''' >> META_new.yml
-	$(NOECHO) $(ECHO) '  List::MoreUtils: '\''0.428'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) '  List::MoreUtils: '\''0.416'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  MIME::Base64: '\''0'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  POSIX: '\''0'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  Readonly: '\''2.05'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  Time::Local: '\''0'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) '  perl: '\''5.026000'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  utf8: '\''0'\''' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version: v1.12.1' >> META_new.yml
+	$(NOECHO) $(ECHO) '  version: '\''0.9917'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) 'version: v1.12.0' >> META_new.yml
 	$(NOECHO) $(ECHO) 'x_serialization_backend: '\''CPAN::Meta::YAML version 0.018'\''' >> META_new.yml
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 	$(NOECHO) $(ECHO) Generating META.json
 	$(NOECHO) $(ECHO) '{' > META_new.json
-	$(NOECHO) $(ECHO) '   "abstract" : "unknown",' >> META_new.json
+	$(NOECHO) $(ECHO) '   "abstract" : "Connector library for the insanely fast L<HEXONET Backend API|https://www.hexonet.net/>.",' >> META_new.json
 	$(NOECHO) $(ECHO) '   "author" : [' >> META_new.json
 	$(NOECHO) $(ECHO) '      "hexonet <middleware@hexonet.net>"' >> META_new.json
 	$(NOECHO) $(ECHO) '   ],' >> META_new.json
@@ -596,12 +600,14 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '            "Data::Dumper" : "2.161",' >> META_new.json
 	$(NOECHO) $(ECHO) '            "LWP::Protocol::https" : "6.07",' >> META_new.json
 	$(NOECHO) $(ECHO) '            "LWP::UserAgent" : "6.35",' >> META_new.json
-	$(NOECHO) $(ECHO) '            "List::MoreUtils" : "0.428",' >> META_new.json
+	$(NOECHO) $(ECHO) '            "List::MoreUtils" : "0.416",' >> META_new.json
 	$(NOECHO) $(ECHO) '            "MIME::Base64" : "0",' >> META_new.json
 	$(NOECHO) $(ECHO) '            "POSIX" : "0",' >> META_new.json
 	$(NOECHO) $(ECHO) '            "Readonly" : "2.05",' >> META_new.json
 	$(NOECHO) $(ECHO) '            "Time::Local" : "0",' >> META_new.json
-	$(NOECHO) $(ECHO) '            "utf8" : "0"' >> META_new.json
+	$(NOECHO) $(ECHO) '            "perl" : "5.026000",' >> META_new.json
+	$(NOECHO) $(ECHO) '            "utf8" : "0",' >> META_new.json
+	$(NOECHO) $(ECHO) '            "version" : "0.9917"' >> META_new.json
 	$(NOECHO) $(ECHO) '         }' >> META_new.json
 	$(NOECHO) $(ECHO) '      },' >> META_new.json
 	$(NOECHO) $(ECHO) '      "test" : {' >> META_new.json
@@ -610,12 +616,13 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '            "Scalar::Util" : "0",' >> META_new.json
 	$(NOECHO) $(ECHO) '            "Test::Exception" : "0.43",' >> META_new.json
 	$(NOECHO) $(ECHO) '            "Test::More" : "0",' >> META_new.json
-	$(NOECHO) $(ECHO) '            "Test::RequiresInternet" : "0.05"' >> META_new.json
+	$(NOECHO) $(ECHO) '            "Test::RequiresInternet" : "0.05",' >> META_new.json
+	$(NOECHO) $(ECHO) '            "version" : "0.9917"' >> META_new.json
 	$(NOECHO) $(ECHO) '         }' >> META_new.json
 	$(NOECHO) $(ECHO) '      }' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
 	$(NOECHO) $(ECHO) '   "release_status" : "stable",' >> META_new.json
-	$(NOECHO) $(ECHO) '   "version" : "v1.12.1",' >> META_new.json
+	$(NOECHO) $(ECHO) '   "version" : "v1.12.0",' >> META_new.json
 	$(NOECHO) $(ECHO) '   "x_serialization_backend" : "JSON::PP version 2.27400_02"' >> META_new.json
 	$(NOECHO) $(ECHO) '}' >> META_new.json
 	-$(NOECHO) $(MV) META_new.json $(DISTVNAME)/META.json
@@ -901,20 +908,22 @@ testdb_static :: static pure_all
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd :
-	$(NOECHO) $(ECHO) '<SOFTPKG NAME="WebService-Hexonet-Connector" VERSION="v1.12.1">' > WebService-Hexonet-Connector.ppd
-	$(NOECHO) $(ECHO) '    <ABSTRACT></ABSTRACT>' >> WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '<SOFTPKG NAME="WebService-Hexonet-Connector" VERSION="v1.12.0">' > WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '    <ABSTRACT>Connector library for the insanely fast L&lt;HEXONET Backend API|https://www.hexonet.net/&gt;.</ABSTRACT>' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>hexonet &lt;middleware@hexonet.net&gt;</AUTHOR>' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '        <PERLCORE VERSION="5,026000,0,0" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Carp::" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Data::Dumper" VERSION="2.161" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="LWP::Protocol::https" VERSION="6.07" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="LWP::UserAgent" VERSION="6.35" />' >> WebService-Hexonet-Connector.ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="List::MoreUtils" VERSION="0.428" />' >> WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="List::MoreUtils" VERSION="0.416" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="MIME::Base64" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="POSIX::" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Readonly::" VERSION="2.05" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Time::Local" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="utf8::" />' >> WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="version::" VERSION="0.9917" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="x86_64-linux-gnu-thread-multi-5.26" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <CODEBASE HREF="" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    </IMPLEMENTATION>' >> WebService-Hexonet-Connector.ppd

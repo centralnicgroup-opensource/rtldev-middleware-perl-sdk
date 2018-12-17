@@ -4,7 +4,7 @@ use 5.026_000;
 use strict;
 use warnings;
 
-our $VERSION = 'v1.12.1';
+use version 0.9917; our $VERSION = version->declare('v1.12.0');
 
 
 sub new {

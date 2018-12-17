@@ -14,7 +14,7 @@ use Data::Dumper;
 
 Readonly my $SOCKETTIMEOUT => 300;    # 300s or 5 min
 
-our $VERSION = 'v1.12.1';
+use version 0.9917; our $VERSION = version->declare('v1.12.0');
 
 my $rtm = WebService::Hexonet::Connector::ResponseTemplateManager->getInstance();
 
@@ -325,7 +325,7 @@ __END__
 
 =head1 NAME
 
-WebService::Hexonet::Connector::APIClient - Library to communicate with the insanely fast HEXONET Backend System.
+WebService::Hexonet::Connector::APIClient - Library to communicate with the insanely fast L<HEXONET Backend API|https://www.hexonet.net>.
 
 =head1 SYNOPSIS
 

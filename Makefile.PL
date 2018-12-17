@@ -16,16 +16,18 @@ WriteMakefile(
         'Readonly'             => 2.05,
         'Carp'                 => 0,
         'POSIX'                => 0,
-        'List::MoreUtils'      => 0.428
+        'List::MoreUtils'      => 0.416,
+        'version'              => 0.9917
     },
     TEST_REQUIRES => {
         'Test::More'             => 0,
         'Test::Exception'        => 0.43,
         'Test::RequiresInternet' => 0.05,
         'Scalar::Util'           => 0,
-        'Readonly'               => 2.05
+        'Readonly'               => 2.05,
+        'version'                => 0.9917
     },
-    ABSTRACT_FROM    => 'lib/WebService/Hexonet/Connector/APIClient.pm',
+    ABSTRACT_FROM    => 'lib/WebService/Hexonet/Connector.pm',
     AUTHOR           => 'hexonet <middleware@hexonet.net>',
     LICENSE          => 'mit',
     MIN_PERL_VERSION => '5.026000'

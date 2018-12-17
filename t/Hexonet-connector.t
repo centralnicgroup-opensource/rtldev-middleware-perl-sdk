@@ -7,7 +7,7 @@ use Test::More;
 use Test::Exception;
 use Test::RequiresInternet ( 'coreapi.1api.net' => 80 );
 
-our $VERSION = 'v1.12.1';
+use version 0.9917; our $VERSION = version->declare('v1.12.0');
 
 # T1-3: test import modules
 use_ok( 'Scalar::Util',                   qw(blessed) );

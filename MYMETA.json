@@ -1,5 +1,5 @@
 {
-   "abstract" : "unknown",
+   "abstract" : "Connector library for the insanely fast L<HEXONET Backend API|https://www.hexonet.net/>.",
    "author" : [
       "hexonet <middleware@hexonet.net>"
    ],
@@ -36,12 +36,14 @@
             "Data::Dumper" : "2.161",
             "LWP::Protocol::https" : "6.07",
             "LWP::UserAgent" : "6.35",
-            "List::MoreUtils" : "0.428",
+            "List::MoreUtils" : "0.416",
             "MIME::Base64" : "0",
             "POSIX" : "0",
             "Readonly" : "2.05",
             "Time::Local" : "0",
-            "utf8" : "0"
+            "perl" : "5.026000",
+            "utf8" : "0",
+            "version" : "0.9917"
          }
       },
       "test" : {
@@ -50,11 +52,12 @@
             "Scalar::Util" : "0",
             "Test::Exception" : "0.43",
             "Test::More" : "0",
-            "Test::RequiresInternet" : "0.05"
+            "Test::RequiresInternet" : "0.05",
+            "version" : "0.9917"
          }
       }
    },
    "release_status" : "stable",
-   "version" : "v1.12.1",
+   "version" : "v1.12.0",
    "x_serialization_backend" : "JSON::PP version 2.27400_02"
 }
