@@ -20,6 +20,7 @@ WriteMakefile(
         'version'              => 0.9917
     },
     TEST_REQUIRES => {
+        'Devel::Cover'           => 1.30,
         'Test::More'             => 0,
         'Test::Exception'        => 0.43,
         'Test::RequiresInternet' => 0.05,
