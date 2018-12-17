@@ -66,11 +66,11 @@
             },
             {
                 "path": "@semantic-release/exec",
-                "cmd": "./scripts/rebuild.sh"
+                "cmd": "./updateVersion.sh ${nextRelease.version} ${options.branch}"
             },
             {
                 "path": "@semantic-release/exec",
-                "cmd": "./updateVersion.sh ${nextRelease.version} ${options.branch}"
+                "cmd": "./scripts/rebuild.sh"
             },
             {
                 "path": "@semantic-release/exec",
