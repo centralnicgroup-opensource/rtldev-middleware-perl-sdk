@@ -1,5 +1,5 @@
 #!/bin/bash
-rm -rf docs/*.html
+rm -rf docs/*.html >/dev/null 2>&1
 perldoc -oHTML -ddocs/hexonet.html WebService::Hexonet
 perldoc -oHTML -ddocs/connector.html WebService::Hexonet::Connector
 perldoc -oHTML -ddocs/apiclient.html WebService::Hexonet::Connector::APIClient
