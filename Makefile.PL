@@ -11,16 +11,19 @@ WriteMakefile(
         'LWP::UserAgent'       => 6.35,
         'Time::Local'          => 0,
         'MIME::Base64'         => 0,
+        'Data::Dumper'         => 2.161,
         'utf8'                 => 0,
-        'Readonly'             => 0,
-        'Carp'                 => 0
+        'Readonly'             => 2.05,
+        'Carp'                 => 0,
+        'POSIX'                => 0,
+        'List::MoreUtils'      => 0.428
     },
     TEST_REQUIRES => {
         'Test::More'             => 0,
         'Test::Exception'        => 0.43,
         'Test::RequiresInternet' => 0.05,
         'Scalar::Util'           => 0,
-        'Readonly'               => 0
+        'Readonly'               => 2.05
     },
     ABSTRACT_FROM => 'lib/WebService/Hexonet/Connector/APIClient.pm',
     AUTHOR        => 'hexonet <middleware@hexonet.net>',

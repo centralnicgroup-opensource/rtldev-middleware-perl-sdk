@@ -10,6 +10,7 @@ use WebService::Hexonet::Connector::ResponseTemplateManager;
 use LWP::UserAgent;
 use Carp;
 use Readonly;
+use Data::Dumper;
 
 Readonly my $SOCKETTIMEOUT => 300;    # 300s or 5 min
 
