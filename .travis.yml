@@ -1,5 +1,5 @@
 language: perl
-dist: trusty
+dist: xenial
 notifications:
   email:
     recipients:
@@ -13,6 +13,9 @@ cache:
   directories:
   - "~/.npm"
   - "node_modules"
+addons:
+  apt:
+    update: true
 script:
 - ./scripts/coverage.sh
 after_success:
