@@ -13,9 +13,6 @@ cache:
   directories:
   - "~/.npm"
   - "node_modules"
-addons:
-  apt:
-    update: true
 script:
 - ./scripts/coverage.sh
 after_success:
