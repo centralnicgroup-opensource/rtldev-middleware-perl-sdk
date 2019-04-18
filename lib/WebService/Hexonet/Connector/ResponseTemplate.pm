@@ -82,6 +82,15 @@ sub isTmpError {
     return ( $first eq '4' );
 }
 
+
+sub isPending {
+    my $self = shift;
+    if ( defined $self->{hash}->{PENDING} ) {
+        return int( $self->{hash}->{PENDING} );
+    }
+    return 0;
+}
+
 1;
 
 __END__
@@ -170,6 +179,11 @@ Returns boolean 0 or 1.
 
 Checks if the API response code represents a temporary error case.
 400 <= Code <= 499
+Returns boolean 0 or 1.
+
+=item C<isPending>
+
+Checks if current operation is returned as pending.
 Returns boolean 0 or 1.
 
 =back
