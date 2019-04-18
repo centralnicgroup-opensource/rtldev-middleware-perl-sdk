@@ -6,22 +6,26 @@ notifications:
     - kschwarz@hexonet.net
     on_success: never
     on_failure: always
-perl:
-  - "5.28"
-  - "5.26"
 cache:
   directories:
   - "~/.npm"
   - "node_modules"
+perl:
+  - "5.28"
+  - "5.26"
+# Trigger a push build on master and dependabot branches + PRs build on every branches
+# Avoid double build on PRs (See https://github.com/travis-ci/travis-ci/issues/1147)
+branches:
+  only:
+    - master
+    - /^dependabot.*$/
 script:
-- ./scripts/coverage.sh
-after_success:
-- if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]]; then
-    ./scripts/generatedocs.sh &&
-    git config --replace-all remote.origin.fetch +refs/heads/*:refs/remotes/origin/* &&
-    git fetch --tags &&
-    nvm install lts/* &&
-    nvm use lts/* &&
-    npm prune &&
-    npm i &&
-    npx travis-deploy-once "npx semantic-release" ; fi
+  - ./scripts/coverage.sh
+jobs:
+  include:
+    - stage: release
+      node_js: lts/*
+      script:
+        - npm prune
+        - travis_retry npm i
+        - npx semantic-release
