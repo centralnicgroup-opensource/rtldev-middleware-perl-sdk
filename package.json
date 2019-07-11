@@ -80,7 +80,6 @@
                 "assets": [
                     "HISTORY.md",
                     "package.json",
-                    "package-lock.json",
                     "lib",
                     "docs",
                     "cover_db",
