@@ -24,12 +24,12 @@ my $rtm = WebService::Hexonet::Connector::ResponseTemplateManager->getInstance()
 sub new {
     my $class = shift;
     my $self  = bless {
-        socketURL    => 'https://coreapi.1api.net/api/call.cgi',
+        socketURL    => 'https://api.ispapi.net/api/call.cgi',
         debugMode    => 0,
         socketConfig => WebService::Hexonet::Connector::SocketConfig->new(),
         ua           => q{}
     }, $class;
-    $self->setURL('https://coreapi.1api.net/api/call.cgi');
+    $self->setURL('https://api.ispapi.net/api/call.cgi');
     $self->useLIVESystem();
     return $self;
 }

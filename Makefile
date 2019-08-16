@@ -1,7 +1,7 @@
 # This Makefile is for the WebService::Hexonet::Connector extension to perl.
 #
 # It was generated automatically by MakeMaker version
-# 7.24 (Revision: 72400) from the contents of
+# 7.34 (Revision: 73400) from the contents of
 # Makefile.PL. Don't edit this file, edit Makefile.PL instead.
 #
 #       ANY CHANGES MADE HERE WILL BE LOST!
@@ -27,7 +27,7 @@
 
 # --- MakeMaker const_config section:
 
-# These definitions are from config.sh (via /usr/lib/x86_64-linux-gnu/perl/5.26/Config.pm).
+# These definitions are from config.sh (via /usr/lib/x86_64-linux-gnu/perl/5.28/Config.pm).
 # They may have been overridden via Makefile.PL or on the command line.
 AR = ar
 CC = x86_64-linux-gnu-gcc
@@ -40,16 +40,16 @@ FULL_AR = /usr/bin/ar
 LD = x86_64-linux-gnu-gcc
 LDDLFLAGS = -shared -L/usr/local/lib -fstack-protector-strong
 LDFLAGS =  -fstack-protector-strong -L/usr/local/lib
-LIBC = libc-2.27.so
+LIBC = libc-2.29.so
 LIB_EXT = .a
 OBJ_EXT = .o
 OSNAME = linux
 OSVERS = 4.9.0
 RANLIB = :
-SITELIBEXP = /usr/local/share/perl/5.26.1
-SITEARCHEXP = /usr/local/lib/x86_64-linux-gnu/perl/5.26.1
+SITELIBEXP = /usr/local/share/perl/5.28.1
+SITEARCHEXP = /usr/local/lib/x86_64-linux-gnu/perl/5.28.1
 SO = so
-VENDORARCHEXP = /usr/lib/x86_64-linux-gnu/perl5/5.26
+VENDORARCHEXP = /usr/lib/x86_64-linux-gnu/perl5/5.28
 VENDORLIBEXP = /usr/share/perl5
 
 
@@ -59,11 +59,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = WebService::Hexonet::Connector
 NAME_SYM = WebService_Hexonet_Connector
-VERSION = v2.1.0
+VERSION = v2.2.0
 VERSION_MACRO = VERSION
-VERSION_SYM = v2_1_0
+VERSION_SYM = v2_2_0
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = v2.1.0
+XS_VERSION = v2.2.0
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -80,17 +80,17 @@ PREFIX = $(SITEPREFIX)
 PERLPREFIX = /usr
 SITEPREFIX = /usr/local
 VENDORPREFIX = /usr
-INSTALLPRIVLIB = /usr/share/perl/5.26
+INSTALLPRIVLIB = /usr/share/perl/5.28
 DESTINSTALLPRIVLIB = $(DESTDIR)$(INSTALLPRIVLIB)
-INSTALLSITELIB = /usr/local/share/perl/5.26.1
+INSTALLSITELIB = /usr/local/share/perl/5.28.1
 DESTINSTALLSITELIB = $(DESTDIR)$(INSTALLSITELIB)
 INSTALLVENDORLIB = /usr/share/perl5
 DESTINSTALLVENDORLIB = $(DESTDIR)$(INSTALLVENDORLIB)
-INSTALLARCHLIB = /usr/lib/x86_64-linux-gnu/perl/5.26
+INSTALLARCHLIB = /usr/lib/x86_64-linux-gnu/perl/5.28
 DESTINSTALLARCHLIB = $(DESTDIR)$(INSTALLARCHLIB)
-INSTALLSITEARCH = /usr/local/lib/x86_64-linux-gnu/perl/5.26.1
+INSTALLSITEARCH = /usr/local/lib/x86_64-linux-gnu/perl/5.28.1
 DESTINSTALLSITEARCH = $(DESTDIR)$(INSTALLSITEARCH)
-INSTALLVENDORARCH = /usr/lib/x86_64-linux-gnu/perl5/5.26
+INSTALLVENDORARCH = /usr/lib/x86_64-linux-gnu/perl5/5.28
 DESTINSTALLVENDORARCH = $(DESTDIR)$(INSTALLVENDORARCH)
 INSTALLBIN = /usr/bin
 DESTINSTALLBIN = $(DESTDIR)$(INSTALLBIN)
@@ -116,16 +116,16 @@ INSTALLSITEMAN3DIR = /usr/local/man/man3
 DESTINSTALLSITEMAN3DIR = $(DESTDIR)$(INSTALLSITEMAN3DIR)
 INSTALLVENDORMAN3DIR = /usr/share/man/man3
 DESTINSTALLVENDORMAN3DIR = $(DESTDIR)$(INSTALLVENDORMAN3DIR)
-PERL_LIB = /usr/share/perl/5.26
-PERL_ARCHLIB = /usr/lib/x86_64-linux-gnu/perl/5.26
-PERL_ARCHLIBDEP = /usr/lib/x86_64-linux-gnu/perl/5.26
+PERL_LIB = /usr/share/perl/5.28
+PERL_ARCHLIB = /usr/lib/x86_64-linux-gnu/perl/5.28
+PERL_ARCHLIBDEP = /usr/lib/x86_64-linux-gnu/perl/5.28
 LIBPERL_A = libperl.a
 FIRST_MAKEFILE = Makefile
 MAKEFILE_OLD = Makefile.old
 MAKE_APERL_FILE = Makefile.aperl
 PERLMAINCC = $(CC)
-PERL_INC = /usr/lib/x86_64-linux-gnu/perl/5.26/CORE
-PERL_INCDEP = /usr/lib/x86_64-linux-gnu/perl/5.26/CORE
+PERL_INC = /usr/lib/x86_64-linux-gnu/perl/5.28/CORE
+PERL_INCDEP = /usr/lib/x86_64-linux-gnu/perl/5.28/CORE
 PERL = "/usr/bin/perl"
 FULLPERL = "/usr/bin/perl"
 ABSPERL = $(PERL)
@@ -140,9 +140,9 @@ PERM_DIR = 755
 PERM_RW = 644
 PERM_RWX = 755
 
-MAKEMAKER   = /usr/share/perl/5.26/ExtUtils/MakeMaker.pm
-MM_VERSION  = 7.24
-MM_REVISION = 72400
+MAKEMAKER   = /usr/share/perl/5.28/ExtUtils/MakeMaker.pm
+MM_VERSION  = 7.34
+MM_REVISION = 73400
 
 # FULLEXT = Pathname for extension directory (eg Foo/Bar/Oracle).
 # BASEEXT = Basename part of FULLEXT. May be just equal FULLEXT. (eg Oracle)
@@ -210,7 +210,7 @@ TO_INST_PM = lib/WebService/Hexonet.pm \
 
 
 # --- MakeMaker platform_constants section:
-MM_Unix_VERSION = 7.24
+MM_Unix_VERSION = 7.34
 PERL_MALLOC_DEF = -DPERL_EXTMALLOC_DEF -Dmalloc=Perl_malloc -Dfree=Perl_mfree -Drealloc=Perl_realloc -Dcalloc=Perl_calloc
 
 
@@ -276,7 +276,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = WebService-Hexonet-Connector
-DISTVNAME = WebService-Hexonet-Connector-v2.1.0
+DISTVNAME = WebService-Hexonet-Connector-v2.2.0
 
 
 # --- MakeMaker macro section:
@@ -540,7 +540,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) 'configure_requires:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  ExtUtils::MakeMaker: '\''0'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'dynamic_config: 1' >> META_new.yml
-	$(NOECHO) $(ECHO) 'generated_by: '\''ExtUtils::MakeMaker version 7.24, CPAN::Meta::Converter version 2.150010'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) 'generated_by: '\''ExtUtils::MakeMaker version 7.34, CPAN::Meta::Converter version 2.150010'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'license: mit' >> META_new.yml
 	$(NOECHO) $(ECHO) 'meta-spec:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  url: http://module-build.sourceforge.net/META-spec-v1.4.html' >> META_new.yml
@@ -564,7 +564,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '  perl: '\''5.026000'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  utf8: '\''0'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  version: '\''0.9917'\''' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version: v2.1.0' >> META_new.yml
+	$(NOECHO) $(ECHO) 'version: v2.2.0' >> META_new.yml
 	$(NOECHO) $(ECHO) 'x_serialization_backend: '\''CPAN::Meta::YAML version 0.018'\''' >> META_new.yml
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 	$(NOECHO) $(ECHO) Generating META.json
@@ -574,13 +574,13 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '      "hexonet <middleware@hexonet.net>"' >> META_new.json
 	$(NOECHO) $(ECHO) '   ],' >> META_new.json
 	$(NOECHO) $(ECHO) '   "dynamic_config" : 1,' >> META_new.json
-	$(NOECHO) $(ECHO) '   "generated_by" : "ExtUtils::MakeMaker version 7.24, CPAN::Meta::Converter version 2.150010",' >> META_new.json
+	$(NOECHO) $(ECHO) '   "generated_by" : "ExtUtils::MakeMaker version 7.34, CPAN::Meta::Converter version 2.150010",' >> META_new.json
 	$(NOECHO) $(ECHO) '   "license" : [' >> META_new.json
 	$(NOECHO) $(ECHO) '      "mit"' >> META_new.json
 	$(NOECHO) $(ECHO) '   ],' >> META_new.json
 	$(NOECHO) $(ECHO) '   "meta-spec" : {' >> META_new.json
 	$(NOECHO) $(ECHO) '      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",' >> META_new.json
-	$(NOECHO) $(ECHO) '      "version" : "2"' >> META_new.json
+	$(NOECHO) $(ECHO) '      "version" : 2' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
 	$(NOECHO) $(ECHO) '   "name" : "WebService-Hexonet-Connector",' >> META_new.json
 	$(NOECHO) $(ECHO) '   "no_index" : {' >> META_new.json
@@ -634,8 +634,8 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '      }' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
 	$(NOECHO) $(ECHO) '   "release_status" : "stable",' >> META_new.json
-	$(NOECHO) $(ECHO) '   "version" : "v2.1.0",' >> META_new.json
-	$(NOECHO) $(ECHO) '   "x_serialization_backend" : "JSON::PP version 2.27400_02"' >> META_new.json
+	$(NOECHO) $(ECHO) '   "version" : "v2.2.0",' >> META_new.json
+	$(NOECHO) $(ECHO) '   "x_serialization_backend" : "JSON::PP version 2.97001"' >> META_new.json
 	$(NOECHO) $(ECHO) '}' >> META_new.json
 	-$(NOECHO) $(MV) META_new.json $(DISTVNAME)/META.json
 
@@ -869,7 +869,7 @@ $(FIRST_MAKEFILE) : Makefile.PL $(CONFIGDEP)
 # --- MakeMaker makeaperl section ---
 MAP_TARGET    = perl
 FULLPERL      = "/usr/bin/perl"
-MAP_PERLINC   = "-Iblib/arch" "-Iblib/lib" "-I/usr/lib/x86_64-linux-gnu/perl/5.26" "-I/usr/share/perl/5.26"
+MAP_PERLINC   = "-Iblib/arch" "-Iblib/lib" "-I/usr/lib/x86_64-linux-gnu/perl/5.28" "-I/usr/share/perl/5.28"
 
 $(MAP_TARGET) :: $(MAKE_APERL_FILE)
 	$(MAKE) $(USEMAKEFILE) $(MAKE_APERL_FILE) $@
@@ -920,7 +920,7 @@ testdb_static :: static pure_all
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd :
-	$(NOECHO) $(ECHO) '<SOFTPKG NAME="WebService-Hexonet-Connector" VERSION="v2.1.0">' > WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '<SOFTPKG NAME="WebService-Hexonet-Connector" VERSION="v2.2.0">' > WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <ABSTRACT>Connector library for the insanely fast L&lt;HEXONET Backend API|https://www.hexonet.net/&gt;.</ABSTRACT>' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>hexonet &lt;middleware@hexonet.net&gt;</AUTHOR>' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> WebService-Hexonet-Connector.ppd
@@ -937,7 +937,7 @@ ppd :
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Time::Local" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="utf8::" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="version::" VERSION="0.9917" />' >> WebService-Hexonet-Connector.ppd
-	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="x86_64-linux-gnu-thread-multi-5.26" />' >> WebService-Hexonet-Connector.ppd
+	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="x86_64-linux-gnu-thread-multi-5.28" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '        <CODEBASE HREF="" />' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '    </IMPLEMENTATION>' >> WebService-Hexonet-Connector.ppd
 	$(NOECHO) $(ECHO) '</SOFTPKG>' >> WebService-Hexonet-Connector.ppd

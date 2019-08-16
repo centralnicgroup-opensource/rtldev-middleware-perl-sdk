@@ -80,6 +80,7 @@
                 "assets": [
                     "HISTORY.md",
                     "package.json",
+                    "Makefile.PL",
                     "lib",
                     "docs",
                     "cover_db",
