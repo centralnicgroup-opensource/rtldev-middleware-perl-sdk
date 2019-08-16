@@ -81,6 +81,7 @@
                     "HISTORY.md",
                     "package.json",
                     "Makefile.PL",
+                    "Makefile",
                     "lib",
                     "docs",
                     "cover_db",
