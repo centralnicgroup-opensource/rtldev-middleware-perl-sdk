@@ -1,5 +1,5 @@
 language: perl
-dist: xenial
+dist: bionic
 notifications:
   email:
     recipients:

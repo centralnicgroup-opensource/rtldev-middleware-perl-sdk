@@ -1,10 +1,7 @@
-#!/usr/bin/perl
 use 5.026_000;
 use strict;
 use warnings;
 use ExtUtils::MakeMaker;
-
-use version 0.9917; our $VERSION = version->declare('v2.2.0');
 
 WriteMakefile(
     NAME         => 'WebService::Hexonet::Connector',
