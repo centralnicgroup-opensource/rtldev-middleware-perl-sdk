@@ -69,7 +69,7 @@
             },
             {
                 "path": "@semantic-release/exec",
-                "cmd": "./scripts/rebuild.sh | ./scripts/rebuild.sh"
+                "cmd": "./scripts/rebuild.sh || ./scripts/rebuild.sh"
             },
             {
                 "path": "@semantic-release/exec",
