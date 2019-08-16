@@ -1,3 +1,10 @@
+## [2.2.2](https://github.com/hexonet/perl-sdk/compare/v2.2.1...v2.2.2) (2019-08-16)
+
+
+### Bug Fixes
+
+* **Makefile:** remove it from repository (use auto-build) ([8a44026](https://github.com/hexonet/perl-sdk/commit/8a44026))
+
 ## [2.2.1](https://github.com/hexonet/perl-sdk/compare/v2.2.0...v2.2.1) (2019-08-16)
 
 
