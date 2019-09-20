@@ -11,10 +11,18 @@ perl:
   - "5.26"
 # Trigger a push build on master and dependabot branches + PRs build on every branches
 # Avoid double build on PRs (See https://github.com/travis-ci/travis-ci/issues/1147)
+addons:
+  apt:
+    update: true
+    packages:
+      - perl-doc ctags perltidy
 branches:
   only:
     - master
     - /^dependabot.*$/
+install:
+  - sudo cpan App::cpanminus
+  - sudo cpanm --quiet Perl::Critic CPAN::Uploader Devel::Cover
 script:
   - ./scripts/coverage.sh
 jobs:
