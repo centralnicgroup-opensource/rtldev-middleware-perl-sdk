@@ -17,8 +17,7 @@ branches:
     - /^dependabot.*$/
 install:
   - sudo apt-get install perl-doc ctags perltidy
-  - curl -L http://cpanmin.us | sudo perl - App::cpanminus
-  - sudo cpanm --quiet --notest Perl::Critic@1.132 CPAN::Uploader@0.103013 Devel::Cover@1.30
+  - cpanm --quiet --notest Perl::Critic@1.132 CPAN::Uploader@0.103013 Devel::Cover@1.30
 script:
   - ./scripts/coverage.sh
 jobs:
