@@ -21,8 +21,8 @@ branches:
     - master
     - /^dependabot.*$/
 install:
-  - sudo cpan App::cpanminus
-  - sudo cpanm --quiet Perl::Critic CPAN::Uploader Devel::Cover
+  - curl -L http://cpanmin.us | sudo perl - App::cpanminus
+  - sudo cpanm --quiet --notest Perl::Critic CPAN::Uploader Devel::Cover
 script:
   - ./scripts/coverage.sh
 jobs:
