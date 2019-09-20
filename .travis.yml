@@ -15,14 +15,16 @@ addons:
   apt:
     update: true
     packages:
-      - perl-doc ctags perltidy
+      - perl-doc
+      - ctags
+      - perltidy
 branches:
   only:
     - master
     - /^dependabot.*$/
 install:
   - curl -L http://cpanmin.us | sudo perl - App::cpanminus
-  - sudo cpanm --quiet --notest Perl::Critic CPAN::Uploader Devel::Cover
+  - sudo cpanm --quiet --notest Perl::Critic@1.132 CPAN::Uploader@0.103013 Devel::Cover@1.30
 script:
   - ./scripts/coverage.sh
 jobs:
