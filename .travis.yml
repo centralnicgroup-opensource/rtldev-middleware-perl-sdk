@@ -3,7 +3,7 @@ dist: bionic
 notifications:
   email:
     recipients:
-    - kschwarz@hexonet.net
+      - kschwarz@hexonet.net
     on_success: never
     on_failure: always
 perl:
@@ -15,7 +15,14 @@ branches:
   only:
     - master
     - /^dependabot.*$/
+before_install:
+  - export TRAVIS_NODE_VERSION="lts/*"
 install:
+  - rm -rf ~/.nvm
+  - git clone https://github.com/creationix/nvm.git ~/.nvm
+  - (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`)
+  - source ~/.nvm/nvm.sh
+  - nvm install $TRAVIS_NODE_VERSION
   - sudo apt-get install perl-doc ctags perltidy
   - cpanm --quiet --notest Perl::Critic@1.132 CPAN::Uploader@0.103013 Devel::Cover@1.30
   - cpanm --quiet --installdeps --notest .
