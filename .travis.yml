@@ -25,7 +25,7 @@ install:
   - source ~/.nvm/nvm.sh
   - nvm install $TRAVIS_NODE_VERSION
   - sudo apt-get install perl-doc ctags perltidy
-  - cpanm --quiet --notest Perl::Critic@1.132 CPAN::Uploader@0.103013 Devel::Cover@1.30
+  - cpanm --quiet --notest Perl::Critic@1.138 CPAN::Uploader@0.103013 Devel::Cover@1.33
   - cpanm --quiet --installdeps --notest .
 script:
   - ./scripts/coverage.sh
