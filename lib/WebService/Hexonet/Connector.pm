@@ -37,7 +37,7 @@ WebService::Hexonet::Connector - Connector library for the insanely fast L<HEXON
 	# NOTE: We suggest to use cpanm (App::cpanminus) for several reasons.
 
 Check the Example provided at L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient>.
-	
+
 =head1 DESCRIPTION
 
 This module is used as namespace.

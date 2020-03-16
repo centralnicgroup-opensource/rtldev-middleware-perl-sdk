@@ -372,10 +372,10 @@ To be used in the way:
     $command = {
 	    COMMAND => 'StatusAccount'
     };
-  
+
     # specify the API plain-text response (this is just an example that won't fit to the command above)
     $plain = "[RESPONSE]\r\nCODE=200\r\nDESCRIPTION=Command completed successfully\r\nEOF\r\n";
-  
+
     # create a new instance by
     $r = WebService::Hexonet::Connector::Response->new($plain, $command);
 
@@ -539,7 +539,7 @@ Resets the current iteration to index 0.
 
 Private method. Checks if a column specified by $key exists.
 Returns boolean 0 or 1.
-	
+
 =item C<_hasCurrentRecord>
 
 Private method. Checks if the current record exists in the iteration.

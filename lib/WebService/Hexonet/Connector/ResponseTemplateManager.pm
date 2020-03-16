@@ -100,7 +100,7 @@ To be used in the way:
 
     # get (singleton) instance of this class
     $rtm = WebService::Hexonet::Connector::ResponseTemplateManager->getIstance();
-  
+
     # add a template
     $rtm->addTemplate('mytemplate ID', "[RESPONSE]\r\nCODE=200\r\nDESCRIPTION=Command completed successfully\r\nEOF\r\n");
 

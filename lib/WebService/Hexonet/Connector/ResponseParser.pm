@@ -87,7 +87,7 @@ To be used in the way:
 
     # specify the API plain-text response (this is just an example that won't fit to the command above)
     $plain = "[RESPONSE]\r\nCODE=200\r\nDESCRIPTION=Command completed successfully\r\nEOF\r\n";
-  
+
     # parse a plain-text response into hash
     $hash = WebService::Hexonet::Connector::ResponseParser::parse($plain);
 

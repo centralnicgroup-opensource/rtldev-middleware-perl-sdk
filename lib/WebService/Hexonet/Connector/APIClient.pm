@@ -604,11 +604,13 @@ Usage may lead to costs. BUT - are system is a prepaid system.
 As long as you don't have charged your account, you cannot order.
 This is the default!
 Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
- 
+
 =item C<_toUpperCaseKeys( $hash )>
 
 Private method. Converts all keys of the given hash into upper case letters.
 Returns a hash.
+
+=back
 
 =head1 LICENSE AND COPYRIGHT
 
