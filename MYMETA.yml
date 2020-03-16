@@ -11,7 +11,7 @@ build_requires:
   Test::Exception: '0.43'
   Test::More: '0'
   Test::RequiresInternet: '0.05'
-  version: '0.9917'
+  version: '0.9924'
 configure_requires:
   ExtUtils::MakeMaker: '0'
 dynamic_config: 0
@@ -28,16 +28,16 @@ no_index:
 requires:
   Carp: '0'
   Config: '0'
-  Data::Dumper: '2.161'
+  Data::Dumper: '0'
   LWP::Protocol::https: '6.07'
-  LWP::UserAgent: '6.35'
-  List::MoreUtils: '0.416'
+  LWP::UserAgent: '6.43'
+  List::MoreUtils: '0.428'
   MIME::Base64: '0'
   POSIX: '0'
   Readonly: '2.05'
   Time::Local: '0'
   perl: '5.026000'
   utf8: '0'
-  version: '0.9917'
+  version: '0.9924'
 version: v2.2.5
 x_serialization_backend: 'CPAN::Meta::YAML version 0.018'
