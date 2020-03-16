@@ -56,9 +56,19 @@ sub getPOSTData {
     if ( ( ref $cmd ) eq 'HASH' ) {
         foreach my $key ( sort keys %{$cmd} ) {
             if ( defined $cmd->{$key} ) {
-                my $val = $cmd->{$key};
-                $val =~ s/[\r\n]//gmsx;
-                $tmp .= "${key}=${val}\n";
+                if ( ref( $cmd->{$key} ) eq 'ARRAY' ) {
+                    my @val = @{ $cmd->{$key} };
+                    my $idx = 0;
+                    for my $str (@val) {
+                        $str =~ s/[\r\n]//gmsx;
+                        $tmp .= "${key}${idx}=${str}\n";
+                        $idx++;
+                    }
+                } else {
+                    my $val = $cmd->{$key};
+                    $val =~ s/[\r\n]//gmsx;
+                    $tmp .= "${key}=${val}\n";
+                }
             }
         }
     }

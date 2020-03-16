@@ -106,13 +106,13 @@ is( %{$d}, 0, 'SocketConfig: Check initial POST data' );
 # ---- Module "ResponseTemplate" ---- #
 # - T17 ~> constructor test
 $tpl = WebService::Hexonet::Connector::ResponseTemplate->new(q{});
-is( $tpl->getCode(),        $TMP_ERR_423,         'ResponseTemplate: Check response code of template `empty` #1' );
+is( $tpl->getCode(), $TMP_ERR_423, 'ResponseTemplate: Check response code of template `empty` #1' );
 is( $tpl->getDescription(), 'Empty API response. Probably unreachable API end point', 'ResponseTemplate: Check response description of template `empty` #1' );
 
 # - T19 ~> getHash method test
 $tpl = WebService::Hexonet::Connector::ResponseTemplate->new();
 $h   = $tpl->getHash();
-is( $h->{CODE},        $TMP_ERR_423,         'ResponseTemplate: Check response code of template `empty` #2' );
+is( $h->{CODE}, $TMP_ERR_423, 'ResponseTemplate: Check response code of template `empty` #2' );
 is( $h->{DESCRIPTION}, 'Empty API response. Probably unreachable API end point', 'ResponseTemplate: Check response description of template `empty` #2' );
 
 # - T21 ~> getQueuetime method test
@@ -350,6 +350,17 @@ $enc = $cl->getPOSTData(
     }
 );
 is_deeply( $enc, $validate, 'AC: Check getPOSTData result. #3' );
+
+$validate = {
+    's_entity'  => '54cd',
+    's_command' => "COMMAND=QueryDomainOptions\nDOMAIN0=example1.com\nDOMAIN1=example2.com"
+};
+$enc = $cl->getPOSTData(
+    {   COMMAND => 'QueryDomainOptions',
+        DOMAIN  => [ 'example1.com', 'example2.com' ]
+    }
+);
+is_deeply( $enc, $validate, 'AC: Check getPOSTData result. #4' );
 
 # ~> enableDebugMode method test
 $cl->enableDebugMode();
