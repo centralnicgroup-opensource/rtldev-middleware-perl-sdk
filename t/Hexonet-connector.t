@@ -5,7 +5,7 @@ use warnings;
 
 use Test::More;
 use Test::Exception;
-use Test::RequiresInternet ( 'api.ispapi.net' => 80 );
+use Test::RequiresInternet ( 'api.ispapi.net' => 443 );
 
 use version 0.9917; our $VERSION = version->declare('v2.2.0');
 
@@ -373,12 +373,30 @@ $cl->setSession(q{});
 
 # T69 ~> getURL method test
 my $url = $cl->getURL();
-is( $url, 'https://api.ispapi.net/api/call.cgi', 'AC: Check getURL result.' );
+is( $url, $WebService::Hexonet::Connector::APIClient::ISPAPI_CONNECTION_URL, 'AC: Check getURL result. #1' );
+# check highperformance connection setup
+$cl->useHighPerformanceConnectionSetup();
+$url = $cl->getURL();
+is( $url, $WebService::Hexonet::Connector::APIClient::ISPAPI_CONNECTION_URL_PROXY, 'AC: Check getURL result. #2' );
+# check default connection setup
+$cl->useDefaultConnectionSetup();
+$url = $cl->getURL();
+is( $url, $WebService::Hexonet::Connector::APIClient::ISPAPI_CONNECTION_URL, 'AC: Check getURL result. #3' );
+# check get-/setreferer
+$cl->setReferer('https://www.hexonet.net/');
+is( $cl->getReferer(), 'https://www.hexonet.net/', 'AC: Check setReferer result. #1' );
+$cl->setReferer(q{});
+is( $cl->getReferer(), undef, 'AC: Check setReferer result. #2' );
+# check get-/setproxy
+$cl->setProxy('https://www.hexonet.net/');
+is( $cl->getProxy(), 'https://www.hexonet.net/', 'AC: Check setProxy result. #1' );
+$cl->setProxy(q{});
+is( $cl->getProxy(), undef, 'AC: Check setProxy result. #2' );
 
 # T70 ~> setURL method test
-$url = $cl->setURL('http://api.ispapi.net/api/call.cgi')->getURL();
-is( $url, 'http://api.ispapi.net/api/call.cgi', 'AC: Check if setURL working.' );
-$cl->setURL('https://api.ispapi.net/api/call.cgi');
+$url = $cl->setURL($WebService::Hexonet::Connector::APIClient::ISPAPI_CONNECTION_URL_PROXY)->getURL();
+is( $url, $WebService::Hexonet::Connector::APIClient::ISPAPI_CONNECTION_URL_PROXY, 'AC : Check if setURL working.' );
+$cl->setURL($WebService::Hexonet::Connector::APIClient::ISPAPI_CONNECTION_URL);
 
 # - T72 ~> setOTP method test
 $cl->setOTP('12345678');
@@ -388,7 +406,7 @@ $validate = {
     's_otp'     => '12345678',
     's_command' => 'COMMAND=StatusAccount'
 };
-is_deeply( $d, $validate, 'AC: Check if setOTP method is working. #1' );
+is_deeply( $d, $validate, 'AC : Check if setOTP method is working. #1' );
 $cl->setOTP(q{});
 $d = $cl->getPOSTData( { COMMAND => 'StatusAccount' } );
 $validate = {

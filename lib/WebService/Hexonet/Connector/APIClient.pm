@@ -14,8 +14,10 @@ use Data::Dumper;
 use Config;
 use POSIX;
 
-Readonly my $SOCKETTIMEOUT => 300;    # 300s or 5 min
-Readonly my $IDX4          => 4;      # Index 4 constant
+Readonly my $SOCKETTIMEOUT                => 300;                                      # 300s or 5 min
+Readonly my $IDX4                         => 4;                                        # Index 4 constant
+Readonly our $ISPAPI_CONNECTION_URL       => 'https://api.ispapi.net/api/call.cgi';    # Default Connection Setup URL
+Readonly our $ISPAPI_CONNECTION_URL_PROXY => 'http://127.0.0.1/api/call.cgi';          # High Speed Connection Setup URL
 
 use version 0.9917; our $VERSION = version->declare('v2.4.0');
 
@@ -25,12 +27,13 @@ my $rtm = WebService::Hexonet::Connector::ResponseTemplateManager->getInstance()
 sub new {
     my $class = shift;
     my $self  = bless {
-        socketURL    => 'https://api.ispapi.net/api/call.cgi',
+        socketURL    => $ISPAPI_CONNECTION_URL,
         debugMode    => 0,
         socketConfig => WebService::Hexonet::Connector::SocketConfig->new(),
-        ua           => q{}
+        ua           => q{},
+        curlopts     => {}
     }, $class;
-    $self->setURL('https://api.ispapi.net/api/call.cgi');
+    $self->setURL($ISPAPI_CONNECTION_URL);
     $self->useLIVESystem();
     return $self;
 }
@@ -106,6 +109,46 @@ sub setUserAgent {
     my $os   = (POSIX::uname)[ 0 ];
     my $rv2  = $self->getVersion();
     $self->{ua} = "$str ($os; $arch; rv:$rv) perl-sdk/$rv2 perl/$Config{version}";
+    return $self;
+}
+
+
+sub getProxy {
+    my ($self) = @_;
+    if ( exists $self->{curlopts}->{'PROXY'} ) {
+        return $self->{curlopts}->{'PROXY'};
+    }
+    return;
+}
+
+
+sub setProxy {
+    my ( $self, $proxy ) = @_;
+    if ( length($proxy) == 0 ) {
+        delete $self->{curlopts}->{'PROXY'};
+    } else {
+        $self->{curlopts}->{'PROXY'} = $proxy;
+    }
+    return $self;
+}
+
+
+sub getReferer {
+    my ($self) = @_;
+    if ( exists $self->{curlopts}->{'REFERER'} ) {
+        return $self->{curlopts}->{'REFERER'};
+    }
+    return;
+}
+
+
+sub setReferer {
+    my ( $self, $referer ) = @_;
+    if ( length($referer) == 0 ) {
+        delete $self->{curlopts}->{'REFERER'};
+    } else {
+        $self->{curlopts}->{'REFERER'} = $referer;
+    }
     return $self;
 }
 
@@ -246,6 +289,14 @@ sub request {
     $ua->agent( $self->getUserAgent() );
     $ua->default_header( 'Expect', q{} );
     $ua->timeout($SOCKETTIMEOUT);
+    my $referer = $self->getReferer();
+    if ($referer) {
+        $ua->default_header( 'Referer', $referer );
+    }
+    my $proxy = $self->getProxy();
+    if ($proxy) {
+        $ua->proxy( [ 'http', 'https' ], $proxy );
+    }
 
     my $post = $self->getPOSTData($cmd);
     my $r = $ua->post( $self->{socketURL}, $post );
@@ -321,6 +372,18 @@ sub resetUserView {
     my $self = shift;
     $self->{socketConfig}->setUser(q{});
     return $self;
+}
+
+
+sub useDefaultConnectionSetup {
+    my $self = shift;
+    return $self->setURL($ISPAPI_CONNECTION_URL);
+}
+
+
+sub useHighPerformanceConnectionSetup {
+    my $self = shift;
+    return $self->setURL($ISPAPI_CONNECTION_URL_PROXY);
 }
 
 
@@ -519,6 +582,14 @@ Specify the API command for the request by $command.
 This method is internally used by the request method.
 Returns a hash.
 
+=item C<getProxy>
+
+Returns the configured Proxy URL to use for API communication as string.
+
+=item C<getReferer>
+
+Returns the configured HTTP Header `Referer` value to use for API communication as string.
+
 =item C<getSession>
 
 Returns the API session in use as string.
@@ -556,6 +627,16 @@ Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexo
 =item C<setOTP( $otpcode )>
 
 Set your otp code. To be used in case of active 2FA.
+Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
+
+=item C<setProxy( $proxy )>
+
+Set the Proxy URL to use for API communication.
+Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
+
+=item C<setReferer( $referer )>
+
+Set the HTTP Header `Referer` value to use for API communication.
 Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
 
 =item C<setSession( $sessionid )>
@@ -635,11 +716,14 @@ Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexo
 Reset the data view activated by setUserView.
 Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
 
-=item C<useOTESystem>
+=item C<useDefaultConnectionSetup>
 
-Use the OT&E Backend System as communication endpoint.
-No costs - free of charge. To get in touch with our systems.
-This is NOT the default!
+Use the Default Setup to connect to our backend systems. This is the default!
+Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
+
+=item C<useHighPerformanceConnectionSetup>
+
+Use the High Performance Connection Setup to connect to our backend systems. This is not the default! Read README.md for Details.
 Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
 
 =item C<useLIVESystem>
