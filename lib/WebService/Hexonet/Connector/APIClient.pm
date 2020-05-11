@@ -4,9 +4,9 @@ use 5.026_000;
 use strict;
 use warnings;
 use utf8;
-use WebService::Hexonet::Connector::SocketConfig;
 use WebService::Hexonet::Connector::Response;
 use WebService::Hexonet::Connector::ResponseTemplateManager;
+use WebService::Hexonet::Connector::SocketConfig;
 use LWP::UserAgent;
 use Carp;
 use Readonly;
@@ -15,6 +15,7 @@ use Config;
 use POSIX;
 
 Readonly my $SOCKETTIMEOUT => 300;    # 300s or 5 min
+Readonly my $IDX4          => 4;      # Index 4 constant
 
 use version 0.9917; our $VERSION = version->declare('v2.3.0');
 
@@ -56,19 +57,9 @@ sub getPOSTData {
     if ( ( ref $cmd ) eq 'HASH' ) {
         foreach my $key ( sort keys %{$cmd} ) {
             if ( defined $cmd->{$key} ) {
-                if ( ref( $cmd->{$key} ) eq 'ARRAY' ) {
-                    my @val = @{ $cmd->{$key} };
-                    my $idx = 0;
-                    for my $str (@val) {
-                        $str =~ s/[\r\n]//gmsx;
-                        $tmp .= "${key}${idx}=${str}\n";
-                        $idx++;
-                    }
-                } else {
-                    my $val = $cmd->{$key};
-                    $val =~ s/[\r\n]//gmsx;
-                    $tmp .= "${key}=${val}\n";
-                }
+                my $val = $cmd->{$key};
+                $val =~ s/[\r\n]//gmsx;
+                $tmp .= "${key}=${val}\n";
             }
         }
     }
@@ -100,7 +91,7 @@ sub getURL {
 sub getUserAgent {
     my $self = shift;
     if ( !( length $self->{ua} ) ) {
-        my $arch = (POSIX::uname)[ 4 ];
+        my $arch = (POSIX::uname)[ $IDX4 ];
         my $os   = (POSIX::uname)[ 0 ];
         my $rv   = $self->getVersion();
         $self->{ua} = "PERL-SDK ($os; $arch; rv:$rv) perl/$Config{version}";
@@ -111,7 +102,7 @@ sub getUserAgent {
 
 sub setUserAgent {
     my ( $self, $str, $rv ) = @_;
-    my $arch = (POSIX::uname)[ 4 ];
+    my $arch = (POSIX::uname)[ $IDX4 ];
     my $os   = (POSIX::uname)[ 0 ];
     my $rv2  = $self->getVersion();
     $self->{ua} = "$str ($os; $arch; rv:$rv) perl-sdk/$rv2 perl/$Config{version}";
@@ -243,7 +234,13 @@ sub logout {
 
 sub request {
     my ( $self, $cmd ) = @_;
-    my $data = $self->getPOSTData($cmd);
+    # flatten nested api command bulk parameters
+    my $newcmd = $self->_flattenCommand($cmd);
+    # auto convert umlaut names to punycode
+    $newcmd = $self->_autoIDNConvert($newcmd);
+
+    # request command to API
+    my $data = $self->getPOSTData($newcmd);
 
     my $ua = LWP::UserAgent->new();
     $ua->agent( $self->getUserAgent() );
@@ -268,13 +265,13 @@ sub request {
             print {*STDERR} Dumper($r);
         }
     }
-    return WebService::Hexonet::Connector::Response->new( $r, $cmd );
+    return WebService::Hexonet::Connector::Response->new( $r, $newcmd );
 }
 
 
 sub requestNextResponsePage {
     my ( $self, $rr ) = @_;
-    my $mycmd = $self->_toUpperCaseKeys( $rr->getCommand() );
+    my $mycmd = $rr->getCommand();
     if ( defined $mycmd->{LAST} ) {
         croak 'Parameter LAST in use! Please remove it to avoid issues in requestNextPage.';
     }
@@ -341,12 +338,60 @@ sub useLIVESystem {
 }
 
 
-sub _toUpperCaseKeys {
+sub _flattenCommand {
     my ( $self, $cmd ) = @_;
     for my $key ( keys %{$cmd} ) {
         my $newkey = uc $key;
         if ( $newkey ne $key ) {
             $cmd->{$newkey} = delete $cmd->{$key};
+        }
+        if ( ref( $cmd->{$newkey} ) eq 'ARRAY' ) {
+            my @val = @{ $cmd->{$newkey} };
+            my $idx = 0;
+            for my $str (@val) {
+                $str =~ s/[\r\n]//gmsx;
+                $cmd->{"${key}${idx}"} = $str;
+                $idx++;
+            }
+            delete $cmd->{$newkey};
+        }
+    }
+    return $cmd;
+}
+
+
+sub _autoIDNConvert {
+    my ( $self, $cmd ) = @_;
+    if ( $cmd->{'COMMAND'} =~ /^CONVERTIDN$/imsx ) {
+        return $cmd;
+    }
+    my @keys = grep {/^(DOMAIN|NAMESERVER|DNSZONE)(\d*)$/imsx} keys %{$cmd};
+    if ( scalar @keys == 0 ) {
+        return $cmd;
+    }
+    my @toconvert = ();
+    my @idxs      = ();
+    foreach my $key (@keys) {
+        my $val = $cmd->{$key};
+        if ( $val =~ /[^[:lower:]\d. -]/imsx ) {
+            push @toconvert, $val;
+            push @idxs,      $key;
+        }
+    }
+    my $r = $self->request(
+        {   COMMAND => 'ConvertIDN',
+            DOMAIN  => \@toconvert
+        }
+    );
+    if ( $r->isSuccess() ) {
+        my $col = $r->getColumn('ACE');
+        if ($col) {
+            my $data = $col->getData();
+            my $idx  = 0;
+            foreach my $pc ( @{$data} ) {
+                $cmd->{ $idxs[ $idx ] } = $pc;
+                $idx++;
+            }
         }
     }
     return $cmd;
@@ -605,10 +650,16 @@ As long as you don't have charged your account, you cannot order.
 This is the default!
 Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
 
-=item C<_toUpperCaseKeys( $hash )>
+=item C<_flattenCommand( $cmd )>
 
-Private method. Converts all keys of the given hash into upper case letters.
-Returns a hash.
+Private method. Converts all keys of the given hash into upper case letters and flattens parameters using nested arrays to string parameters.
+Returns the new command.
+
+
+=item C<_autoIDNConvert( $cmd )>
+
+Private method. Converts all affected parameter values to punycode as our API only works with punycode domain names, not with IDN.
+Returns the new command.
 
 =back
 

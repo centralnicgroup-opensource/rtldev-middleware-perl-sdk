@@ -355,12 +355,6 @@ $validate = {
     's_entity'  => '54cd',
     's_command' => "COMMAND=QueryDomainOptions\nDOMAIN0=example1.com\nDOMAIN1=example2.com"
 };
-$enc = $cl->getPOSTData(
-    {   COMMAND => 'QueryDomainOptions',
-        DOMAIN  => [ 'example1.com', 'example2.com' ]
-    }
-);
-is_deeply( $enc, $validate, 'AC: Check getPOSTData result. #4' );
 
 # ~> enableDebugMode method test
 $cl->enableDebugMode();
@@ -601,6 +595,33 @@ $r = $cl->request( { COMMAND => 'GetUserIndex' } );
 $cls = blessed($r);
 is( $cls, 'WebService::Hexonet::Connector::Response', 'AC: Check if resetUserView method is working. #1' );
 is( $r->isSuccess(), 1, 'AC: Check if resetUserView method is working. #2' );
+
+# ~> request method test
+# check flattening
+$r   = $cl->request( { COMMAND => 'CheckDomains', DOMAIN => [ 'example.com', 'example.net' ] } );
+$cls = blessed($r);
+$cmd = $r->getCommand();
+is( $cls,                     'WebService::Hexonet::Connector::Response', 'AC: Check if command flattening is working. #1' );
+is( $r->isSuccess(),          1,                                          'AC: Check if command flattening is working. #2' );
+is( exists $cmd->{'DOMAIN'},  q{},                                        'AC: Check if command flattening is working. #3' );
+is( exists $cmd->{'DOMAIN0'}, 1,                                          'AC: Check if command flattening is working. #4' );
+is( exists $cmd->{'DOMAIN1'}, 1,                                          'AC: Check if command flattening is working. #5' );
+is( $cmd->{'DOMAIN0'},        'example.com',                              'AC: Check if command flattening is working. #7' );
+is( $cmd->{'DOMAIN1'},        'example.net',                              'AC: Check if command flattening is working. #8' );
+
+# check auto idn conversion
+$r   = $cl->request( { COMMAND => 'CheckDomains', DOMAIN => [ 'example.com', 'dömäin.example', 'example.net' ] } );
+$cls = blessed($r);
+$cmd = $r->getCommand();
+is( $cls,                     'WebService::Hexonet::Connector::Response', 'AC: Check if command flattening is working. #1' );
+is( $r->isSuccess(),          1,                                          'AC: Check if command flattening is working. #2' );
+is( exists $cmd->{'DOMAIN'},  q{},                                        'AC: Check if command flattening is working. #3' );
+is( exists $cmd->{'DOMAIN0'}, 1,                                          'AC: Check if command flattening is working. #4' );
+is( exists $cmd->{'DOMAIN1'}, 1,                                          'AC: Check if command flattening is working. #5' );
+is( exists $cmd->{'DOMAIN2'}, 1,                                          'AC: Check if command flattening is working. #6' );
+is( $cmd->{'DOMAIN0'},        'example.com',                              'AC: Check if command flattening is working. #7' );
+is( $cmd->{'DOMAIN1'},        'xn--dmin-moa0i.example',                   'AC: Check if command flattening is working. #8' );
+is( $cmd->{'DOMAIN2'},        'example.net',                              'AC: Check if command flattening is working. #9' );
 
 # ~> getUserAgent method test
 my $arch       = ( uname() )[ $UNAME_IDX_4 ];
