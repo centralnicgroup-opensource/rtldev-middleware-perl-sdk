@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/hexonet/perl-sdk/compare/v2.4.0...v2.5.0) (2020-05-11)
+
+
+### Features
+
+* **apiclient:** support the `High Performance Proxy Setup`. see README.md ([6a8d596](https://github.com/hexonet/perl-sdk/commit/6a8d5964c48e906d67f3bfec0adad76788f2d119))
+
 # [2.4.0](https://github.com/hexonet/perl-sdk/compare/v2.3.0...v2.4.0) (2020-05-11)
 
 
