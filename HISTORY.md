@@ -1,3 +1,10 @@
+## [2.8.1](https://github.com/hexonet/perl-sdk/compare/v2.8.0...v2.8.1) (2020-05-12)
+
+
+### Bug Fixes
+
+* **apiclient:** fixes POD part of getPOSTData method ([bc3e748](https://github.com/hexonet/perl-sdk/commit/bc3e748c53afd61b7d0f2841c6fd402f007759dc))
+
 # [2.8.0](https://github.com/hexonet/perl-sdk/compare/v2.7.1...v2.8.0) (2020-05-12)
 
 
