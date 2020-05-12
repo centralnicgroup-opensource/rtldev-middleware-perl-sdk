@@ -1,3 +1,10 @@
+## [2.6.1](https://github.com/hexonet/perl-sdk/compare/v2.6.0...v2.6.1) (2020-05-12)
+
+
+### Bug Fixes
+
+* **messaging:** return a specific error template in case code or description are missing ([f519750](https://github.com/hexonet/perl-sdk/commit/f5197508a73d25db15c11829275db984ce7a00a4))
+
 # [2.6.0](https://github.com/hexonet/perl-sdk/compare/v2.5.0...v2.6.0) (2020-05-12)
 
 
