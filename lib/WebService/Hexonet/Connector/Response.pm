@@ -15,8 +15,21 @@ use version 0.9917; our $VERSION = version->declare('v2.5.0');
 
 
 sub new {
-    my ( $class, $raw, $cmd ) = @_;
+    my ( $class, $raw, $cmd, $ph ) = @_;
     my $self = WebService::Hexonet::Connector::ResponseTemplate->new($raw);
+    # care about getting placeholder variables replaced
+    if ( $self->{raw} =~ /[{][[:upper:]_]+[}]/gsmx ) {
+        if ( !defined $ph ) {
+            $ph = {};
+        }
+        foreach my $key ( keys %{$ph} ) {
+            my $find    = "[{]${key}[}]";
+            my $replace = $ph->{$key};
+            $self->{raw} =~ s/$find/$replace/gsmx;
+        }
+        $self->{raw} =~ s/[{][[:upper:]_]+[}]//gsmx;
+        $self = WebService::Hexonet::Connector::ResponseTemplate->new( $self->{raw} );
+    }
     $self = bless $self, $class;
     $self->{command}     = $cmd;
     $self->{columnkeys}  = [];
@@ -372,12 +385,18 @@ To be used in the way:
     $command = {
 	    COMMAND => 'StatusAccount'
     };
+    # Optionally specify replacements for place holders in static response templates e.g. {CONNECTION_URL}
+    # see ResponseTemplateManager. This makes of course sense and is handled internally by APIClient automatically.
+    # When using Repsonse class in unit tests, you could leave this probably out.
+    $ph = {
+        CONNECTION_URL => 'https://api.ispapi.net/api/call.cgi'
+    };
 
     # specify the API plain-text response (this is just an example that won't fit to the command above)
     $plain = "[RESPONSE]\r\nCODE=200\r\nDESCRIPTION=Command completed successfully\r\nEOF\r\n";
 
     # create a new instance by
-    $r = WebService::Hexonet::Connector::Response->new($plain, $command);
+    $r = WebService::Hexonet::Connector::Response->new($plain, $command, $ph);
 
 =head1 DESCRIPTION
 
@@ -389,11 +408,12 @@ It provides different methods to access the data to fit your needs.
 
 =over
 
-=item C<new( $plain, $command )>
+=item C<new( $plain, $command, $ph )>
 
 Returns a new L<WebService::Hexonet::Connector::Response|WebService::Hexonet::Connector::Response> object.
 Specify the plain-text API response by $plain.
 Specify the used command by $command.
+Specify the hash covering all place holder variable's replacement values by $ph. Optional.
 
 =item C<addColumn( $key, @data )>
 

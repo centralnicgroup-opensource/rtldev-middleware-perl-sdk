@@ -283,6 +283,7 @@ sub request {
     $newcmd = $self->_autoIDNConvert($newcmd);
 
     # request command to API
+    my $cfg = { CONNECTION_URL => $self->{socketURL} };
     my $data = $self->getPOSTData($newcmd);
 
     my $ua = LWP::UserAgent->new();
@@ -299,7 +300,7 @@ sub request {
     }
 
     my $post = $self->getPOSTData($cmd);
-    my $r = $ua->post( $self->{socketURL}, $post );
+    my $r = $ua->post( $cfg->{CONNECTION_URL}, $post );
     if ( $r->is_success ) {
         $r = $r->decoded_content;
         if ( $self->{debugMode} ) {
@@ -316,7 +317,7 @@ sub request {
             print {*STDERR} Dumper($r);
         }
     }
-    return WebService::Hexonet::Connector::Response->new( $r, $newcmd );
+    return WebService::Hexonet::Connector::Response->new( $r, $newcmd, $cfg );
 }
 
 
