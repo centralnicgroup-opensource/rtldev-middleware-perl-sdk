@@ -170,8 +170,12 @@ is( $r->getDescription() =~ /[{][[:upper:]_]+[}]/gsmx, q{}, 'R: Check place hold
 is( $r->getDescription() =~ /123HXPHFOUND123/gsmx,     1,   'R: Check place holder var replacement. #3' );
 
 # getCommandPlain test
-$r = WebService::Hexonet::Connector::Response->new( q{}, { COMMAND => "QueryDomainOptions", DOMAIN0 => "example.com", DOMAIN1 => "example.net" } );
+$r = WebService::Hexonet::Connector::Response->new( q{}, { COMMAND => 'QueryDomainOptions', DOMAIN0 => 'example.com', DOMAIN1 => 'example.net' } );
 my $expected = "COMMAND = QueryDomainOptions\nDOMAIN0 = example.com\nDOMAIN1 = example.net\n";
+is( $r->getCommandPlain(), $expected, 'R: Check getCommandPlain result.' );
+
+$r = WebService::Hexonet::Connector::Response->new( q{}, { COMMAND => 'CheckAuthentication', SUBUSER => 'test.user', PASSWORD => 'test.passw0rd' } );
+$expected = "COMMAND = CheckAuthentication\nPASSWORD = ***\nSUBUSER = test.user\n";
 is( $r->getCommandPlain(), $expected, 'R: Check getCommandPlain result.' );
 
 # - T36 ~> getCurrentPageNumber method test
@@ -347,7 +351,7 @@ my $enc = $cl->getPOSTData( { COMMAND => 'ModifyDomain', AUTH => 'gwrgwqg%&\\44t
 is_deeply( $enc, $validate, 'AC: Check getPOSTData result. #1' );
 $validate = {
     's_entity'  => '54cd',
-    's_command' => q{}
+    's_command' => 'gregergege'
 };
 $enc = $cl->getPOSTData('gregergege');
 is_deeply( $enc, $validate, 'AC: Check getPOSTDate result. #2' );
@@ -363,10 +367,23 @@ $enc = $cl->getPOSTData(
 );
 is_deeply( $enc, $validate, 'AC: Check getPOSTData result. #3' );
 
+# test secured return value of method getPOSTData
 $validate = {
     's_entity'  => '54cd',
-    's_command' => "COMMAND=QueryDomainOptions\nDOMAIN0=example1.com\nDOMAIN1=example2.com"
+    's_login'   => 'test.user',
+    's_pw'      => '***',
+    's_command' => "COMMAND=CheckAuthentication\nPASSWORD=***\nSUBUSER=test.user"
 };
+$cl->setCredentials( 'test.user', 'test.passw0rd' );
+$enc = $cl->getPOSTData(
+    {   COMMAND  => 'CheckAuthentication',
+        SUBUSER  => 'test.user',
+        PASSWORD => 'test.passw0rd'
+    },
+    1
+);
+$cl->setCredentials( '', '' );
+is_deeply( $enc, $validate, 'AC: Check secured getPOSTData result.' );
 
 # ~> enableDebugMode method test
 $cl->enableDebugMode();

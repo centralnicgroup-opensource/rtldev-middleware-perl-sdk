@@ -54,17 +54,25 @@ sub disableDebugMode {
 
 
 sub getPOSTData {
-    my ( $self, $cmd ) = @_;
+    my ( $self, $cmd, $secured ) = @_;
     my $post = $self->{socketConfig}->getPOSTData();
-    my $tmp  = q{};
+    if ( defined($secured) && $secured == 1 ) {
+        $post->{s_pw} = '***';
+    }
+    my $tmp = q{};
     if ( ( ref $cmd ) eq 'HASH' ) {
         foreach my $key ( sort keys %{$cmd} ) {
             if ( defined $cmd->{$key} ) {
                 my $val = $cmd->{$key};
-                $val =~ s/[\r\n]//gmsx;
+                $val =~ s/[\r\n]//msx;
                 $tmp .= "${key}=${val}\n";
             }
         }
+    } else {
+        $tmp = $cmd;
+    }
+    if ( defined($secured) && $secured == 1 ) {
+        $tmp =~ s/PASSWORD\=[^\n]+/PASSWORD=***/gmsx;
     }
     $tmp =~ s/\n$//msx;
     if ( utf8::is_utf8($tmp) ) {
@@ -283,8 +291,9 @@ sub request {
     $newcmd = $self->_autoIDNConvert($newcmd);
 
     # request command to API
-    my $cfg = { CONNECTION_URL => $self->{socketURL} };
-    my $data = $self->getPOSTData($newcmd);
+    my $cfg     = { CONNECTION_URL => $self->{socketURL} };
+    my $post    = $self->getPOSTData($newcmd);
+    my $secured = $self->getPOSTData( $newcmd, 1 );
 
     my $ua = LWP::UserAgent->new();
     $ua->agent( $self->getUserAgent() );
@@ -299,21 +308,20 @@ sub request {
         $ua->proxy( [ 'http', 'https' ], $proxy );
     }
 
-    my $post = $self->getPOSTData($cmd);
     my $r = $ua->post( $cfg->{CONNECTION_URL}, $post );
     if ( $r->is_success ) {
         $r = $r->decoded_content;
         if ( $self->{debugMode} ) {
-            print {*STDOUT} Dumper($cmd);
-            print {*STDOUT} Dumper($post);
+            print {*STDOUT} Dumper($newcmd);
+            print {*STDOUT} Dumper($secured);
             print {*STDOUT} Dumper($r);
         }
     } else {
         my $err = $r->status_line;
         $r = $rtm->getTemplate('httperror')->getPlain();
         if ( $self->{debugMode} ) {
-            print {*STDERR} Dumper($cmd);
-            print {*STDERR} Dumper($post);
+            print {*STDERR} Dumper($newcmd);
+            print {*STDERR} Dumper($secured);
             print {*STDERR} Dumper($r);
         }
     }

@@ -31,7 +31,11 @@ sub new {
         $self = WebService::Hexonet::Connector::ResponseTemplate->new( $self->{raw} );
     }
     $self = bless $self, $class;
-    $self->{command}     = $cmd;
+    $self->{command} = $cmd;
+    if ( defined $self->{command}->{PASSWORD} ) {
+        # make password no longer accessible
+        $self->{command}->{PASSWORD} = '***';
+    }
     $self->{columnkeys}  = [];
     $self->{columns}     = [];
     $self->{records}     = [];
