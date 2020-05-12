@@ -1,3 +1,10 @@
+## [2.7.1](https://github.com/hexonet/perl-sdk/compare/v2.7.0...v2.7.1) (2020-05-12)
+
+
+### Bug Fixes
+
+* **security:** replace passwords whereever they could be used for output ([b055db5](https://github.com/hexonet/perl-sdk/commit/b055db543f3f7cce7c19ca9dec852a46f301d55f))
+
 # [2.7.0](https://github.com/hexonet/perl-sdk/compare/v2.6.1...v2.7.0) (2020-05-12)
 
 
