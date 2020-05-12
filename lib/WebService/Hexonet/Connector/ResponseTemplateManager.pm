@@ -21,6 +21,7 @@ sub getInstance {
         $instance->addTemplate( 'error',        $instance->generateTemplate( '421', 'Command failed due to server error. Client should try again' ) );
         $instance->addTemplate( 'expired',      $instance->generateTemplate( '530', 'SESSION NOT FOUND' ) );
         $instance->addTemplate( 'httperror',    $instance->generateTemplate( '421', 'Command failed due to HTTP communication error' ) );
+        $instance->addTemplate( 'invalid',      $instance->generateTemplate( '423', 'Invalid API response. Contact Support' ) );
         $instance->addTemplate( 'unauthorized', $instance->generateTemplate( '530', 'Unauthorized' ) );
     }
     return $instance;

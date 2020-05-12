@@ -4,8 +4,11 @@ use 5.026_000;
 use strict;
 use warnings;
 use WebService::Hexonet::Connector::ResponseParser;
+use WebService::Hexonet::Connector::ResponseTemplateManager;
 
 use version 0.9917; our $VERSION = version->declare('v2.6.0');
+
+my $rtm = WebService::Hexonet::Connector::ResponseTemplateManager->getInstance();
 
 
 sub new {
@@ -16,6 +19,10 @@ sub new {
     }
     $self->{raw}  = $raw;
     $self->{hash} = WebService::Hexonet::Connector::ResponseParser::parse($raw);
+    if ( !defined $self->{hash}->{'DESCRIPTION'} || !defined $self->{hash}->{'CODE'} ) {
+        $self->{raw}  = $rtm->getTemplate('invalid')->getPlain();
+        $self->{hash} = WebService::Hexonet::Connector::ResponseParser::parse( $self->{raw} );
+    }
     return bless $self, $class;
 }
 

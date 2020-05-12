@@ -32,9 +32,6 @@ sub parse {
             }
         }
     }
-    if ( !defined $hash{DESCRIPTION} ) {
-        $hash{DESCRIPTION} = q{};
-    }
     return \%hash;
 }
 

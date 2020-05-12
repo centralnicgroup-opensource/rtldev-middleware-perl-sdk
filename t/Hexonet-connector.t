@@ -59,21 +59,15 @@ is( $cls, 'WebService::Hexonet::Connector::ResponseTemplateManager', 'RTM: Insta
 $rtm->addTemplate( 'OK', $rtm->generateTemplate( '200', 'Command completed successfully' ) );
 $rtm->addTemplate( 'listP0', "[RESPONSE]\r\nPROPERTY[TOTAL][0]=2701\r\nPROPERTY[FIRST][0]=0\r\nPROPERTY[DOMAIN][0]=0-60motorcycletimes.com\r\nPROPERTY[DOMAIN][1]=0-be-s01-0.com\r\nPROPERTY[COUNT][0]=2\r\nPROPERTY[LAST][0]=1\r\nPROPERTY[LIMIT][0]=2\r\nDESCRIPTION=Command completed successfully\r\nCODE=200\r\nQUEUETIME=0\r\nRUNTIME=0.023\r\nEOF\r\n" );
 
-# T11 ~> parse method
-my $plain = $rtm->generateTemplate( '421', q{} );
-$plain =~ s/\r\nDESCRIPTION=//msx;
-my $h = WebService::Hexonet::Connector::ResponseParser::parse($plain);
-is( length $h->{DESCRIPTION}, 0, 'RP: Description Property length check' );
-
 # T12 ~> serialize method #1
 my $r = $rtm->getTemplate('OK');
-$h = $r->getHash();
+my $h = $r->getHash();
 $h->{PROPERTY} = {
     DOMAIN => [ 'mydomain1.com', 'mydomain2.com', 'mydomain3.com' ],
     RATING => [ 0,               1,               2 ],
     SUM    => [ 2 ],
 };
-$plain = WebService::Hexonet::Connector::ResponseParser::serialize($h);
+my $plain = WebService::Hexonet::Connector::ResponseParser::serialize($h);
 is( $plain, "[RESPONSE]\r\nPROPERTY[DOMAIN][0]=mydomain1.com\r\nPROPERTY[DOMAIN][1]=mydomain2.com\r\nPROPERTY[DOMAIN][2]=mydomain3.com\r\nPROPERTY[RATING][0]=0\r\nPROPERTY[RATING][1]=1\r\nPROPERTY[RATING][2]=2\r\nPROPERTY[SUM][0]=2\r\nCODE=200\r\nDESCRIPTION=Command completed successfully\r\nEOF\r\n", 'RP: Serialize result check #1' );
 
 # T13 ~> serialize method #2
@@ -104,6 +98,11 @@ my $d  = $sc->getPOSTData();
 is( %{$d}, 0, 'SocketConfig: Check initial POST data' );
 
 # ---- Module "ResponseTemplate" ---- #
+# invalid API response test
+$tpl = WebService::Hexonet::Connector::ResponseTemplate->new("[RESPONSE]\r\ncode=200\r\nqueuetime=0\r\nEOF\r\n");
+is( $tpl->getCode(), $TMP_ERR_423, 'ResponseTemplate: Check response code of template `invalid`' );
+is( $tpl->getDescription(), 'Invalid API response. Contact Support', 'ResponseTemplate: Check response description of template `invalid`' );
+
 # - T17 ~> constructor test
 $tpl = WebService::Hexonet::Connector::ResponseTemplate->new(q{});
 is( $tpl->getCode(), $TMP_ERR_423, 'ResponseTemplate: Check response code of template `empty` #1' );
