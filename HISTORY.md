@@ -1,3 +1,10 @@
+# [2.8.0](https://github.com/hexonet/perl-sdk/compare/v2.7.1...v2.8.0) (2020-05-12)
+
+
+### Features
+
+* **apiclient:** allow to specify additional libraries via setUserAgent ([26cb7e4](https://github.com/hexonet/perl-sdk/commit/26cb7e439e22709f042d4a2983857f24f6c2f8ea))
+
 ## [2.7.1](https://github.com/hexonet/perl-sdk/compare/v2.7.0...v2.7.1) (2020-05-12)
 
 
