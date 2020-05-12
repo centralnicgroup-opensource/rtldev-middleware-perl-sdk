@@ -169,6 +169,11 @@ $r = WebService::Hexonet::Connector::Response->new( q{}, { COMMAND => 'StatusAcc
 is( $r->getDescription() =~ /[{][[:upper:]_]+[}]/gsmx, q{}, 'R: Check place holder var replacement. #2' );
 is( $r->getDescription() =~ /123HXPHFOUND123/gsmx,     1,   'R: Check place holder var replacement. #3' );
 
+# getCommandPlain test
+$r = WebService::Hexonet::Connector::Response->new( q{}, { COMMAND => "QueryDomainOptions", DOMAIN0 => "example.com", DOMAIN1 => "example.net" } );
+my $expected = "COMMAND = QueryDomainOptions\nDOMAIN0 = example.com\nDOMAIN1 = example.net\n";
+is( $r->getCommandPlain(), $expected, 'R: Check getCommandPlain result.' );
+
 # - T36 ~> getCurrentPageNumber method test
 $tpl = $rtm->getTemplate('listP0');
 $r   = WebService::Hexonet::Connector::Response->new( $tpl->getPlain() );

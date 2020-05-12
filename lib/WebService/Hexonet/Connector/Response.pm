@@ -119,6 +119,17 @@ sub getCommand {
 }
 
 
+sub getCommandPlain {
+    my $self = shift;
+    my $str  = q{};
+    foreach my $key ( sort keys %{ $self->{command} } ) {
+        my $val = $self->{command}->{$key};
+        $str .= "${key} = ${val}\n";
+    }
+    return $str;
+}
+
+
 sub getCurrentPageNumber {
     my $self  = shift;
     my $first = $self->getFirstRecordIndex();
@@ -450,6 +461,12 @@ Returns an array.
 Get the command used within the request that resulted in this api response.
 This is in general the command you provided in the constructor.
 Returns a hash.
+
+=item C<getCommandPlain>
+
+Get the command in plain text that you used within the API request of this response.
+This is in general the command you provided in the constructor.
+Returns a string.
 
 =item C<getCurrentPageNumber>
 
