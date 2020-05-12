@@ -4,6 +4,7 @@ use 5.026_000;
 use strict;
 use warnings;
 use utf8;
+use WebService::Hexonet::Connector::Logger;
 use WebService::Hexonet::Connector::Response;
 use WebService::Hexonet::Connector::ResponseTemplateManager;
 use WebService::Hexonet::Connector::SocketConfig;
@@ -31,10 +32,28 @@ sub new {
         debugMode    => 0,
         socketConfig => WebService::Hexonet::Connector::SocketConfig->new(),
         ua           => q{},
-        curlopts     => {}
+        curlopts     => {},
+        logger       => WebService::Hexonet::Connector::Logger->new()
     }, $class;
     $self->setURL($ISPAPI_CONNECTION_URL);
     $self->useLIVESystem();
+    $self->setDefaultLogger();
+    return $self;
+}
+
+
+sub setDefaultLogger {
+    my $self = shift;
+    $self->{logger} = WebService::Hexonet::Connector::Logger->new();
+    return $self;
+}
+
+
+sub setCustomLogger {
+    my ( $self, $logger ) = shift;
+    if ( defined($logger) && $logger->can('log') ) {
+        $self->{logger} = $logger;
+    }
     return $self;
 }
 
@@ -314,22 +333,17 @@ sub request {
 
     my $r = $ua->post( $cfg->{CONNECTION_URL}, $post );
     if ( $r->is_success ) {
-        $r = $r->decoded_content;
+        $r = WebService::Hexonet::Connector::Response->new( $r->decoded_content, $newcmd, $cfg );
         if ( $self->{debugMode} ) {
-            print {*STDOUT} Dumper($newcmd);
-            print {*STDOUT} Dumper($secured);
-            print {*STDOUT} Dumper($r);
+            $self->{logger}->log( $secured, $r );
         }
     } else {
-        my $err = $r->status_line;
-        $r = $rtm->getTemplate('httperror')->getPlain();
+        $r = WebService::Hexonet::Connector::Response->new( $rtm->getTemplate('httperror')->getPlain(), $newcmd, $cfg );
         if ( $self->{debugMode} ) {
-            print {*STDERR} Dumper($newcmd);
-            print {*STDERR} Dumper($secured);
-            print {*STDERR} Dumper($r);
+            $self->{logger}->log( $secured, $r, $r->status_line );
         }
     }
-    return WebService::Hexonet::Connector::Response->new( $r, $newcmd, $cfg );
+    return $r;
 }
 
 

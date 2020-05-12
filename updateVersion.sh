@@ -12,6 +12,7 @@ sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g
 sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" lib/WebService/Hexonet/Connector.pm
 sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" lib/WebService/Hexonet/Connector/APIClient.pm
 sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" lib/WebService/Hexonet/Connector/Column.pm
+sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" lib/WebService/Hexonet/Connector/Logger.pm
 sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" lib/WebService/Hexonet/Connector/Record.pm
 sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" lib/WebService/Hexonet/Connector/Response.pm
 sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" lib/WebService/Hexonet/Connector/ResponseParser.pm
