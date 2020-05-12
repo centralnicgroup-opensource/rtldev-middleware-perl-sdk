@@ -685,6 +685,13 @@ $ua         = $cl->getUserAgent();
 is( $cls, 'WebService::Hexonet::Connector::APIClient', 'AC: Check if setUserAgent method is working. #1' );
 is( $ua, $uaexpected, 'AC: Check if setUserAgent method is working. #2' );
 
+$uaexpected = "WHMCS ($os; $arch; rv:7.7.0) reg/2.6.2 ssl/7.2.2 dc/8.2.2 perl-sdk/$rv perl/$Config{version}";
+my $mods = [ 'reg/2.6.2', 'ssl/7.2.2', 'dc/8.2.2' ];
+$cls = blessed( $cl->setUserAgent( 'WHMCS', '7.7.0', $mods ) );
+$ua = $cl->getUserAgent();
+is( $cls, 'WebService::Hexonet::Connector::APIClient', 'AC: Check if setUserAgent method is working. #3' );
+is( $ua, $uaexpected, 'AC: Check if setUserAgent method is working. #4' );
+
 done_testing();
 
 1;

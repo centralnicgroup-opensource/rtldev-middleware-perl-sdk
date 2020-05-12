@@ -112,11 +112,15 @@ sub getUserAgent {
 
 
 sub setUserAgent {
-    my ( $self, $str, $rv ) = @_;
+    my ( $self, $str, $rv, $modules ) = @_;
     my $arch = (POSIX::uname)[ $IDX4 ];
     my $os   = (POSIX::uname)[ 0 ];
     my $rv2  = $self->getVersion();
-    $self->{ua} = "$str ($os; $arch; rv:$rv) perl-sdk/$rv2 perl/$Config{version}";
+    my $mods = q{};
+    if ( defined $modules && length($modules) > 0 ) {
+        $mods = q{ } . join q{ }, @{$modules};
+    }
+    $self->{ua} = "$str ($os; $arch; rv:$rv)$mods perl-sdk/$rv2 perl/$Config{version}";
     return $self;
 }
 
@@ -673,10 +677,11 @@ specified account specified by $user.
 The specified password $pw belongs to the role user, not to the account.
 Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
 
-=item C<setUserAgent( $str, $rv )>
+=item C<setUserAgent( $str, $rv, $modules )>
 
 Set a custom user agent header. This is useful for tools that use our SDK.
 Specify the client label in $str and the revision number in $rv.
+Specify further libraries in use by array $modules. This is optional. Entry Format: "modulename/version".
 Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining .
 
 =item C<login( $otpcode )>
