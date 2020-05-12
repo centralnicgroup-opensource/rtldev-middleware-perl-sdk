@@ -1,3 +1,10 @@
+# [2.9.0](https://github.com/hexonet/perl-sdk/compare/v2.8.1...v2.9.0) (2020-05-12)
+
+
+### Features
+
+* **logger:** possibility to override debug mode's default logging mechanism. See README.md ([038cc0c](https://github.com/hexonet/perl-sdk/commit/038cc0cd8657e0b3e1e30eb6655ff6f61ad68a41))
+
 ## [2.8.1](https://github.com/hexonet/perl-sdk/compare/v2.8.0...v2.8.1) (2020-05-12)
 
 
