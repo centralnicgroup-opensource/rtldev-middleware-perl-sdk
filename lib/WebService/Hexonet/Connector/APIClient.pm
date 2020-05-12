@@ -588,10 +588,11 @@ Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexo
 Deactivates the debug mode. Debug mode is inactive by default.
 Returns the current L<WebService::Hexonet::Connector::APIClient|WebService::Hexonet::Connector::APIClient> instance in use for method chaining.
 
-=item C<getPOSTData( $command )>
+=item C<getPOSTData( $command, $secured )>
 
 Get POST data fields ready to use for HTTP communication based on LWP::UserAgent.
 Specify the API command for the request by $command.
+Specify if password data has to be replaced with asterix to secure it for output purposes by $secured. Optional.
 This method is internally used by the request method.
 Returns a hash.
 
