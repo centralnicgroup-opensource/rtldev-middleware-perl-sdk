@@ -1,3 +1,10 @@
+# [2.7.0](https://github.com/hexonet/perl-sdk/compare/v2.6.1...v2.7.0) (2020-05-12)
+
+
+### Features
+
+* **response:** added getCommandPlain (getting used command in plain text) ([aeed347](https://github.com/hexonet/perl-sdk/commit/aeed347c901444fc1edbda7d9fcf34da4c3f4f00))
+
 ## [2.6.1](https://github.com/hexonet/perl-sdk/compare/v2.6.0...v2.6.1) (2020-05-12)
 
 
