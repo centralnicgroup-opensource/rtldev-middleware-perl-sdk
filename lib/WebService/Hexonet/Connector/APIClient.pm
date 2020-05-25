@@ -468,6 +468,9 @@ sub _autoIDNConvert {
             push @idxs,      $key;
         }
     }
+    if ( scalar @toconvert == 0 ) {
+        return $cmd;
+    }
     my $r = $self->request(
         {   COMMAND => 'ConvertIDN',
             DOMAIN  => \@toconvert
