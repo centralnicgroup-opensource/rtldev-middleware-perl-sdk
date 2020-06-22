@@ -382,7 +382,7 @@ $enc = $cl->getPOSTData(
     },
     1
 );
-$cl->setCredentials( '', '' );
+$cl->setCredentials( q{}, q{} );
 is_deeply( $enc, $validate, 'AC: Check secured getPOSTData result.' );
 
 # ~> enableDebugMode method test
