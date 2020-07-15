@@ -17,6 +17,9 @@ addons:
       - perl-doc
       - ctags
       - perltidy
+before_install:
+  - sudo cpanm --uninstall App::cpanminus
+  - curl -L http://cpanmin.us | perl - App::cpanminus
 install:
   - cpanm --quiet --notest Perl::Critic@1.138 CPAN::Uploader@0.103013 Devel::Cover@1.33
   - cpanm --quiet --installdeps --notest .
