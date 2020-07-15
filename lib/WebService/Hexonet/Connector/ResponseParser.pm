@@ -1,6 +1,6 @@
 package WebService::Hexonet::Connector::ResponseParser;
 
-use 5.026_000;
+use 5.030;
 use strict;
 use warnings;
 

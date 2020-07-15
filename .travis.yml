@@ -7,32 +7,33 @@ notifications:
     on_success: never
     on_failure: always
 perl:
-  - "5.26"
-  - "5.28"
+  #see: http://www.cpan.org/src/
   - "5.30"
-# Trigger a push build on master and dependabot branches + PRs build on every branches
-# Avoid double build on PRs (See https://github.com/travis-ci/travis-ci/issues/1147)
-branches:
-  only:
-    - master
-    - /^dependabot.*$/
-before_install:
-  - export TRAVIS_NODE_VERSION="lts/*"
+  #- "5.32" n/a yet
+addons:
+  apt:
+    update: true
+    packages:
+      - perl-doc
+      - ctags
+      - perltidy
 install:
-  - rm -rf ~/.nvm
-  - git clone https://github.com/creationix/nvm.git ~/.nvm
-  - (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`)
-  - source ~/.nvm/nvm.sh
-  - nvm install $TRAVIS_NODE_VERSION
-  - sudo apt-get install perl-doc ctags perltidy
   - cpanm --quiet --notest Perl::Critic@1.138 CPAN::Uploader@0.103013 Devel::Cover@1.33
-  - cpanm --quiet --installdeps --notest .
+  - cpanm -v --installdeps --notest .
 script:
   - ./scripts/coverage.sh
 jobs:
   include:
     - stage: release
       node_js: lts/*
+      before_install:
+        - export TRAVIS_NODE_VERSION="lts/*"
+      install:
+        - rm -rf ~/.nvm
+        - git clone https://github.com/creationix/nvm.git ~/.nvm
+        - (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`)
+        - source ~/.nvm/nvm.sh
+        - nvm install $TRAVIS_NODE_VERSION
       script:
         - npm prune
         - travis_retry npm i
