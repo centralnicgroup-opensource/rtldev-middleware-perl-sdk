@@ -1,6 +1,6 @@
 package WebService::Hexonet::Connector::Response;
 
-use 5.026_000;
+use 5.032;
 use strict;
 use warnings;
 use WebService::Hexonet::Connector::Column;
@@ -74,7 +74,7 @@ sub new {
 
 sub addColumn {
     my ( $self, $key, @data ) = @_;
-    push @{ $self->{columns} }, WebService::Hexonet::Connector::Column->new( $key, @data );
+    push @{ $self->{columns} },    WebService::Hexonet::Connector::Column->new( $key, @data );
     push @{ $self->{columnkeys} }, $key;
     return $self;
 }

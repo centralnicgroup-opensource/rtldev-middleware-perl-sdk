@@ -1,6 +1,6 @@
 package WebService::Hexonet::Connector::ResponseTemplate;
 
-use 5.026_000;
+use 5.032;
 use strict;
 use warnings;
 use WebService::Hexonet::Connector::ResponseParser;
@@ -70,21 +70,21 @@ sub getRuntime {
 
 
 sub isError {
-    my $self = shift;
+    my $self  = shift;
     my $first = substr $self->{hash}->{CODE}, 0, 1;
     return ( $first eq '5' );
 }
 
 
 sub isSuccess {
-    my $self = shift;
+    my $self  = shift;
     my $first = substr $self->{hash}->{CODE}, 0, 1;
     return ( $first eq '2' );
 }
 
 
 sub isTmpError {
-    my $self = shift;
+    my $self  = shift;
     my $first = substr $self->{hash}->{CODE}, 0, 1;
     return ( $first eq '4' );
 }

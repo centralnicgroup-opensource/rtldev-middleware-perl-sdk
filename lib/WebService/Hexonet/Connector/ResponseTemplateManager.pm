@@ -1,6 +1,6 @@
 package WebService::Hexonet::Connector::ResponseTemplateManager;
 
-use 5.026_000;
+use 5.032;
 use strict;
 use warnings;
 use WebService::Hexonet::Connector::ResponseTemplate;

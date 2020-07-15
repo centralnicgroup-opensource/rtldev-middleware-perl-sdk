@@ -1,6 +1,6 @@
 package WebService::Hexonet::Connector::APIClient;
 
-use 5.026_000;
+use 5.032;
 use strict;
 use warnings;
 use utf8;
@@ -298,7 +298,7 @@ sub loginExtended {
 
 sub logout {
     my $self = shift;
-    my $rr = $self->request( { COMMAND => 'EndSession' } );
+    my $rr   = $self->request( { COMMAND => 'EndSession' } );
     if ( $rr->isSuccess() ) {
         $self->setSession(q{});
     }
@@ -505,7 +505,7 @@ WebService::Hexonet::Connector::APIClient - Library to communicate with the insa
 This module helps to integrate the communication with the HEXONET Backend System.
 To be used in the way:
 
-    use 5.014_004;
+    use 5.032;
     use strict;
     use warnings;
     use WebService::Hexonet::Connector;
