@@ -1,5 +1,5 @@
 package WebService::Hexonet::Connector::Test;
-use 5.032;
+use 5.030;
 use strict;
 use warnings;
 

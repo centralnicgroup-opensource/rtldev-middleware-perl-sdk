@@ -1,6 +1,6 @@
 package WebService::Hexonet::Connector::APIClient;
 
-use 5.032;
+use 5.030;
 use strict;
 use warnings;
 use utf8;
@@ -505,7 +505,7 @@ WebService::Hexonet::Connector::APIClient - Library to communicate with the insa
 This module helps to integrate the communication with the HEXONET Backend System.
 To be used in the way:
 
-    use 5.032;
+    use 5.030;
     use strict;
     use warnings;
     use WebService::Hexonet::Connector;

@@ -1,6 +1,6 @@
 package WebService::Hexonet::Connector::SocketConfig;
 
-use 5.032;
+use 5.030;
 use strict;
 use warnings;
 use utf8;

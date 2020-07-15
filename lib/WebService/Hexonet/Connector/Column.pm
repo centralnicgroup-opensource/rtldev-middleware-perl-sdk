@@ -1,6 +1,6 @@
 package WebService::Hexonet::Connector::Column;
 
-use 5.032;
+use 5.030;
 use strict;
 use warnings;
 

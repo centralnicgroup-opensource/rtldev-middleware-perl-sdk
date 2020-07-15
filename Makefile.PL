@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-use 5.032;
+use 5.030;
 use strict;
 use warnings;
 use ExtUtils::MakeMaker;

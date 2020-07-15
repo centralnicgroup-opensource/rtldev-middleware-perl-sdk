@@ -9,7 +9,7 @@ notifications:
 perl:
   #see: http://www.cpan.org/src/
   - "5.30"
-  - "5.32"
+  #- "5.32" n/a yet
 addons:
   apt:
     update: true
@@ -18,9 +18,8 @@ addons:
       - ctags
       - perltidy
 install:
-  - perlbrew install-cpanm
   - cpanm --quiet --notest Perl::Critic@1.138 CPAN::Uploader@0.103013 Devel::Cover@1.33
-  - cpanm --quiet --installdeps --notest .
+  - cpanm -v --installdeps --notest .
 script:
   - ./scripts/coverage.sh
 jobs:
