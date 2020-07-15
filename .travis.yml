@@ -18,7 +18,7 @@ addons:
       - ctags
       - perltidy
 install:
-  - cpanm --self-upgrade -f
+  - perlbrew install-cpanm
   - cpanm --quiet --notest Perl::Critic@1.138 CPAN::Uploader@0.103013 Devel::Cover@1.33
   - cpanm --quiet --installdeps --notest .
 script:
