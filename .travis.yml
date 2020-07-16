@@ -17,25 +17,22 @@ addons:
       - perl-doc
       - ctags
       - perltidy
+before_install:
+  - export TRAVIS_NODE_VERSION="lts/*"
 install:
-  - cpanm --quiet --notest Perl::Critic@1.138 Devel::Cover@1.36
+  - cpanm --quiet --notest Perl::Critic@1.138 CPAN::Uploader@0.103014 Devel::Cover@1.36
   - cpanm -v --installdeps --notest .
+  - rm -rf ~/.nvm
+  - git clone https://github.com/creationix/nvm.git ~/.nvm
+  - (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`)
+  - source ~/.nvm/nvm.sh
+  - nvm install $TRAVIS_NODE_VERSION
 script:
   - ./scripts/coverage.sh && ./scripts/perltidy.sh
 jobs:
   include:
     - stage: release
       node_js: lts/*
-      before_install:
-        - export TRAVIS_NODE_VERSION="lts/*"
-      install:
-        - cpanm --quiet --notest CPAN::Uploader@0.103014 Devel::Cover@1.36
-        - cpanm -v --installdeps --notest .
-        - rm -rf ~/.nvm
-        - git clone https://github.com/creationix/nvm.git ~/.nvm
-        - (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`)
-        - source ~/.nvm/nvm.sh
-        - nvm install $TRAVIS_NODE_VERSION
       script:
         - npm prune
         - travis_retry npm i
