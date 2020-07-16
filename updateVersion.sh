@@ -7,16 +7,5 @@
 # version format: X.Y.Z
 newversion="$1";
 
-sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" Makefile.PL
-sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" lib/WebService/Hexonet.pm
-sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" lib/WebService/Hexonet/Connector.pm
-sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" lib/WebService/Hexonet/Connector/APIClient.pm
-sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" lib/WebService/Hexonet/Connector/Column.pm
-sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" lib/WebService/Hexonet/Connector/Logger.pm
-sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" lib/WebService/Hexonet/Connector/Record.pm
-sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" lib/WebService/Hexonet/Connector/Response.pm
-sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" lib/WebService/Hexonet/Connector/ResponseParser.pm
-sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" lib/WebService/Hexonet/Connector/ResponseTemplate.pm
-sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" lib/WebService/Hexonet/Connector/ResponseTemplateManager.pm
-sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" lib/WebService/Hexonet/Connector/SocketConfig.pm
-sed -i "s/declare('v[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+')/declare('v${newversion}')/g" t/Hexonet-connector.t
+printf -v sed_script "s/declare('v[0-9]\+\.[0-9]\+\.[0-9]\+')/declare('v%s')/g" "${newversion}"
+sed -i -e "${sed_script}" Makefile.PL t/Hexonet-connector.t lib/WebService/Hexonet.pm lib/WebService/Hexonet/Connector.pm lib/WebService/Hexonet/*.pm
