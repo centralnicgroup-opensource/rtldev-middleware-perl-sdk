@@ -657,7 +657,7 @@ is( $cmd->{'DOMAIN0'},        'example.com',                              'AC: C
 is( $cmd->{'DOMAIN1'},        'example.net',                              'AC: Check if command flattening is working. #8' );
 
 # check auto idn conversion
-$r   = $cl->request( { COMMAND => 'CheckDomains', DOMAIN => [ 'example.com', 'd�m�in.example', 'example.net' ] } );
+$r   = $cl->request( { COMMAND => 'CheckDomains', DOMAIN => [ 'example.com', 'dömäin.example', 'example.net' ] } );
 $cls = blessed($r);
 $cmd = $r->getCommand();
 is( $cls,                     'WebService::Hexonet::Connector::Response', 'AC: Check if command flattening is working. #1' );
