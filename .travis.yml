@@ -27,6 +27,8 @@ install:
   - (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`)
   - source ~/.nvm/nvm.sh
   - nvm install $TRAVIS_NODE_VERSION
+  - npm prune
+  - travis_retry npm i
 script:
   - ./scripts/coverage.sh && ./scripts/perltidy.sh
 jobs:
@@ -34,6 +36,4 @@ jobs:
     - stage: release
       node_js: lts/*
       script:
-        - npm prune
-        - travis_retry npm i
         - npx semantic-release
