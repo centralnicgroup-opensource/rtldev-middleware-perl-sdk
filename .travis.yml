@@ -17,8 +17,6 @@ addons:
       - perl-doc
       - ctags
       - perltidy
-before_install:
-  - export TRAVIS_NODE_VERSION="lts/*"
 install:
   - cpanm --quiet --notest Perl::Critic@1.138 CPAN::Uploader@0.103014 Devel::Cover@1.36
   - cpanm -v --installdeps --notest .
