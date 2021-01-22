@@ -66,15 +66,10 @@ jobs:
           sudo: false
           args: "-v --installdeps --notest ."
       - name: Setup NodeJS LTS
-        run: |
-          rm -rf ~/.nvm
-          git clone https://github.com/creationix/nvm.git ~/.nvm
-          (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`)
-          source ~/.nvm/nvm.sh
-          nvm install lts/*
-          nvm use lts/*
+        run: apt install nodejs npm
       - name: Install dependencies
         run: |
+          node -v
           npm prune && npm i
       - name: Release
         env:
