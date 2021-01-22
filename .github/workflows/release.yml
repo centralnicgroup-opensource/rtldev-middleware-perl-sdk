@@ -66,7 +66,9 @@ jobs:
           sudo: false
           args: "-v --installdeps --notest ."
       - name: Setup NodeJS LTS
-        run: apt install nodejs npm
+        run: |
+          curl -sL https://deb.nodesource.com/setup_14.x | bash -
+          apt-get install -y nodejs
       - name: Install dependencies
         run: |
           node -v
