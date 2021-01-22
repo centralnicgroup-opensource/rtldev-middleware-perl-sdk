@@ -4,10 +4,17 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: "perl v5.30"
+    name: "perl v${{ matrix.perl-version }}"
+
+    strategy:
+      fail-fast: false
+      matrix:
+        perl-version:
+          - "5.32"
+          #- "5.30"
 
     container:
-      image: perldocker/perl-tester:5.30
+      image: perldocker/perl-tester:${{ matrix.perl-version }}
 
     steps:
       - uses: actions/checkout@v2
@@ -35,6 +42,9 @@ jobs:
       - test
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
 
+    container:
+      image: perldocker/perl-tester:5.32
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -43,9 +53,6 @@ jobs:
           persist-credentials: false
       - run: |
           sudo apt install perl-doc ctags perltidy
-      - uses: shogo82148/actions-setup-perl@v1
-        with:
-          perl-version: "5.30"
       - name: install perl dependencies
         uses: perl-actions/install-with-cpanm@v1
         with:
@@ -59,10 +66,15 @@ jobs:
           sudo: false
           args: "-v --installdeps --notest ."
       - name: Setup NodeJS LTS
-        uses: actions/setup-node@v2
+        run: |
+          rm -rf ~/.nvm
+          git clone https://github.com/creationix/nvm.git ~/.nvm
+          (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`)
+          source ~/.nvm/nvm.sh
+          nvm install lts/*
+          nvm use lts/*
       - name: Install dependencies
         run: |
-          perl -V
           npm prune && npm i
       - name: Release
         env:
