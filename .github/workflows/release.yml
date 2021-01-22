@@ -52,6 +52,12 @@ jobs:
           cpanfile: "cpanfile"
           sudo: false
           args: "-v --quiet --notest"
+      - name: install perl-sdk sources as perl dependency
+        uses: perl-actions/install-with-cpanm@v1
+        with:
+          install: "."
+          sudo: false
+          args: "-v --installdeps --notest ."
       - name: Setup NodeJS LTS
         uses: actions/setup-node@v2
       - name: Install dependencies
