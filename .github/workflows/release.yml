@@ -34,9 +34,6 @@ jobs:
       - test
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
 
-    container:
-      image: perldocker/perl-tester:5.30
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
