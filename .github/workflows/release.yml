@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          sudo apt install perl-doc ctags perltidy
+          apt install perl-doc ctags perltidy
       - name: install perl dependencies
         uses: perl-actions/install-with-cpanm@v1
         with:
@@ -44,7 +44,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - run: |
-          sudo apt install perl-doc ctags perltidy
+          apt install perl-doc ctags perltidy
       - name: install perl dependencies
         uses: perl-actions/install-with-cpanm@v1
         with:
