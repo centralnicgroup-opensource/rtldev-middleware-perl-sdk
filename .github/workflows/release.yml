@@ -52,10 +52,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - run: |
-          apt install ctags perltidy
-          cpan Pod::Perldoc
-        env:
-          PERLDOC: "-U"
+          apt install perl-doc ctags perltidy
       - name: install perl dependencies
         uses: perl-actions/install-with-cpanm@v1
         with:
