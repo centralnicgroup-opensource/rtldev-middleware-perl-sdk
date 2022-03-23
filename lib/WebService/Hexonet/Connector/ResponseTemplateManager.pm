@@ -6,7 +6,7 @@ use warnings;
 use WebService::Hexonet::Connector::ResponseTemplate;
 use WebService::Hexonet::Connector::ResponseParser;
 
-our $VERSION = 'v2.2.0';
+our $VERSION = 'v2.10.3';
 
 my $instance = undef;
 

@@ -11,7 +11,7 @@ use List::MoreUtils qw(first_index);
 use Readonly;
 Readonly my $INDEX_NOT_FOUND => -1;
 
-our $VERSION = 'v2.2.0';
+our $VERSION = 'v2.10.3';
 
 
 sub new {

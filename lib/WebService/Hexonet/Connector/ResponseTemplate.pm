@@ -6,7 +6,7 @@ use warnings;
 use WebService::Hexonet::Connector::ResponseParser;
 use WebService::Hexonet::Connector::ResponseTemplateManager;
 
-our $VERSION = 'v2.2.0';
+our $VERSION = 'v2.10.3';
 
 my $rtm = WebService::Hexonet::Connector::ResponseTemplateManager->getInstance();
 
