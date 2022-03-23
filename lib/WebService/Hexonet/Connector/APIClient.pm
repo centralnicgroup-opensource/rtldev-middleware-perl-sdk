@@ -15,10 +15,11 @@ use Data::Dumper;
 use Config;
 use POSIX;
 
-Readonly my $SOCKETTIMEOUT                => 300;                                      # 300s or 5 min
-Readonly my $IDX4                         => 4;                                        # Index 4 constant
-Readonly our $ISPAPI_CONNECTION_URL       => 'https://api.ispapi.net/api/call.cgi';    # Default Connection Setup URL
-Readonly our $ISPAPI_CONNECTION_URL_PROXY => 'http://127.0.0.1/api/call.cgi';          # High Speed Connection Setup URL
+Readonly my $SOCKETTIMEOUT                => 300;                                          # 300s or 5 min
+Readonly my $IDX4                         => 4;                                            # Index 4 constant
+Readonly our $ISPAPI_CONNECTION_URL_OTE   => 'https://api-ote.ispapi.net/api/call.cgi';    # OTE Connection Setup URL
+Readonly our $ISPAPI_CONNECTION_URL_LIVE  => 'https://api.ispapi.net/api/call.cgi';        # LIVE Connection Setup URL
+Readonly our $ISPAPI_CONNECTION_URL_PROXY => 'http://127.0.0.1/api/call.cgi';              # High Speed Connection Setup URL
 
 our $VERSION = 'v2.2.0';
 
@@ -28,14 +29,14 @@ my $rtm = WebService::Hexonet::Connector::ResponseTemplateManager->getInstance()
 sub new {
     my $class = shift;
     my $self  = bless {
-        socketURL    => $ISPAPI_CONNECTION_URL,
+        socketURL    => $ISPAPI_CONNECTION_URL_LIVE,
         debugMode    => 0,
         socketConfig => WebService::Hexonet::Connector::SocketConfig->new(),
         ua           => q{},
         curlopts     => {},
         logger       => WebService::Hexonet::Connector::Logger->new()
     }, $class;
-    $self->setURL($ISPAPI_CONNECTION_URL);
+    $self->setURL($ISPAPI_CONNECTION_URL_LIVE);
     $self->useLIVESystem();
     $self->setDefaultLogger();
     return $self;
@@ -404,7 +405,7 @@ sub resetUserView {
 
 sub useDefaultConnectionSetup {
     my $self = shift;
-    return $self->setURL($ISPAPI_CONNECTION_URL);
+    return $self->setURL($ISPAPI_CONNECTION_URL_LIVE);
 }
 
 
@@ -416,6 +417,7 @@ sub useHighPerformanceConnectionSetup {
 
 sub useOTESystem {
     my $self = shift;
+    $self->setURL($ISPAPI_CONNECTION_URL_OTE);
     $self->{socketConfig}->setSystemEntity('1234');
     return $self;
 }
@@ -423,6 +425,7 @@ sub useOTESystem {
 
 sub useLIVESystem {
     my $self = shift;
+    $self->setURL($ISPAPI_CONNECTION_URL_LIVE);
     $self->{socketConfig}->setSystemEntity('54cd');
     return $self;
 }
