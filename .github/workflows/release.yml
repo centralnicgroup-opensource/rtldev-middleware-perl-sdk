@@ -58,14 +58,14 @@ jobs:
       image: perldocker/perl-tester:5.30
 
     steps:
+      - run: |
+          apt update
+          apt install perl-doc ctags perltidy git -y
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
           persist-credentials: false
-      - run: |
-          apt update
-          apt install perl-doc ctags perltidy git -y
       - name: install perl dependencies
         uses: perl-actions/install-with-cpanm@v1
         with:
@@ -85,7 +85,7 @@ jobs:
           node -v
           npm -v
       - name: Install dependencies
-        run: npm prune && npm i
+        run: npm ci
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
