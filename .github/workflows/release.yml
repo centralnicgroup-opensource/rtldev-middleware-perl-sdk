@@ -80,7 +80,7 @@ jobs:
           args: "-v --installdeps --notest ."
       - name: Setup NodeJS LTS
         run: |
-          curl -sL https://deb.nodesource.com/setup_18.x | bash -
+          curl -sL https://deb.nodesource.com/setup_16.x | bash -
           apt-get install -y nodejs
           node -v
           npm -v
