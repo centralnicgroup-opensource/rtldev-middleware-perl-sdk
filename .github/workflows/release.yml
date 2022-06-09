@@ -86,6 +86,8 @@ jobs:
           npm -v
       - name: Install dependencies
         run: npm ci
+      - name: access rights to .git
+        run: chmod g+rw .git/FETCH_HEAD
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
