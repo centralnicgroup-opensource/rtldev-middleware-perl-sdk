@@ -65,7 +65,8 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - run: |
-          apt install perl-doc ctags perltidy
+          apt update
+          apt install perl-doc ctags perltidy git -y
       - name: install perl dependencies
         uses: perl-actions/install-with-cpanm@v1
         with:
