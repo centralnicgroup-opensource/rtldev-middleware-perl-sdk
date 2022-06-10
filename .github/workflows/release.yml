@@ -55,6 +55,9 @@ jobs:
       - test
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
 
+    container:
+      image: perldocker/perl-tester:latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -67,29 +70,20 @@ jobs:
           node-version: lts/*
           check-latest: true
       - name: APT Packages
-        run: sudo apt install -y perl-doc ctags perltidy lsb-release cpanminus
+        run: sudo apt install -y perl-doc ctags perltidy lsb-release
       - name: SW Versions
         run: |
           lsb_release -a
           node -v
           npm -v
-          perl -v
+          perl -V
       - name: install perl dependencies
         run: |
-          sudo cpanm -v --quiet --notest --cpanfile ./cpanfile --installdeps .
-          sudo cpanm -v --installdeps --notest .
-      #- name: install perl dependencies
-      #  uses: perl-actions/install-with-cpanm@v1
-      #  with:
-      #    cpanfile: "cpanfile"
-      #    sudo: true
-      #    args: "-v --quiet --notest"
-      #- name: install perl-sdk sources as perl dependency
-      #  uses: perl-actions/install-with-cpanm@v1
-      #  with:
-      #    install: "."
-      #    sudo: true
-      #    args: "-v --installdeps --notest"
+          cpm install -g --no-test --show-build-log-on-failure --cpanfile cpanfile
+          perl Makefile.PL
+          make
+      #    sudo cpanm -v --quiet --notest --cpanfile ./cpanfile --installdeps .
+      #    sudo cpanm -v --installdeps --notest .
       - name: Install dependencies
         run: npm ci
       - name: Release
