@@ -72,8 +72,6 @@ jobs:
           cpm install -g --no-test --show-build-log-on-failure --cpanfile cpanfile
           perl Makefile.PL
           make
-      #    sudo cpanm -v --quiet --notest --cpanfile ./cpanfile --installdeps .
-      #    sudo cpanm -v --installdeps --notest .
       - name: Install dependencies
         run: npm ci
       - name: Release
@@ -81,4 +79,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           CPAN_USER: ${{ secrets.CPAN_USER }}
           CPAN_PASSWORD: ${{ secrets.CPAN_PASSWORD }}
+        # we are root as of perl-tester image, npx won't invoke with root rights
         run: ./node_modules/.bin/semantic-release
