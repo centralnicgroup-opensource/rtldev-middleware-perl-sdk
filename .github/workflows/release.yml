@@ -54,7 +54,6 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name:
       - name: Setup NodeJS LTS
         uses: actions/setup-node@v3
         with:
