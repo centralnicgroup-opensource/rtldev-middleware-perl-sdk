@@ -32,7 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: APT Packages
-        run: apt install perl-doc ctags perltidy
+        run: apt install -y perl-doc ctags perltidy
       - name: install perl dependencies
         run: cpm install -g --no-test --show-build-log-on-failure --cpanfile cpanfile
       - run: |
