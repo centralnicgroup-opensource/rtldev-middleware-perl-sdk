@@ -54,6 +54,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
+      - name:
       - name: Setup NodeJS LTS
         uses: actions/setup-node@v3
         with:
@@ -81,4 +82,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           CPAN_USER: ${{ secrets.CPAN_USER }}
           CPAN_PASSWORD: ${{ secrets.CPAN_PASSWORD }}
-        run: npx semantic-release
+        run: ./node_modules/.bin/semantic-release
