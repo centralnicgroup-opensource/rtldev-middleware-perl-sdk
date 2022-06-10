@@ -75,17 +75,21 @@ jobs:
           npm -v
           perl -v
       - name: install perl dependencies
-        uses: perl-actions/install-with-cpanm@v1
-        with:
-          cpanfile: "cpanfile"
-          sudo: true
-          args: "-v --quiet --notest"
-      - name: install perl-sdk sources as perl dependency
-        uses: perl-actions/install-with-cpanm@v1
-        with:
-          install: "."
-          sudo: true
-          args: "-v --installdeps --notest"
+        run: |
+          cpanm --notest -v --quiet --notest --cpanfile ./cpanfile --installdeps .
+          cpanm -v --installdeps --notest .
+      #- name: install perl dependencies
+      #  uses: perl-actions/install-with-cpanm@v1
+      #  with:
+      #    cpanfile: "cpanfile"
+      #    sudo: true
+      #    args: "-v --quiet --notest"
+      #- name: install perl-sdk sources as perl dependency
+      #  uses: perl-actions/install-with-cpanm@v1
+      #  with:
+      #    install: "."
+      #    sudo: true
+      #    args: "-v --installdeps --notest"
       - name: Install dependencies
         run: npm ci
       - name: Release
