@@ -23,6 +23,7 @@ jobs:
       fail-fast: false
       matrix:
         perl-version:
+          - "5.30"
           - "5.36"
 
     container:
@@ -54,36 +55,37 @@ jobs:
       - test
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
 
-    container:
-      image: perldocker/perl-tester:5.30
-
     steps:
-      - run: |
-          apt update
-          apt install perl-doc ctags perltidy git -y
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
           persist-credentials: false
+      - name: Setup NodeJS LTS
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+          check-latest: true
+      - name: APT Packages
+        run: sudo apt install -y perl-doc ctags perltidy lsb-release
+      - name: SW Versions
+        run: |
+          lsb_release -a
+          node -v
+          npm -v
+          perl -v
       - name: install perl dependencies
         uses: perl-actions/install-with-cpanm@v1
         with:
           cpanfile: "cpanfile"
-          sudo: false
+          sudo: true
           args: "-v --quiet --notest"
       - name: install perl-sdk sources as perl dependency
         uses: perl-actions/install-with-cpanm@v1
         with:
           install: "."
-          sudo: false
+          sudo: true
           args: "-v --installdeps --notest ."
-      - name: Setup NodeJS LTS
-        run: |
-          curl -sL https://deb.nodesource.com/setup_16.x | bash -
-          apt-get install -y nodejs
-          node -v
-          npm -v
       - name: Install dependencies
         run: npm ci
       - name: Release
