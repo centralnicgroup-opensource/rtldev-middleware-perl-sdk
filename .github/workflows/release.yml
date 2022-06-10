@@ -76,8 +76,8 @@ jobs:
           perl -v
       - name: install perl dependencies
         run: |
-          cpanm -v --quiet --notest --cpanfile ./cpanfile --installdeps .
-          cpanm -v --installdeps --notest .
+          sudo cpanm -v --quiet --notest --cpanfile ./cpanfile --installdeps .
+          sudo cpanm -v --installdeps --notest .
       #- name: install perl dependencies
       #  uses: perl-actions/install-with-cpanm@v1
       #  with:
