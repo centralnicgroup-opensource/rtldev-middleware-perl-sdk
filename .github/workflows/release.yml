@@ -33,6 +33,15 @@ jobs:
       - uses: actions/checkout@v3
       - name: APT Packages
         run: apt install -y perl-doc ctags perltidy
+      - name: Super Linter Code Base
+        uses: github/super-linter@v4
+        env:
+          FILTER_REGEX_INCLUDE: "((/lib/.*.pm)|(/scripts/.*.sh)|updateVersion.sh)"
+          DEFAULT_BRANCH: master
+          VALIDATE_PERL: true
+          VALIDATE_BASH: true
+          VALIDATE_ALL_CODEBASE: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: install perl dependencies
         run: cpm install -g --no-test --show-build-log-on-failure --cpanfile cpanfile
       - run: |
