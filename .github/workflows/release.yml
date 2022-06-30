@@ -68,6 +68,7 @@ jobs:
         with:
           node-version: lts/*
           check-latest: true
+          cache: "npm"
       - name: APT Packages
         run: apt install -y perl-doc ctags perltidy lsb-release
       - name: SW Versions
