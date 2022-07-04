@@ -14,7 +14,7 @@ on:
 
 jobs:
   test:
-    name: "Test @ Perl LTS"
+    name: "Linting"
     runs-on: ubuntu-latest
 
     container:
