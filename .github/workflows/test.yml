@@ -35,9 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: install perl dependencies
         run: cpm install -g --no-test --show-build-log-on-failure --cpanfile cpanfile
-      - run: |
-          ./scripts/coverage.sh
-          ./scripts/perltidy.sh
+      - run: ./scripts/perltidy.sh
 
   test_matrix:
     strategy:
@@ -45,8 +43,8 @@ jobs:
       matrix:
         perl-version:
           - "5.30"
-          - "5.32"
           - "5.34"
+          - "5.36"
 
     name: Test Matrix @ Perl ${{ matrix.perl-version }}
     runs-on: ubuntu-latest
@@ -61,6 +59,4 @@ jobs:
         run: apt install -y perl-doc ctags perltidy
       - name: install perl dependencies
         run: cpm install -g --no-test --show-build-log-on-failure --cpanfile cpanfile
-      - run: |
-          ./scripts/coverage.sh
-          ./scripts/perltidy.sh
+      - run: ./scripts/coverage.sh
