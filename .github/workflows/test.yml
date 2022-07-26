@@ -38,10 +38,6 @@ jobs:
           VALIDATE_BASH: true
           VALIDATE_ALL_CODEBASE: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: install perl::dependencies
-        run: |
-          cpm install -g --no-test --show-build-log-on-failure --cpanfile cpanfile
-          ./scripts/perltidy.sh
 
   test_matrix:
     strategy:
@@ -66,7 +62,7 @@ jobs:
           persist-credentials: false
       - name: APT Packages
         run: apt install -y perl-doc ctags perltidy
-      - name: install perl dependencies
+      - name: Generate Coverage Report
         run: |
           cpm install -g --no-test --show-build-log-on-failure --cpanfile cpanfile
           ./scripts/coverage.sh
