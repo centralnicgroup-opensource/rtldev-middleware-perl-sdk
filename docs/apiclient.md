@@ -91,194 +91,194 @@ This library is used to provide all functionality to be able to communicate with
 
 - `new`
 
-    Returns a new [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance.
+  Returns a new [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance.
 
 - `enableDebugMode`
 
-    Activates the debug mode. Details of the API communication are put to STDOUT.
-    Like API command, POST data, API plain-text response.
-    Debug mode is inactive by default.
-    Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
+  Activates the debug mode. Details of the API communication are put to STDOUT.
+  Like API command, POST data, API plain-text response.
+  Debug mode is inactive by default.
+  Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
 
 - `disableDebugMode`
 
-    Deactivates the debug mode. Debug mode is inactive by default.
-    Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
+  Deactivates the debug mode. Debug mode is inactive by default.
+  Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
 
 - `getPOSTData( $command, $secured )`
 
-    Get POST data fields ready to use for HTTP communication based on LWP::UserAgent.
-    Specify the API command for the request by $command.
-    Specify if password data has to be replaced with asterix to secure it for output purposes by $secured. Optional.
-    This method is internally used by the request method.
-    Returns a hash.
+  Get POST data fields ready to use for HTTP communication based on LWP::UserAgent.
+  Specify the API command for the request by $command.
+  Specify if password data has to be replaced with asterix to secure it for output purposes by $secured. Optional.
+  This method is internally used by the request method.
+  Returns a hash.
 
 - `getProxy`
 
-    Returns the configured Proxy URL to use for API communication as string.
+  Returns the configured Proxy URL to use for API communication as string.
 
 - `getReferer`
 
-    Returns the configured HTTP Header \`Referer\` value to use for API communication as string.
+  Returns the configured HTTP Header \`Referer\` value to use for API communication as string.
 
 - `getSession`
 
-    Returns the API session in use as string.
+  Returns the API session in use as string.
 
 - `getURL`
 
-    Returns the url in use pointing to the Backend System to communicate with, as string.
+  Returns the url in use pointing to the Backend System to communicate with, as string.
 
 - `getUserAgent`
 
-    Returns the user-agent string.
+  Returns the user-agent string.
 
 - `getVersion`
 
-    Returns the SDK version currently in use as string.
+  Returns the SDK version currently in use as string.
 
 - `saveSession( $sessionhash )`
 
-    Save the current API session data into a given session hash object.
-    This might help you to add the backend system session into your frontend session.
-    Use reuseSession method to set a new instance of this module to that session.
-    Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
+  Save the current API session data into a given session hash object.
+  This might help you to add the backend system session into your frontend session.
+  Use reuseSession method to set a new instance of this module to that session.
+  Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
 
 - `reuseSession( $sessionhash )`
 
-    Reuse API session data that got previously saved into the given session hash object
-    by method saveSession.
-    Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
+  Reuse API session data that got previously saved into the given session hash object
+  by method saveSession.
+  Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
 
 - `setURL( $url )`
 
-    Set a different backend system url to be used for communication.
-    Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
+  Set a different backend system url to be used for communication.
+  Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
 
 - `setOTP( $otpcode )`
 
-    Set your otp code. To be used in case of active 2FA.
-    Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
+  Set your otp code. To be used in case of active 2FA.
+  Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
 
 - `setProxy( $proxy )`
 
-    Set the Proxy URL to use for API communication.
-    Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
+  Set the Proxy URL to use for API communication.
+  Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
 
 - `setReferer( $referer )`
 
-    Set the HTTP Header \`Referer\` value to use for API communication.
-    Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
+  Set the HTTP Header \`Referer\` value to use for API communication.
+  Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
 
 - `setSession( $sessionid )`
 
-    Set the API session id to use. Automatically handled after successful session login
-    based on method login or loginExtended.
-    Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
+  Set the API session id to use. Automatically handled after successful session login
+  based on method login or loginExtended.
+  Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
 
 - `setRemoteIPAddress( $ip )`
 
-    Set the outgoing ip address to be used in API communication.
-    Use this in case of an active IP filter setting for your account.
-    Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
+  Set the outgoing ip address to be used in API communication.
+  Use this in case of an active IP filter setting for your account.
+  Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
 
 - `setCredentials( $user, $pw )`
 
-    Set the credentials to use in API communication.
-    Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
+  Set the credentials to use in API communication.
+  Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
 
 - `setRoleCredentials( $user, $role, $pw)`
 
-    Set the role user credentials to use in API communication.
-    NOTE: the role user specified by $role has to be directly assigned to the
-    specified account specified by $user.
-    The specified password $pw belongs to the role user, not to the account.
-    Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
+  Set the role user credentials to use in API communication.
+  NOTE: the role user specified by $role has to be directly assigned to the
+  specified account specified by $user.
+  The specified password $pw belongs to the role user, not to the account.
+  Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
 
 - `setUserAgent( $str, $rv, $modules )`
 
-    Set a custom user agent header. This is useful for tools that use our SDK.
-    Specify the client label in $str and the revision number in $rv.
-    Specify further libraries in use by array $modules. This is optional. Entry Format: "modulename/version".
-    Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining .
+  Set a custom user agent header. This is useful for tools that use our SDK.
+  Specify the client label in $str and the revision number in $rv.
+  Specify further libraries in use by array $modules. This is optional. Entry Format: "modulename/version".
+  Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining .
 
 - `login( $otpcode )`
 
-    Perform a session login. Entry point for the session-based communication.
-    You may specify your OTP code by $otpcode.
-    Returns an instance of [WebService::Hexonet::Connector::Response](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponse).
+  Perform a session login. Entry point for the session-based communication.
+  You may specify your OTP code by $otpcode.
+  Returns an instance of [WebService::Hexonet::Connector::Response](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponse).
 
 - `loginExtended( $params, $otpcode )`
 
-    Perform a session login. Entry point for the session-based communication.
-    You may specify your OTP code by $otpcode.
-    Specify additional command parameter for API command " StartSession " in
-    Hash $params.
-    Possible parameters can be found in the [API Documentation for StartSession](https://github.com/hexonet/hexonet-api-documentation/blob/master/API/USER/SESSION/STARTSESSION.md).
-    Returns an instance of [WebService::Hexonet::Connector::Response](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponse).
+  Perform a session login. Entry point for the session-based communication.
+  You may specify your OTP code by $otpcode.
+  Specify additional command parameter for API command " StartSession " in
+  Hash $params.
+  Possible parameters can be found in the [API Documentation for StartSession](https://github.com/hexonet/hexonet-api-documentation/blob/master/API/USER/SESSION/STARTSESSION.md).
+  Returns an instance of [WebService::Hexonet::Connector::Response](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponse).
 
 - `logout`
 
-    Perfom a session logout. This destroys the API session.
-    Returns an instance of [WebService::Hexonet::Connector::Response](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponse).
+  Perfom a session logout. This destroys the API session.
+  Returns an instance of [WebService::Hexonet::Connector::Response](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponse).
 
 - `request( $command )`
 
-    Requests the given API Command $command to the Backend System.
-    Returns an instance of [WebService::Hexonet::Connector::Response](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponse).
+  Requests the given API Command $command to the Backend System.
+  Returns an instance of [WebService::Hexonet::Connector::Response](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponse).
 
 - `requestNextResponsePage( $lastresponse )`
 
-    Requests the next response page for the provided api response $lastresponse.
-    Returns an instance of [WebService::Hexonet::Connector::Response](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponse).
+  Requests the next response page for the provided api response $lastresponse.
+  Returns an instance of [WebService::Hexonet::Connector::Response](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponse).
 
 - `requestAllResponsePages( $command )`
 
-    Requests all response pages for the specified command.
-    NOTE: this might take some time. Requests are not made in parallel!
-    Returns an array of instances of [WebService::Hexonet::Connector::Response](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponse).
+  Requests all response pages for the specified command.
+  NOTE: this might take some time. Requests are not made in parallel!
+  Returns an array of instances of [WebService::Hexonet::Connector::Response](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponse).
 
 - `setUserView( $subuser )`
 
-    Activate read/write Data View on the specified subuser account.
-    Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
+  Activate read/write Data View on the specified subuser account.
+  Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
 
 - `resetUserView`
 
-    Reset the data view activated by setUserView.
-    Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
+  Reset the data view activated by setUserView.
+  Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
 
 - `useDefaultConnectionSetup`
 
-    Use the Default Setup to connect to our backend systems. This is the default!
-    Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
+  Use the Default Setup to connect to our backend systems. This is the default!
+  Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
 
 - `useHighPerformanceConnectionSetup`
 
-    Use the High Performance Connection Setup to connect to our backend systems. This is not the default! Read README.md for Details.
-    Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
+  Use the High Performance Connection Setup to connect to our backend systems. This is not the default! Read README.md for Details.
+  Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
 
 - `useLIVESystem`
 
-    Use the LIVE Backend System as communication endpoint.
-    Usage may lead to costs. BUT - are system is a prepaid system.
-    As long as you don't have charged your account, you cannot order.
-    This is the default!
-    Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
+  Use the LIVE Backend System as communication endpoint.
+  Usage may lead to costs. BUT - are system is a prepaid system.
+  As long as you don't have charged your account, you cannot order.
+  This is the default!
+  Returns the current [WebService::Hexonet::Connector::APIClient](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AAPIClient) instance in use for method chaining.
 
 - `_flattenCommand( $cmd )`
 
-    Private method. Converts all keys of the given hash into upper case letters and flattens parameters using nested arrays to string parameters.
-    Returns the new command.
+  Private method. Converts all keys of the given hash into upper case letters and flattens parameters using nested arrays to string parameters.
+  Returns the new command.
 
 - `_autoIDNConvert( $cmd )`
 
-    Private method. Converts all affected parameter values to punycode as our API only works with punycode domain names, not with IDN.
-    Returns the new command.
+  Private method. Converts all affected parameter values to punycode as our API only works with punycode domain names, not with IDN.
+  Returns the new command.
 
 # LICENSE AND COPYRIGHT
 
-This program is licensed under the [MIT License](https://raw.githubusercontent.com/hexonet/perl-sdk/master/LICENSE).
+This program is licensed under the [MIT License](https://raw.githubusercontent.com/centralnicgroup-opensource/rtldev-middleware-perl-sdk/master/LICENSE).
 
 # AUTHOR
 

@@ -28,59 +28,59 @@ Also used by [WebService::Hexonet::Connector::APIClient](https://metacpan.org/po
 
 - `getInstance`
 
-    Returns the singleton instance of [WebService::Hexonet::Connector::ResponseTemplateManager](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponseTemplateManager).
+  Returns the singleton instance of [WebService::Hexonet::Connector::ResponseTemplateManager](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponseTemplateManager).
 
 - `generateTemplate( $code, $description )`
 
-    Returns a plain-text API response for the specified response Code $code
-    and the specified response description $description as string.
-    To be used in case you need custom API responses to cover specific cases
-    in your implementation e.g. error cases of the HTTP communication.
-    Returns the current [WebService::Hexonet::Connector::ResponseTemplateManager](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponseTemplateManager) instance in use for method chaining.
+  Returns a plain-text API response for the specified response Code $code
+  and the specified response description $description as string.
+  To be used in case you need custom API responses to cover specific cases
+  in your implementation e.g. error cases of the HTTP communication.
+  Returns the current [WebService::Hexonet::Connector::ResponseTemplateManager](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponseTemplateManager) instance in use for method chaining.
 
 - `addTemplate( $id, $plain)`
 
-    Add a response to the template container.
-    Specify the template id by $id and the plain-text response by $plain.
-    Returns the current [WebService::Hexonet::Connector::ResponseTemplateManager](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponseTemplateManager) instance in use for method chaining.
+  Add a response to the template container.
+  Specify the template id by $id and the plain-text response by $plain.
+  Returns the current [WebService::Hexonet::Connector::ResponseTemplateManager](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponseTemplateManager) instance in use for method chaining.
 
 - `getTemplate( $id )`
 
-    Get a response template from template container.
-    Returns an instance of [WebService::Hexonet::Connector::ResponseTemplate](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponseTemplate).
-    If not found, an error will be returned also as such an instance.
+  Get a response template from template container.
+  Returns an instance of [WebService::Hexonet::Connector::ResponseTemplate](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponseTemplate).
+  If not found, an error will be returned also as such an instance.
 
 - `getTemplates`
 
-    Get all available response templates in hash notation.
-    Where the hash key represents the template id and where the hash value is an
-    instance of [WebService::Hexonet::Connector::ResponseTemplate](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponseTemplate).
-    Returns a hash.
+  Get all available response templates in hash notation.
+  Where the hash key represents the template id and where the hash value is an
+  instance of [WebService::Hexonet::Connector::ResponseTemplate](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AResponseTemplate).
+  Returns a hash.
 
 - `hasTemplate( $id )`
 
-    Checks if the template container contains a template with the specified template id $id.
-    Returns boolean 0 or 1.
+  Checks if the template container contains a template with the specified template id $id.
+  Returns boolean 0 or 1.
 
 - `isTemplateMatchHash( $hash, $id )`
 
-    Checks if the given API response in hash format specified by $hash matches the specified
-    response template $id in response code and response description.
-    It doesn't compare PROPERTY data!
-    Returns boolean 0 or 1.
+  Checks if the given API response in hash format specified by $hash matches the specified
+  response template $id in response code and response description.
+  It doesn't compare PROPERTY data!
+  Returns boolean 0 or 1.
 
 - `isTemplateMatchPlain( $plain, $id )`
 
-    Checks if the given API response in plain-text format specified by $plain matches the specified
-    response template $id in response code and response description.
-    It doesn't compare PROPERTY data!
-    Internally this method parses that plain-text response into hash format and uses method
-    isTemplateMatchHash to perform the check.
-    Returns boolean 0 or 1.
+  Checks if the given API response in plain-text format specified by $plain matches the specified
+  response template $id in response code and response description.
+  It doesn't compare PROPERTY data!
+  Internally this method parses that plain-text response into hash format and uses method
+  isTemplateMatchHash to perform the check.
+  Returns boolean 0 or 1.
 
 # LICENSE AND COPYRIGHT
 
-This program is licensed under the [MIT License](https://raw.githubusercontent.com/hexonet/perl-sdk/master/LICENSE).
+This program is licensed under the [MIT License](https://raw.githubusercontent.com/centralnicgroup-opensource/rtldev-middleware-perl-sdk/master/LICENSE).
 
 # AUTHOR
 

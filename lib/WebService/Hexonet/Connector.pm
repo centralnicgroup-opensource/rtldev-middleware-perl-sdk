@@ -68,7 +68,7 @@ We've split our functionality into submodules to give this module a better struc
 
 =head1 LICENSE AND COPYRIGHT
 
-This program is licensed under the L<MIT License|https://raw.githubusercontent.com/hexonet/perl-sdk/master/LICENSE>.
+This program is licensed under the L<MIT License|https://raw.githubusercontent.com/centralnicgroup-opensource/rtldev-middleware-perl-sdk/master/LICENSE>.
 
 =head1 AUTHOR
 

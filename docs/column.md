@@ -27,30 +27,30 @@ getListHash were the only possibilities to access data in Response library.
 
 - `new( $key, @data )`
 
-    Returns a new [WebService::Hexonet::Connector::Column](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AColumn) object.
-    Specify the column name in $key and the column data in @data.
+  Returns a new [WebService::Hexonet::Connector::Column](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3AColumn) object.
+  Specify the column name in $key and the column data in @data.
 
 - `getKey`
 
-    Returns the column name as string.
+  Returns the column name as string.
 
 - `getData`
 
-    Returns the full column data as array.
+  Returns the full column data as array.
 
 - `getDataByIndex( $index )`
 
-    Returns the column data of the specified index as scalar.
-    Returns undef if not found.
+  Returns the column data of the specified index as scalar.
+  Returns undef if not found.
 
 - `hasDataIndex( $index )`
 
-    Checks if the given index exists in the column data.
-    Returns boolean 0 or 1.
+  Checks if the given index exists in the column data.
+  Returns boolean 0 or 1.
 
 # LICENSE AND COPYRIGHT
 
-This program is licensed under the [MIT License](https://raw.githubusercontent.com/hexonet/perl-sdk/master/LICENSE).
+This program is licensed under the [MIT License](https://raw.githubusercontent.com/centralnicgroup-opensource/rtldev-middleware-perl-sdk/master/LICENSE).
 
 # AUTHOR
 

@@ -10,11 +10,11 @@
   "license": "MIT",
   "engines": {
     "node": ">=16.15.1",
-    "npm": ">=18.11.1"
+    "npm": ">=8.11.1"
   },
-  "homepage": "https://github.com/hexonet/perl-sdk",
-  "repository": "github:hexonet/perl-sdk",
-  "bugs": "https://github.com/hexonet/perl-sdk/issues",
+  "homepage": "https://github.com/centralnicgroup-opensource/rtldev-middleware-perl-sdk",
+  "repository": "github:centralnicgroup-opensource/rtldev-middleware-perl-sdk",
+  "bugs": "https://github.com/centralnicgroup-opensource/rtldev-middleware-perl-sdk/issues",
   "maintainers": [
     {
       "name": "Kai Schwarz",

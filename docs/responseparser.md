@@ -28,17 +28,17 @@ This module cares about exactly all that.
 
 - `parse( $plain )`
 
-    Returns the parsed API response as Hash.
-    Specifiy the plain-text API response as $plain.
+  Returns the parsed API response as Hash.
+  Specifiy the plain-text API response as $plain.
 
 - `serialize( $hash )`
 
-    Returns the serialized API response as string. 
-    Specifiy the hash notation of the API response as $hash.
+  Returns the serialized API response as string.
+  Specifiy the hash notation of the API response as $hash.
 
 # LICENSE AND COPYRIGHT
 
-This program is licensed under the [MIT License](https://raw.githubusercontent.com/hexonet/perl-sdk/master/LICENSE).
+This program is licensed under the [MIT License](https://raw.githubusercontent.com/centralnicgroup-opensource/rtldev-middleware-perl-sdk/master/LICENSE).
 
 # AUTHOR
 

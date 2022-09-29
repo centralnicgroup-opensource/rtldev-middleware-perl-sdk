@@ -12,11 +12,11 @@ To be used in the way:
 
     # Log API Request / Response Data
     # * specify request data in $data in string format
-    # * specify an instance of WebService::Hexonet::Connector::Response in $r.    
+    # * specify an instance of WebService::Hexonet::Connector::Response in $r.
     # * specify an error message as string in $error (optional parameter)
     $logger->log( $data, $r, $error );
     #  vs.
-    $logger->log( $data, $r );    
+    $logger->log( $data, $r );
 
 # DESCRIPTION
 
@@ -29,18 +29,18 @@ Important is that a custom implementation provides method \`log\` and supports a
 
 - `new`
 
-    Returns a new [WebService::Hexonet::Connector::Logger](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3ALogger) object.
+  Returns a new [WebService::Hexonet::Connector::Logger](https://metacpan.org/pod/WebService%3A%3AHexonet%3A%3AConnector%3A%3ALogger) object.
 
 - `log($post, $r, $error)`
 
-    Log API Request / Response Data
-    Specify request data in $data in string format
-    Specify an instance of WebService::Hexonet::Connector::Response in $r.
-    Specify an error message as string in $error. Optional. Thought for forwarding HTTP errors.
+  Log API Request / Response Data
+  Specify request data in $data in string format
+  Specify an instance of WebService::Hexonet::Connector::Response in $r.
+  Specify an error message as string in $error. Optional. Thought for forwarding HTTP errors.
 
 # LICENSE AND COPYRIGHT
 
-This program is licensed under the [MIT License](https://raw.githubusercontent.com/hexonet/perl-sdk/master/LICENSE).
+This program is licensed under the [MIT License](https://raw.githubusercontent.com/centralnicgroup-opensource/rtldev-middleware-perl-sdk/master/LICENSE).
 
 # AUTHOR
 
