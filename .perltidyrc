@@ -1,18 +1,26 @@
--q
--b
--bext='/'
--pbp
--nst
--i=4
--ce
--bar
--pt=1
--bt=1
--sbt=0
--aws
--dws
--l=0
--blbs=2
--nbbc
--mbl=1
--kbl=1
+-l=120      # --maximum-line-length=n
+-i=4        # --indent-columns=n
+-et=4       # --entab-leading-whitespace=n
+-ci=4       # --continuation-indentation=n
+
+# Whitespace Control
+-pt=2       #  ($test) and ($test, $test2)
+-bt=2       #  {'arg1'} and {TEST => 1}
+-sbt=2      #  ['arg1'] and ['arg1', 'arg2']
+-bbt=1 #2   # --block-brace-tightness
+-nsfs       # --nospace-for-semicolon in for( ...; ...; ...)
+
+# Comments
+-csc        # } ## end sub NAME
+-csci=50    # --closing-side-comment-interval
+
+# Line breaks
+-nbl        # if ( ... ) {
+-nsbl       # sub name {
+-ohbr       # --opening-hash-brace-right   push @array_variable, {
+-asc        # --add-semicolons
+-bbc        # --blanks-before-comments
+-bbs        # --blanks-before-subs
+-bbb        # --blanks-before-blocks
+-boc        # --break-at-old-comma-breakpoints
+-noll       # --nooutdent-long-lines
