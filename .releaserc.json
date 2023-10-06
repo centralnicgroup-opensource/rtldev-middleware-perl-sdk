@@ -12,7 +12,8 @@
             "@semantic-release/exec",
             {
                 "prepareCmd": "./scripts/podchecker.sh && ./updateVersion.sh ${nextRelease.version} && ./scripts/rebuild.sh && ./scripts/buildrelease.sh ${nextRelease.version}",
-                "publishCmd": "./scripts/upload.sh ${nextRelease.version}"
+                "publishCmd": "./scripts/upload.sh ${nextRelease.version}",
+                "successCmd": "gulp publish --notes \"${encodeURIComponent(nextRelease.notes)}\""
             }
         ],
         [
