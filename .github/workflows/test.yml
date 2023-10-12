@@ -23,14 +23,14 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: false
       - name: APT Packages
         run: apt install -y perl-doc ctags perltidy
       - name: Super Linter Code Base
-        uses: github/super-linter/slim@v4
+        uses: github/super-linter/slim@v5
         env:
           FILTER_REGEX_INCLUDE: "/lib/*|/t/*|/scripts/.*.sh|updateVersion.sh"
           DEFAULT_BRANCH: master
@@ -42,10 +42,7 @@ jobs:
   test_matrix:
     strategy:
       matrix:
-        perl-version:
-          - "5.30"
-          - "5.34"
-          - "5.36"
+        perl-version: ${{ fromJson(vars.RTLDEV_MW_CI_PERL_MATRIX) }}
 
     name: Test Matrix @ Perl ${{ matrix.perl-version }}
     runs-on: ubuntu-latest
@@ -56,7 +53,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: false
