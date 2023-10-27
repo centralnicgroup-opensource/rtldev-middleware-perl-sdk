@@ -10,7 +10,7 @@ on:
 
 jobs:
   test:
-    name: "Linting"
+    name: 🧪 Linting
     runs-on: ubuntu-latest
 
     container:
@@ -39,7 +39,7 @@ jobs:
       matrix:
         perl-version: ${{ fromJson(vars.RTLDEV_MW_CI_PERL_MATRIX) }}
 
-    name: Test Matrix @ Perl ${{ matrix.perl-version }}
+    name: 🧪 Testing
     runs-on: ubuntu-latest
 
     needs: test
