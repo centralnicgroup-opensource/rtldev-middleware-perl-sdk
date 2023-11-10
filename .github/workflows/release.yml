@@ -1,8 +1,6 @@
 name: Release
 on:
-  # will run for every branch, except tags. See RSRMID-206.
   push:
-    # Sequence of patterns matched against refs/heads
     branches:
       - "master"
 
@@ -10,12 +8,17 @@ jobs:
   build:
     name: "Build"
     uses: ./.github/workflows/test.yml
+    permissions:
+      contents: read
 
   release:
-    name: Release @ Perl LTS
-    runs-on: ubuntu-latest
+    name: Release
+    runs-on: ${{ vars.RTLDEV_MW_CI_OS }}
     needs: build
-
+    permissions:
+      contents: write
+      issues: write
+      deployments: write
     container:
       image: perldocker/perl-tester:latest
 
@@ -48,9 +51,9 @@ jobs:
         run: npm ci
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RTLDEV_MW_CI_TOKEN }}
           CPAN_USER: ${{ secrets.CPAN_USER }}
           CPAN_PASSWORD: ${{ secrets.CPAN_PASSWORD }}
-          RTLDEV_MW_NOTIFICATION_URI: ${{ secrets.RTLDEV_MW_NOTIFICATION_URI }}
+          RTLDEV_MW_NOTIFICATION_URI: ${{ secrets.RTLDEV_MW_CI_NOTIFICATION_URI }}
         # we are root as of perl-tester image, npx won't invoke with root rights
         run: ./node_modules/.bin/semantic-release

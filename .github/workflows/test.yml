@@ -6,8 +6,9 @@ on:
 jobs:
   test:
     name: 🧪 Linting
-    runs-on: ubuntu-latest
-
+    runs-on: ${{ vars.RTLDEV_MW_CI_OS }}
+    permissions:
+      contents: read
     container:
       image: perldocker/perl-tester:latest
 
@@ -30,17 +31,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   test_matrix:
+    name: 🧪 Testing
+    needs: test
+    runs-on: ${{ vars.RTLDEV_MW_CI_OS }}
+    permissions:
+      contents: read
+    container:
+      image: perldocker/perl-tester:${{ matrix.perl-version }}
     strategy:
       matrix:
         perl-version: ${{ fromJson(vars.RTLDEV_MW_CI_PERL_MATRIX) }}
-
-    name: 🧪 Testing
-    runs-on: ubuntu-latest
-
-    needs: test
-    container:
-      image: perldocker/perl-tester:${{ matrix.perl-version }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
