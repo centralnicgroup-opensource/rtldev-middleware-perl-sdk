@@ -54,6 +54,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.RTLDEV_MW_CI_TOKEN }}
           CPAN_USER: ${{ secrets.CPAN_USER }}
           CPAN_PASSWORD: ${{ secrets.CPAN_PASSWORD }}
-          RTLDEV_MW_NOTIFICATION_URI: ${{ secrets.RTLDEV_MW_CI_NOTIFICATION_URI }}
+          TEAMS_NOTIFICATION_URI: ${{ secrets.RTLDEV_MW_CI_NOTIFICATION_URI }}
+          COMMIT_SHA: ${{ github.sha }}
         # we are root as of perl-tester image, npx won't invoke with root rights
         run: ./node_modules/.bin/semantic-release
