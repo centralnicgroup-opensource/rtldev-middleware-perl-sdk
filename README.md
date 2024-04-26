@@ -9,7 +9,8 @@ This module is a connector library for the insanely fast HEXONET Backend API. Fo
 
 ## Resources
 
-- [Documentation](https://centralnicgroup-public.github.io/rtldev-middleware-documentation/docs/hexonet/sdks/perl-sdk/)
+- Documentation
+  - [HEXONET](https://www.hexonet.support/hc/en-gb/articles/13651477916317-Self-Development-Kit-for-Perl)
 - [Release Notes](https://github.com/centralnicgroup-opensource/rtldev-middleware-perl-sdk/releases)
 
 ## Authors
