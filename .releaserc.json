@@ -11,10 +11,25 @@
         [
             "@semantic-release/exec",
             {
-                "prepareCmd": "./scripts/podchecker.sh && ./updateVersion.sh ${nextRelease.version} && ./scripts/rebuild.sh && ./scripts/buildrelease.sh ${nextRelease.version}",
+                "prepareCmd": "./scripts/podchecker.sh && ./scripts/rebuild.sh && ./scripts/buildrelease.sh ${nextRelease.version}",
                 "publishCmd": "./scripts/upload.sh ${nextRelease.version}"
             }
         ],
+        [
+            "semantic-release-replace-plugin",
+            {
+              "replacements": [
+                {
+                  "files": [
+                    "lib/WebService/**/*.pm"
+                  ],
+                  "from": "'v\\d+\\.\\d+\\.\\d+'",
+                  "to": "'v${nextRelease.version}'",
+                  "countMatches": true
+                }
+              ]
+            }
+          ],
         [
             "@semantic-release/git",
             {
