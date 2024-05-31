@@ -11,6 +11,9 @@
   "engines": {
     "node": ">=20.6.1"
   },
+  "scripts": {
+    "codeFix": "find . -type f \\( -name \"*.pl\" -o -name \"*.pm\" -o -name \"*.t\" \\) -exec perltidy -b {} \\;"
+  },
   "homepage": "https://github.com/centralnicgroup-opensource/rtldev-middleware-perl-sdk",
   "repository": "github:centralnicgroup-opensource/rtldev-middleware-perl-sdk",
   "bugs": "https://github.com/centralnicgroup-opensource/rtldev-middleware-perl-sdk/issues",
