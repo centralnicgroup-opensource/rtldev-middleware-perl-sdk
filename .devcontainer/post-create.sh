@@ -24,4 +24,6 @@ cp $CONFIGURATION_PATH/.p10k.zsh ~/.p10k.zsh
 
 cp $CONFIGURATION_PATH/.zshrc ~/.zshrc
 
+cp $CONFIGURATION_PATH/.perltidyrc ~/.perltidyrc
+
 mkdir -p ~/.cache && cp $CONFIGURATION_PATH/p10k-instant-prompt-vscode.zsh ~/.cache/p10k-instant-prompt-vscode.zsh
