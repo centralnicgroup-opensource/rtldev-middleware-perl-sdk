@@ -1,0 +1,42 @@
+// .devcontainer/devcontainer.json
+{
+  "name": "dstack-perlsdk",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "workspaceFolder": "/usr/share/rtldev-middleware-perl-sdk",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/usr/share/rtldev-middleware-perl-sdk,type=bind",
+  "customizations": {
+      "vscode": {
+          "zsh": {
+              "path": "zsh"
+          },
+          "extensions": [
+            "richterger.perl",
+            "eamodio.gitlens"
+          ],
+          "settings": {
+            "terminal.integrated.defaultProfile.linux": "zsh",
+            "terminal.integrated.profiles.linux": {
+              "zsh": {
+                "path": "/bin/zsh"
+              }
+            }
+          }
+      }
+  },
+  "features": {
+      "ghcr.io/devcontainers/features/node:1": {
+          "version": "latest"
+      },
+      "ghcr.io/devcontainers/features/git:1": {},
+      "ghcr.io/devcontainers-contrib/features/perl-asdf:2": {}
+  },
+  "postCreateCommand": "zsh ./.devcontainer/post-create.sh",
+  "runArgs": [
+      "--name",
+      "rtldev-middleware-perl-sdk"
+  ],
+  "mounts": [
+      "source=${localEnv:HOME}${localEnv:USERPROFILE},target=/WSL_USER,type=bind,consistency=cached"
+  ],
+  "remoteUser": "vscode"
+}
