@@ -15,7 +15,7 @@
     "codeFix": "find . -type f \\( -name \"*.pl\" -o -name \"*.pm\" -o -name \"*.t\" \\) -exec perltidy -b {} \\;"
   },
   "homepage": "https://github.com/centralnicgroup-opensource/rtldev-middleware-perl-sdk",
-  "repository": "github:centralnicgroup-opensource/rtldev-middleware-perl-sdk",
+  "repository": "github:centralnicgroup-opensource/rtldev-middleware-perl-sdk.git",
   "bugs": "https://github.com/centralnicgroup-opensource/rtldev-middleware-perl-sdk/issues",
   "maintainers": [
     {
